@@ -7,62 +7,14 @@ body {
     padding: 0;
 }
 
-.container {
-    max-width: 600px;
-    margin: 50px auto;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-    font-size: 24px;
-    color: #d67a7a;
-}
-
-.date {
-    font-size: 18px;
-    font-weight: bold;
-    margin-top: 10px;
-}
-
-.location {
-    font-size: 16px;
-    color: #555;
-}
-
-.wedding-photo {
-    width: 100%;
-    max-width: 500px;
-    border-radius: 10px;
-    margin: 20px 0;
-}
-
-.message {
-    font-size: 16px;
-    line-height: 1.6;
-}
-
-.map-button {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 15px;
-    background-color: #d67a7a;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-}
-
-.map-button:hover {
-    background-color: #c06060;
-}
-
 nav {
+    position: fixed;
+    width: 100%;
+    top: 0;
     background: #f8f8f8;
     padding: 10px;
     text-align: center;
+    z-index: 1000;
 }
 
 nav ul {
@@ -85,3 +37,60 @@ nav ul li a:hover {
     color: #c06060;
 }
 
+section {
+    padding: 80px 20px;
+    min-height: 100vh;
+}
+
+#home, #about, #invitation, #gallery, #guestbook {
+    background: white;
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 600px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.profile {
+    display: inline-block;
+    width: 45%;
+    padding: 10px;
+}
+
+.profile img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+.gallery-container img {
+    width: 30%;
+    margin: 5px;
+}
+
+input, textarea {
+    width: 80%;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #d67a7a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #c06060;
+}
