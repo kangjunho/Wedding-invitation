@@ -6,6 +6,7 @@ body {
     color: #333;
     margin: 0;
     padding: 0;
+    overflow: hidden; /* 꽃잎 애니메이션을 위한 설정 */
 }
 
 /* 첫 페이지 스타일 */
@@ -17,6 +18,8 @@ body {
     min-height: 100vh;
     background-color: white;
     padding: 30px;
+    position: relative;
+    overflow: hidden;
 }
 
 h2 {
@@ -45,4 +48,32 @@ h1 {
     font-size: 16px;
     color: #555;
     font-weight: bold;
+}
+
+/* 꽃 내리는 효과 */
+.flower-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.flower {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-image: url('flower.png'); /* 꽃잎 이미지 */
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.8;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
 }
