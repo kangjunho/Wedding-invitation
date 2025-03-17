@@ -58,3 +58,30 @@ h1 {
 .map-button:hover {
     background-color: #c06060;
 }
+
+nav {
+    background: #f8f8f8;
+    padding: 10px;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #d67a7a;
+}
+
+nav ul li a:hover {
+    color: #c06060;
+}
+
