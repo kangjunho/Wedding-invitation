@@ -3,30 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>우리의 웨딩 초대장</title>
+    <title>강준호 & 박예원의 웨딩 초대장</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+
+    <!-- 네비게이션 바 -->
     <nav>
-    <ul>
-        <li><a href="index.html">🏠 홈</a></li>
-        <li><a href="about.html">💑 신랑 & 신부</a></li>
-        <li><a href="invitation.html">📜 초대글</a></li>
-        <li><a href="gallery.html">📸 갤러리</a></li>
-        <li><a href="guestbook.html">💌 축하 메시지</a></li>
-    </ul>
-</nav>
-    <div class="container">
+        <ul>
+            <li><a href="#home">🏠 홈</a></li>
+            <li><a href="#about">💑 신랑 & 신부</a></li>
+            <li><a href="#invitation">📜 초대의 글</a></li>
+            <li><a href="#gallery">📸 갤러리</a></li>
+            <li><a href="#guestbook">💌 축하 메시지</a></li>
+        </ul>
+    </nav>
+
+    <!-- 홈 섹션 -->
+    <section id="home">
         <h1>우리의 웨딩에 초대합니다</h1>
         <p class="date">2025년 05월 10일 (토) 12:00</p>
         <p class="location">📍 해운대 팔레드시즈 웨딩홀</p>
-        <img src="wedding.JPG" alt="결혼식 사진" class="wedding-photo">
-        <p class="message">
-            저희 두 사람이 새로운 시작을 함께합니다.<br>
-            소중한 분들과 함께하는 이 특별한 날에<br>
-            축복과 사랑을 나누고 싶습니다.
-        </p>
-        <a href="https://maps.google.com?q=해운대+팔레드시즈+웨딩홀" class="map-button">📍 위치 확인</a>
-    </div>
+        <img src="wedding.jpg" alt="결혼식 사진">
+    </section>
+
+    <!-- 신랑 & 신부 소개 -->
+    <section id="about">
+        <h1>💑 신랑 & 신부 소개</h1>
+        <div class="profile">
+            <img src="groom.jpg" alt="신랑">
+            <p><strong>신랑:</strong> 강준호</p>
+        </div>
+        <div class="profile">
+            <img src="bride.jpg" alt="신부">
+            <p><strong>신부:</strong> 박예원</p>
+        </div>
+    </section>
+
+    <!-- 초대의 글 -->
+    <section id="invitation">
+        <h1>📜 초대의 글</h1>
+        <p>저희 두 사람이 하나가 되는 날, 함께 해주시면 감사하겠습니다.</p>
+    </section>
+
+    <!-- 포토 갤러리 -->
+    <section id="gallery">
+        <h1>📸 포토 갤러리</h1>
+        <div class="gallery-container">
+            <img src="photo1.jpg" alt="웨딩 사진 1">
+            <img src="photo2.jpg" alt="웨딩 사진 2">
+            <img src="photo3.jpg" alt="웨딩 사진 3">
+        </div>
+    </section>
+
+    <!-- 축하 메시지 -->
+    <section id="guestbook">
+        <h1>💌 축하 메시지</h1>
+        <input type="text" id="name" placeholder="이름">
+        <textarea id="message" placeholder="메시지를 입력하세요"></textarea>
+        <button onclick="addMessage()">등록</button>
+        <div id="messages"></div>
+    </section>
+
+    <!-- 스크립트 -->
+    <script>
+        $(document).ready(function(){
+            $("nav ul li a").on('click', function(event) {
+                if (this.hash !== "") {
+                    event.preventDefault();
+                    let hash = this.hash;
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top
+                    }, 800);
+                }
+            });
+        });
+
+        function addMessage() {
+            let name = document.getElementById("name").value;
+            let message = document.getElementById("message").value;
+            if (name && message) {
+                let messages = document.getElementById("messages");
+                let newMessage = document.createElement("p");
+                newMessage.innerHTML = `<strong>${name}:</strong> ${message}`;
+                messages.appendChild(newMessage);
+            }
+        }
+    </script>
+
 </body>
 </html>
