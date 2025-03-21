@@ -3,52 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>강준호 ❤️ 박예원 결혼합니다.</title>
+    <title>강준호 ♥ 박예원 결혼합니다.</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 
-<!-- 네비게이션 바 -->
-<nav>
-    <!-- 왼쪽 (이름) -->
-    <div class="nav-left">
-        <a href="#home">준호<span>❤️</span>예원</a>
-    </div>
-
-    <!-- 가운데 (메뉴) -->
-    <div class="nav-center">
-        <a href="#gallery"><img src="icon-gallery.png" alt="갤러리"> 갤러리</a>
-        <a href="#info"><img src="icon-info.png" alt="정보"> 정보</a>
-        <a href="#guestbook"><img src="icon-message.png" alt="축하메시지"> 축하메시지</a>
-        <a href="#location"><img src="icon-location.png" alt="오시는 길"> 오시는 길</a>
-    </div>
-
-    <!-- 오른쪽 (전체보기) -->
-    <div class="nav-right">
-        <a href="#all">🔍 전체보기</a>
-    </div>
-</nav>
-
-
-    <!-- 메인 섹션 -->
-    <section id="home">
-        <div class="main-text">
-            <h1>결혼합니다</h1>
+    <!-- 네비게이션 바 -->
+    <nav>
+        <div class="nav-left">
+            <a href="#home">준호 ♥ 예원</a>
         </div>
-        <div class="background-image"></div>
-    </section>
+        <div class="nav-center">
+            <a href="#gallery">갤러리</a>
+            <a href="#info">정보</a>
+            <a href="#guestbook">축하메시지</a>
+            <a href="#location">오시는 길</a>
+        </div>
+        <div class="nav-right">
+            <a href="#" id="menu-toggle">≡</a>
+        </div>
+    </nav>
 
-    <!-- 신랑 & 신부 소개 -->
-    <section id="about">
-        <h2>강준호 & 박예원</h2>
-    </section>
-
-    <!-- 두 번째 업로드한 사진 -->
-    <section id="second-photo">
-        <img src="second-photo.jpg" alt="두 번째 사진">
-    </section>
+    <!-- 사이드바 메뉴 -->
+    <div id="sidebar">
+        <div class="sidebar-header">
+            <h2>준호 ♥ 예원</h2>
+            <a href="#" id="close-sidebar">✖</a>
+        </div>
+        <ul>
+            <li><a href="#home">홈</a></li>
+            <li><a href="#gallery">갤러리</a></li>
+            <li><a href="#info">정보</a></li>
+            <li><a href="#guestbook">축하메시지</a></li>
+            <li><a href="#location">오시는 길</a></li>
+        </ul>
+    </div>
 
     <script src="script.js"></script>
+
 </body>
 </html>
