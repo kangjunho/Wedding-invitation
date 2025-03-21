@@ -113,3 +113,53 @@ nav {
 #sidebar ul li a:hover {
     background: rgba(255, 255, 255, 0.2);
 }
+
+
+/* 결혼식 정보 네비게이션 */
+.info-nav {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    border-bottom: 2px solid #ddd;
+}
+
+.tab-button {
+    background: none;
+    border: none;
+    font-size: 16px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.tab-button.active {
+    color: green;
+    border-bottom: 2px solid green;
+}
+
+/* 정보 섹션 */
+.info-section {
+    padding: 40px;
+    text-align: center;
+}
+
+table {
+    width: 80%;
+    margin: auto;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.travel-card {
+    background: #f4f4f4;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 15px auto;
+    width: 80%;
+}
