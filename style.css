@@ -249,3 +249,56 @@ body {
     margin-left: 10px;
 }
 
+/* 지도 컨테이너 */
+.map-container {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* 주소 및 버튼 */
+.location-info {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.location-info h3 {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.location-info button {
+    margin: 10px;
+    padding: 10px 15px;
+    border: none;
+    background: green;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* 교통수단 안내 */
+.transport-info {
+    width: 80%;
+    margin: 20px auto;
+    text-align: left;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.transport-info h3 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.transport-info ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.transport-info ul li {
+    padding: 5px 0;
+}
+
