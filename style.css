@@ -163,3 +163,89 @@ table th, table td {
     margin: 15px auto;
     width: 80%;
 }
+
+/* 기본 스타일 */
+body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    background-color: #f9f5f0;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* 메시지 작성 폼 */
+#messageForm {
+    margin-top: 20px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 50%;
+    margin: auto;
+}
+
+#messageForm input, #messageForm textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* 보기 방식 토글 버튼 */
+.view-toggle {
+    margin-top: 20px;
+}
+
+.view-toggle button {
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.view-toggle .active {
+    background: green;
+    color: white;
+}
+
+/* 목록 보기 스타일 */
+.list-view .message-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.list-view .message-item strong {
+    font-weight: bold;
+}
+
+/* 카드 보기 스타일 */
+.card-view {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.card-view .message-item {
+    width: 300px;
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 하트(❤️) 버튼 */
+.heart-btn {
+    cursor: pointer;
+    font-size: 18px;
+    color: red;
+    margin-left: 10px;
+}
+
