@@ -5,26 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>강준호 ❤️ 박예원 결혼합니다.</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 
-    <!-- 배경 음악 -->
-    <audio id="bg-music" autoplay loop>
-        <source src="music.mp3" type="audio/mp3">
-        브라우저가 오디오 태그를 지원하지 않습니다.
-    </audio>
+    <!-- 네비게이션 바 -->
+    <nav>
+        <ul>
+            <li><a href="#home">❤️ 준호 & 예원</a></li>
+            <li><a href="#gallery">📸 갤러리</a></li>
+            <li><a href="#info">📜 정보</a></li>
+            <li><a href="#guestbook">💌 축하메시지</a></li>
+            <li><a href="#location">📍 오시는 길</a></li>
+            <li><a href="#all">🔍 전체보기</a></li>
+        </ul>
+    </nav>
 
-    <!-- 첫 페이지 -->
+    <!-- 메인 섹션 -->
     <section id="home">
-        <h2>WEDDING INVITATION</h2>
-        <h1>강준호 | 박예원 결혼합니다.</h1>
-        <img src="wedding.JPG" alt="웨딩 사진" class="wedding-photo">
-        <p class="date">📅 2025년 05월 10일 토요일 오후 12시</p>
-        <p class="location">📍 해운대 팔레드시즈 웨딩홀</p>
+        <div class="main-text">
+            <h1>결혼합니다</h1>
+        </div>
+        <div class="background-image"></div>
     </section>
 
-    <!-- 꽃이 내리는 효과 -->
-    <div class="flower-container"></div>
+    <!-- 신랑 & 신부 소개 -->
+    <section id="about">
+        <h2>강준호 & 박예원</h2>
+    </section>
+
+    <!-- 두 번째 업로드한 사진 -->
+    <section id="second-photo">
+        <img src="second-photo.jpg" alt="두 번째 사진">
+    </section>
 
     <script src="script.js"></script>
 </body>
