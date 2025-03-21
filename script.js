@@ -15,3 +15,10 @@ $(document).ready(function () {
         }, 800);
     }
 });
+
+function openTab(tabName) {
+    $(".info-section").hide();
+    $("#" + tabName).show();
+    $(".tab-button").removeClass("active");
+    $("button[onclick='openTab(\"" + tabName + "\")']").addClass("active");
+}
