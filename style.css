@@ -1,15 +1,4 @@
-/* 기본 스타일 */
-body {
-    font-family: 'Arial', sans-serif;
-    text-align: center;
-    background-color: #f9f5f0;
-    color: #333;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-}
-
-/* 네비게이션 바 */
+/* 네비게이션 바 스타일 */
 nav {
     position: fixed;
     top: 0;
@@ -19,76 +8,71 @@ nav {
     text-align: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-nav ul li {
-    display: inline;
-    margin: 0 15px;
-}
-
-nav ul li a {
-    text-decoration: none;
-    font-weight: bold;
-    color: #d67a7a;
-    font-size: 16px;
-}
-
-nav ul li a:hover {
-    color: #c06060;
-}
-
-/* 메인 배경 */
-#home {
-    position: relative;
-    height: 100vh;
+/* 왼쪽 메뉴 */
+.nav-left {
     display: flex;
     align-items: center;
+    padding-left: 20px;
+}
+
+.nav-left a {
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.nav-left a span {
+    color: #d67a7a; /* 하트 색상 */
+}
+
+/* 가운데 메뉴 */
+.nav-center {
+    flex-grow: 1;
+    display: flex;
     justify-content: center;
-    background-color: white;
+    gap: 20px;
 }
 
-.main-text h1 {
-    font-size: 48px;
+.nav-center a {
+    text-decoration: none;
+    font-size: 16px;
+    color: #666;
+    font-weight: 500;
+    transition: color 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.nav-center a:hover {
+    color: #d67a7a;
+}
+
+/* 오른쪽 메뉴 (전체보기) */
+.nav-right {
+    padding-right: 20px;
+}
+
+.nav-right a {
+    text-decoration: none;
+    font-size: 14px;
     font-weight: bold;
-    color: white;
-    position: absolute;
-    z-index: 10;
+    color: #333;
 }
 
-.background-image {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: url('wedding.JPG') no-repeat center center/cover;
-    filter: brightness(0.7);
+.nav-right a:hover {
+    color: #d67a7a;
 }
 
-/* 신랑 & 신부 소개 */
-#about {
-    padding: 50px;
-    background: #fff;
-}
-
-#about h2 {
-    font-size: 24px;
-    font-weight: bold;
-    color: #222;
-}
-
-/* 두 번째 업로드한 사진 */
-#second-photo {
-    padding: 50px;
-    background: white;
-}
-
-#second-photo img {
-    width: 90%;
-    max-width: 600px;
-    border-radius: 10px;
+/* 아이콘 크기 조절 */
+.nav-center a img {
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
 }
