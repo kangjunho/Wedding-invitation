@@ -13,25 +13,13 @@ nav {
     align-items: center;
 }
 
-/* 왼쪽 메뉴 */
+/* 네비게이션 내부 정렬 */
 .nav-left {
-    display: flex;
-    align-items: center;
     padding-left: 20px;
-}
-
-.nav-left a {
-    text-decoration: none;
     font-size: 18px;
     font-weight: bold;
-    color: #333;
 }
 
-.nav-left a span {
-    color: #d67a7a; /* 하트 색상 */
-}
-
-/* 가운데 메뉴 */
 .nav-center {
     flex-grow: 1;
     display: flex;
@@ -42,37 +30,77 @@ nav {
 .nav-center a {
     text-decoration: none;
     font-size: 16px;
-    color: #666;
+    color: #333;
     font-weight: 500;
     transition: color 0.3s ease-in-out;
-    display: flex;
-    align-items: center;
-    gap: 5px;
 }
 
 .nav-center a:hover {
     color: #d67a7a;
 }
 
-/* 오른쪽 메뉴 (전체보기) */
+/* 햄버거 메뉴 */
 .nav-right {
     padding-right: 20px;
 }
 
 .nav-right a {
-    text-decoration: none;
-    font-size: 14px;
+    font-size: 24px;
     font-weight: bold;
     color: #333;
+    text-decoration: none;
+    cursor: pointer;
 }
 
-.nav-right a:hover {
-    color: #d67a7a;
+/* 사이드바 스타일 */
+#sidebar {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 250px;
+    height: 100%;
+    background: #4a7741; /* 초록색 계열 */
+    color: white;
+    padding: 20px;
+    transition: right 0.3s ease-in-out;
 }
 
-/* 아이콘 크기 조절 */
-.nav-center a img {
-    width: 18px;
-    height: 18px;
-    vertical-align: middle;
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sidebar-header h2 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.sidebar-header a {
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+#sidebar ul {
+    list-style: none;
+    padding: 20px 0;
+}
+
+#sidebar ul li {
+    margin: 15px 0;
+}
+
+#sidebar ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    display: block;
+    padding: 10px;
+    transition: background 0.3s ease-in-out;
+}
+
+#sidebar ul li a:hover {
+    background: rgba(255, 255, 255, 0.2);
 }
