@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>축하 메시지</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <!-- 네비게이션 바 -->
+    <nav>
+        <div class="nav-left">
+            <a href="index.html"><strong>준호♥예원</strong></a>
+        </div>
+        <div class="nav-center">
+            <a href="gallery.html">갤러리</a>
+            <a href="info.html">정보</a>
+            <a href="guestbook.html">축하메시지</a>
+            <a href="location.html">오시는 길</a>
+        </div>
+        <div class="nav-right">
+            <a href="#" id="menu-toggle">≡전체보기</a>
+        </div>
+    </nav>
+
+    <!-- 축하 메시지 작성 버튼 -->
+    <section id="guestbook">
+        <h2>축하 메시지</h2>
+        <button id="writeMessageBtn">축하 메시지 작성하기</button>
+
+        <!-- 메시지 작성 폼 -->
+        <div id="messageForm" style="display: none;">
+            <input type="text" id="userName" placeholder="이름" required>
+            <input type="text" id="messageTitle" placeholder="제목" required>
+            <textarea id="messageContent" placeholder="내용" required></textarea>
+            <button onclick="addMessage()">등록하기</button>
+        </div>
+
+        <!-- 보기 방식 선택 -->
+        <div class="view-toggle">
+            <button id="listViewBtn" class="active" onclick="toggleView('list')">목록 보기</button>
+            <button id="cardViewBtn" onclick="toggleView('card')">카드 보기</button>
+        </div>
+
+        <!-- 메시지 목록 (기본: 목록 보기) -->
+        <div id="messageList" class="list-view"></div>
+    </section>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
