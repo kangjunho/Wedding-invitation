@@ -1,11 +1,11 @@
-document.addEventListener("DOMContentLoaded", function () {
-    $("nav ul li a").on('click', function(event) {
-        if (this.hash !== "") {
-            event.preventDefault();
-            let hash = this.hash;
-            $('html, body').animate({
-                scrollTop: $(hash).offset().top
-            }, 800);
-        }
+$(document).ready(function () {
+    $("#menu-toggle").click(function (event) {
+        event.preventDefault();
+        $("#sidebar").css("right", "0px");
+    });
+
+    $("#close-sidebar").click(function (event) {
+        event.preventDefault();
+        $("#sidebar").css("right", "-300px");
     });
 });
