@@ -1,106 +1,94 @@
-/* 네비게이션 바 스타일 */
-nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background: white;
-    padding: 10px 0;
+/* 기본 스타일 */
+body {
+    font-family: 'Arial', sans-serif;
     text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
+    background-color: #f9f5f0;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* 스크롤 효과 */
+section {
+    height: auto;
+    min-height: 80vh;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    padding: 50px 20px;
 }
 
-/* 네비게이션 내부 정렬 */
-.nav-left {
-    padding-left: 20px;
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.nav-center {
-    flex-grow: 1;
+/* 메인 웨딩 사진 */
+#home {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    background: url('wedding.JPG') no-repeat center center/cover;
     display: flex;
     justify-content: center;
-    gap: 20px;
-}
-
-.nav-center a {
-    text-decoration: none;
-    font-size: 16px;
-    color: #333;
-    font-weight: 500;
-    transition: color 0.3s ease-in-out;
-}
-
-.nav-center a:hover {
-    color: #d67a7a;
-}
-
-/* 햄버거 메뉴 */
-.nav-right {
-    padding-right: 20px;
-}
-
-.nav-right a {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-/* 사이드바 스타일 */
-#sidebar {
-    position: fixed;
-    top: 0;
-    right: -300px;
-    width: 250px;
-    height: 100%;
-    background: #4a7741; /* 초록색 계열 */
-    color: white;
-    padding: 20px;
-    transition: right 0.3s ease-in-out;
-}
-
-.sidebar-header {
-    display: flex;
-    justify-content: space-between;
     align-items: center;
 }
 
-.sidebar-header h2 {
+.main-text h1 {
+    font-size: 48px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* 신랑 & 신부 소개 */
+#about h2 {
+    font-size: 26px;
+    font-weight: bold;
+    color: #222;
+}
+
+/* 초대의 글 */
+#invitation p {
+    font-size: 18px;
+    color: #444;
+    line-height: 1.8;
+    text-align: center;
+}
+
+/* 부모님 성함 */
+#parents p {
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+}
+
+/* 결혼식 정보 */
+#wedding-info p {
     font-size: 18px;
     font-weight: bold;
+    color: #222;
 }
 
-.sidebar-header a {
-    color: white;
-    font-size: 20px;
-    text-decoration: none;
+/* 네 개의 버튼 */
+#buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
 }
 
-#sidebar ul {
-    list-style: none;
-    padding: 20px 0;
-}
-
-#sidebar ul li {
-    margin: 15px 0;
-}
-
-#sidebar ul li a {
-    text-decoration: none;
-    color: white;
+#buttons button {
+    width: 80%;
+    max-width: 300px;
+    padding: 15px;
     font-size: 16px;
     font-weight: bold;
-    display: block;
-    padding: 10px;
+    color: white;
+    background: #4a7741;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
     transition: background 0.3s ease-in-out;
 }
 
-#sidebar ul li a:hover {
-    background: rgba(255, 255, 255, 0.2);
+#buttons button:hover {
+    background: #355a2a;
 }
