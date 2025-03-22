@@ -93,6 +93,12 @@
       color: #333;
       text-decoration: none;
     }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
     section {
       padding: 30px;
       text-align: center;
@@ -103,19 +109,15 @@
       color: #2b5c94;
       margin-bottom: 20px;
     }
-    .gallery-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-      margin-top: 30px;
+    table {
+      margin: 0 auto;
+      border-collapse: collapse;
+      width: 90%;
+      max-width: 600px;
     }
-    .gallery-container img {
-      width: 300px;
-      height: auto;
-      object-fit: cover;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    table, th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
     }
     @media (max-width: 768px) {
       .nav-left {
@@ -126,9 +128,6 @@
       }
       .nav-center {
         gap: 15px;
-      }
-      .gallery-container img {
-        width: 90%;
       }
       .subnav {
         flex-direction: column;
@@ -167,16 +166,40 @@
     </ul>
   </div>
 
-  <!-- 정보 탭 내부 서브 내비게이션 -->
   <div class="subnav">
-    <a href="info.html">결혼식 순서</a>
-    <a href="busan.html">부산 여행 정보</a>
-    <a href="faq.html">자주 묻는 질문</a>
+    <a href="#tab1" class="tab-link" data-tab="tab1">결혼식 순서</a>
+    <a href="#tab2" class="tab-link" data-tab="tab2">부산 여행 정보</a>
+    <a href="#tab3" class="tab-link" data-tab="tab3">자주 묻는 질문</a>
   </div>
 
-  <section>
+  <section id="tab1" class="tab-content active">
     <h2>결혼식 순서</h2>
-    <p>이곳에 결혼식 순서 내용을 입력하세요.</p>
+    <table>
+      <tr><th>순서</th><th>내용</th></tr>
+      <tr><td>1</td><td>개식사</td></tr>
+      <tr><td>2</td><td>화촉점화 · 양가 어머님 입장</td></tr>
+      <tr><td>3</td><td>양가 아버님 입장</td></tr>
+      <tr><td>4</td><td>신랑 ♡ 신부 입장</td></tr>
+      <tr><td>5</td><td>신랑 ♡ 신부 맞절</td></tr>
+      <tr><td>6</td><td>혼인 서약</td></tr>
+      <tr><td>7</td><td>예물 교환</td></tr>
+      <tr><td>8</td><td>성혼 선언</td></tr>
+      <tr><td>9</td><td>신랑 아버님 덕담</td></tr>
+      <tr><td>10</td><td>신부 아버님 덕담</td></tr>
+      <tr><td>11</td><td>축가 & 이벤트</td></tr>
+      <tr><td>12</td><td>감사 인사</td></tr>
+    </table>
+  </section>
+
+  <section id="tab2" class="tab-content">
+    <h2>부산 여행 정보</h2>
+    <p>예식장 근처 추천 장소: 카페 신기숲, 카페 신기산업, 해운대 해변, 동백섬 등</p>
+  </section>
+
+  <section id="tab3" class="tab-content">
+    <h2>자주 묻는 질문</h2>
+    <p>Q. 신부는 어떤 사람인가요?<br>A. 자기 일에 열정적인 크리에이터입니다!</p>
+    <p>Q. 왜 부산에서 결혼하나요?<br>A. 부모님 고향이자 가장 좋아하는 도시라서요!</p>
   </section>
 
   <script>
@@ -184,6 +207,13 @@
       $('#menu-toggle, #close-sidebar').click(function (e) {
         e.preventDefault();
         $('#sidebar').toggleClass('active');
+      });
+
+      $('.tab-link').click(function(e) {
+        e.preventDefault();
+        var tabID = $(this).data('tab');
+        $('.tab-content').removeClass('active');
+        $('#' + tabID).addClass('active');
       });
     });
   </script>
