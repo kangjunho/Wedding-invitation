@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>축하메시지 - 준호♥예원</title>
-  <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+  <title>축하메시지 - 강준호 & 박예원 결혼합니다.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Gowun+Dodum&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
     body {
@@ -69,18 +69,56 @@
       text-decoration: none;
       font-size: 16px;
     }
-    .guestbook {
+    section {
       padding: 30px;
       text-align: center;
     }
-    .guestbook h2 {
-      font-size: 26px;
-      color: #333;
+    h2 {
+      font-family: 'Nanum Brush Script', cursive;
+      font-size: 28px;
+      color: #2b5c94;
       margin-bottom: 20px;
     }
-    .guestbook p {
-      font-size: 16px;
-      color: #555;
+    .guestbook-list {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .guest-message {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+    .guest-message h4 {
+      margin: 0 0 10px;
+      font-weight: bold;
+    }
+    .guest-message small {
+      display: block;
+      color: #888;
+      margin-top: 10px;
+    }
+    .guest-form {
+      max-width: 600px;
+      margin: 0 auto 40px;
+      text-align: left;
+    }
+    .guest-form input, .guest-form textarea {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-family: 'Gowun Dodum', sans-serif;
+    }
+    .guest-form button {
+      background-color: #4e7942;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -114,20 +152,50 @@
     </ul>
   </div>
 
-  <section class="guestbook">
+  <section>
     <h2>축하 메시지</h2>
-    <p>축하의 마음을 남겨주세요! (추후 기능 연결 예정)</p>
+
+    <div class="guest-form">
+      <input type="text" id="name" placeholder="이름">
+      <input type="text" id="title" placeholder="제목">
+      <textarea id="message" rows="5" placeholder="내용"></textarea>
+      <button onclick="addMessage()">등록하기</button>
+    </div>
+
+    <div class="guestbook-list" id="guestbook">
+      <!-- 등록된 메시지가 여기에 나타납니다 -->
+    </div>
   </section>
 
   <script>
     $(document).ready(function() {
-      $('#menu-toggle').click(function() {
+      $('#menu-toggle, #close-sidebar').click(function(e) {
+        e.preventDefault();
         $('#sidebar').toggleClass('active');
       });
-      $('#close-sidebar').click(function() {
-        $('#sidebar').removeClass('active');
-      });
     });
+
+    function addMessage() {
+      const name = $('#name').val();
+      const title = $('#title').val();
+      const message = $('#message').val();
+
+      if (name && title && message) {
+        const html = `
+          <div class="guest-message">
+            <h4>${title}</h4>
+            <div>${message}</div>
+            <small>작성자: ${name} · ${new Date().toLocaleDateString()}</small>
+          </div>
+        `;
+        $('#guestbook').prepend(html);
+        $('#name').val('');
+        $('#title').val('');
+        $('#message').val('');
+      } else {
+        alert('모든 항목을 입력해주세요.');
+      }
+    }
   </script>
 </body>
 </html>
