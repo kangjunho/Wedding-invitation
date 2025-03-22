@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>오시는 길 - 준호♥예원</title>
+  <title>오시는 길 - 강준호 & 박예원 결혼합니다.</title>
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Gowun+Dodum&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
@@ -69,20 +69,30 @@
       text-decoration: none;
       font-size: 16px;
     }
-    .location {
+    section {
       padding: 30px;
       text-align: center;
     }
-    .location h2 {
+    h2 {
       font-family: 'Nanum Brush Script', cursive;
       font-size: 28px;
-      color: #333;
+      color: #2b5c94;
       margin-bottom: 20px;
     }
-    .location p {
+    .map-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    iframe {
+      width: 100%;
+      height: 400px;
+      border: 0;
+      border-radius: 10px;
+    }
+    .address, .directions {
+      margin-top: 20px;
       font-size: 16px;
       line-height: 1.6;
-      color: #555;
     }
   </style>
 </head>
@@ -116,19 +126,27 @@
     </ul>
   </div>
 
-  <section class="location">
+  <section>
     <h2>오시는 길</h2>
-    <p>부산 해운대 팔레드시즈 웨딩홀<br>
-    (정확한 주소와 교통편을 여기에 작성해 주세요)</p>
+    <div class="map-container">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3263.225993391438!2d129.16528547612126!3d35.16152007275607!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3568ed4d6d99a14f%3A0x8ff1f1218f2d3b02!2z64KY7J207IqkIOq1rCDslYXqs7XsnY0!5e0!3m2!1sko!2skr!4v1710000000000" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <div class="address">
+      <p><strong>부산 해운대 팔레드시즈 웨딩홀</strong><br>부산광역시 해운대구 해운대해변로 298</p>
+    </div>
+    <div class="directions">
+      <p>✔ 지하철 2호선 중동역 5번 출구 도보 약 8분<br>
+         ✔ 버스 1003번 이용 시 해운대해수욕장 정류장에서 도보 약 5분<br>
+         ✔ KTX 부산역 → 택시 약 25분<br>
+         ✔ 자가용 이용 시 인근 유료주차장 이용 가능</p>
+    </div>
   </section>
 
   <script>
-    $(document).ready(function() {
-      $('#menu-toggle').click(function() {
+    $(document).ready(function () {
+      $('#menu-toggle, #close-sidebar').click(function (e) {
+        e.preventDefault();
         $('#sidebar').toggleClass('active');
-      });
-      $('#close-sidebar').click(function() {
-        $('#sidebar').removeClass('active');
       });
     });
   </script>
