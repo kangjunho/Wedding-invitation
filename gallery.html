@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>갤러리 - 준호♥예원</title>
+  <title>갤러리 - 강준호 & 박예원 결혼합니다.</title>
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Gowun+Dodum&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
@@ -69,21 +69,33 @@
       text-decoration: none;
       font-size: 16px;
     }
-    .gallery {
+    section {
       padding: 30px;
       text-align: center;
     }
-    .gallery h2 {
+    h2 {
       font-family: 'Nanum Brush Script', cursive;
       font-size: 28px;
-      color: #333;
+      color: #2b5c94;
       margin-bottom: 20px;
     }
-    .gallery img {
-      max-width: 100%;
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 10px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .gallery-grid img {
+      width: 100%;
       height: auto;
-      margin: 10px;
-      border-radius: 8px;
+      border-radius: 5px;
+    }
+    @media screen and (max-width: 600px) {
+      .nav-center a {
+        margin: 0 5px;
+        font-size: 12px;
+      }
     }
   </style>
 </head>
@@ -117,20 +129,24 @@
     </ul>
   </div>
 
-  <section class="gallery">
-    <h2>갤러리</h2>
-    <p>여기에 사진을 삽입하거나 슬라이더를 구성하세요.</p>
-    <img src="wedding1.jpg" alt="Wedding Photo 1">
-    <img src="wedding2.jpg" alt="Wedding Photo 2">
+  <section>
+    <h2>우리의 순간들</h2>
+    <div class="gallery-grid">
+      <img src="gallery1.jpg" alt="gallery image 1">
+      <img src="gallery2.jpg" alt="gallery image 2">
+      <img src="gallery3.jpg" alt="gallery image 3">
+      <img src="gallery4.jpg" alt="gallery image 4">
+      <img src="gallery5.jpg" alt="gallery image 5">
+      <img src="gallery6.jpg" alt="gallery image 6">
+      <!-- 필요에 따라 이미지 추가 -->
+    </div>
   </section>
 
   <script>
     $(document).ready(function() {
-      $('#menu-toggle').click(function() {
+      $('#menu-toggle, #close-sidebar').click(function(e) {
+        e.preventDefault();
         $('#sidebar').toggleClass('active');
-      });
-      $('#close-sidebar').click(function() {
-        $('#sidebar').removeClass('active');
       });
     });
   </script>
