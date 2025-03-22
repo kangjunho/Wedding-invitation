@@ -1,68 +1,134 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>갤러리</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>갤러리 - 준호♥예원</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Gowun+Dodum&display=swap" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      background: #fff;
+      font-family: 'Gowun Dodum', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      border-bottom: 1px solid #ddd;
+      background: #fff;
+    }
+    .nav-left a {
+      text-decoration: none;
+      font-weight: bold;
+      color: #5c3dc2;
+      font-size: 18px;
+    }
+    .nav-center a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #444;
+      font-size: 14px;
+    }
+    .nav-right {
+      font-size: 14px;
+    }
+    #sidebar {
+      position: fixed;
+      top: 0;
+      right: -250px;
+      width: 250px;
+      height: 100%;
+      background-color: #4e7942;
+      color: white;
+      transition: right 0.3s ease;
+      padding: 20px;
+      z-index: 1000;
+    }
+    #sidebar.active {
+      right: 0;
+    }
+    .sidebar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    #sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 30px;
+    }
+    #sidebar ul li {
+      margin-bottom: 20px;
+    }
+    #sidebar ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+    }
+    .gallery {
+      padding: 30px;
+      text-align: center;
+    }
+    .gallery img {
+      width: 250px;
+      height: auto;
+      margin: 10px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+  </style>
 </head>
 <body>
+  <nav>
+    <div class="nav-left">
+      <a href="index.html"><strong>준호♥예원</strong></a>
+    </div>
+    <div class="nav-center">
+      <a href="gallery.html">갤러리</a>
+      <a href="info.html">정보</a>
+      <a href="guestbook.html">축하메시지</a>
+      <a href="location.html">오시는 길</a>
+    </div>
+    <div class="nav-right">
+      <a href="#" id="menu-toggle">≡전체보기</a>
+    </div>
+  </nav>
 
-    <!-- 네비게이션 바 -->
-    <nav>
-        <div class="nav-left">
-            <a href="index.html"><strong>준호♥예원</strong></a>
-        </div>
-        <div class="nav-center">
-            <a href="gallery.html">갤러리</a>
-            <a href="info.html">정보</a>
-            <a href="guestbook.html">축하메시지</a>
-            <a href="location.html">오시는 길</a>
-        </div>
-        <div class="nav-right">
-            <a href="#" id="menu-toggle">≡전체보기</a>
-        </div>
-    </nav>
+  <div id="sidebar">
+    <div class="sidebar-header">
+      <h2>준호♥예원</h2>
+      <a href="#" id="close-sidebar">✖</a>
+    </div>
+    <ul>
+      <li><a href="index.html">홈</a></li>
+      <li><a href="gallery.html">갤러리</a></li>
+      <li><a href="info.html">정보</a></li>
+      <li><a href="guestbook.html">축하메시지</a></li>
+      <li><a href="location.html">오시는 길</a></li>
+    </ul>
+  </div>
 
-    <!-- 갤러리 섹션 -->
-    <section id="gallery">
-        <h2>갤러리</h2>
+  <section class="gallery">
+    <h2 style="font-family: 'Nanum Brush Script', cursive; font-size: 28px;">우리의 소중한 순간들</h2>
+    <img src="wedding1.jpg" alt="웨딩사진1">
+    <img src="wedding2.jpg" alt="웨딩사진2">
+    <img src="wedding3.jpg" alt="웨딩사진3">
+    <!-- 필요시 더 추가 가능 -->
+  </section>
 
-        <!-- 슬라이드 쇼 -->
-        <div class="gallery-container">
-            <div class="main-photo">
-                <img id="mainImage" src="gallery/photo1.jpg" alt="Gallery Image">
-            </div>
-            <div class="thumbnail-container">
-                <img class="thumbnail" src="gallery/photo1.jpg" onclick="changeImage('gallery/photo1.jpg')">
-                <img class="thumbnail" src="gallery/photo2.jpg" onclick="changeImage('gallery/photo2.jpg')">
-                <img class="thumbnail" src="gallery/photo3.jpg" onclick="changeImage('gallery/photo3.jpg')">
-                <img class="thumbnail" src="gallery/photo4.jpg" onclick="changeImage('gallery/photo4.jpg')">
-                <img class="thumbnail" src="gallery/photo5.jpg" onclick="changeImage('gallery/photo5.jpg')">
-                <img class="thumbnail" src="gallery/photo6.jpg" onclick="changeImage('gallery/photo6.jpg')">
-            </div>
-        </div>
-
-        <!-- 사진 전시 -->
-        <div class="gallery-grid">
-            <div class="gallery-row">
-                <img src="gallery/photo7.jpg" class="gallery-item">
-                <img src="gallery/photo8.jpg" class="gallery-item">
-                <img src="gallery/photo9.jpg" class="gallery-item">
-            </div>
-            <div class="gallery-row">
-                <img src="gallery/photo10.jpg" class="gallery-item">
-                <img src="gallery/photo11.jpg" class="gallery-item">
-                <img src="gallery/photo12.jpg" class="gallery-item">
-            </div>
-            <div class="gallery-row">
-                <img src="gallery/photo13.jpg" class="gallery-item">
-                <img src="gallery/photo14.jpg" class="gallery-item">
-                <img src="gallery/photo15.jpg" class="gallery-item">
-            </div>
-        </div>
-    </section>
-
+  <script>
+    $(document).ready(function() {
+      $('#menu-toggle').click(function() {
+        $('#sidebar').addClass('active');
+      });
+      $('#close-sidebar').click(function() {
+        $('#sidebar').removeClass('active');
+      });
+    });
+  </script>
 </body>
 </html>
