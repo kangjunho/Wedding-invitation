@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>정보 - 강준호 & 박예원 결혼합니다.</title>
-  <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Gowun+Dodum&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>강준호 & 박예원 결혼합니다.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Gowun+Dodum&display=swap" rel="stylesheet" />
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
     body {
@@ -15,11 +15,16 @@
     }
     nav {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
       padding: 10px 20px;
       border-bottom: 1px solid #ddd;
       background: #fff;
+      position: relative;
+    }
+    .nav-left {
+      position: absolute;
+      left: 120px;
     }
     .nav-left a {
       text-decoration: none;
@@ -27,13 +32,19 @@
       color: #5c3dc2;
       font-size: 18px;
     }
+    .nav-center {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+    }
     .nav-center a {
-      margin: 0 10px;
       text-decoration: none;
       color: #444;
       font-size: 14px;
     }
     .nav-right {
+      position: absolute;
+      right: 20px;
       font-size: 14px;
     }
     #sidebar {
@@ -69,6 +80,19 @@
       text-decoration: none;
       font-size: 16px;
     }
+    .subnav {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      background-color: #f8f8f8;
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+      font-size: 14px;
+    }
+    .subnav a {
+      color: #333;
+      text-decoration: none;
+    }
     section {
       padding: 30px;
       text-align: center;
@@ -79,24 +103,36 @@
       color: #2b5c94;
       margin-bottom: 20px;
     }
-    .info-section {
-      max-width: 800px;
-      margin: 0 auto;
-      text-align: left;
-      line-height: 1.8;
-      font-size: 16px;
-    }
-    .info-section h3 {
-      color: #4e7942;
+    .gallery-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
       margin-top: 30px;
     }
-    .info-section ul {
-      padding-left: 20px;
+    .gallery-container img {
+      width: 300px;
+      height: auto;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-    @media screen and (max-width: 600px) {
-      .nav-center a {
-        margin: 0 5px;
-        font-size: 12px;
+    @media (max-width: 768px) {
+      .nav-left {
+        left: 10px;
+      }
+      .nav-right {
+        right: 10px;
+      }
+      .nav-center {
+        gap: 15px;
+      }
+      .gallery-container img {
+        width: 90%;
+      }
+      .subnav {
+        flex-direction: column;
+        align-items: center;
       }
     }
   </style>
@@ -131,36 +167,21 @@
     </ul>
   </div>
 
-  <section>
-    <h2>결혼식 순서 & 부산 여행 정보</h2>
-    <div class="info-section">
-      <h3>결혼식 순서</h3>
-      <ul>
-        <li>1. 개식사</li>
-        <li>2. 화촉점화 및 부모님 입장</li>
-        <li>3. 신랑 입장 / 신부 입장</li>
-        <li>4. 맞절 및 혼인 서약</li>
-        <li>5. 예물 교환</li>
-        <li>6. 성혼 선언</li>
-        <li>7. 부모님께 인사</li>
-        <li>8. 축가</li>
-        <li>9. 신랑 신부 인사</li>
-        <li>10. 폐식</li>
-      </ul>
+  <!-- 정보 탭 내부 서브 내비게이션 -->
+  <div class="subnav">
+    <a href="info.html">결혼식 순서</a>
+    <a href="busan.html">부산 여행 정보</a>
+    <a href="faq.html">자주 묻는 질문</a>
+  </div>
 
-      <h3>부산 여행 정보</h3>
-      <p>예식장 근처에서 갈 수 있는 멋진 장소들을 소개합니다.</p>
-      <ul>
-        <li><strong>신기숲 카페</strong>: 부산 영도구 와치로 65 - 숲과 햇살이 어우러진 감성카페</li>
-        <li><strong>신기산업</strong>: 와치로 51번길 2 - 루프탑에서 보는 바다 전망이 훌륭함</li>
-        <li><strong>태종대</strong>: 부산 명소 중 하나로 자연 절경과 바다 전망이 압도적</li>
-      </ul>
-    </div>
+  <section>
+    <h2>결혼식 순서</h2>
+    <p>이곳에 결혼식 순서 내용을 입력하세요.</p>
   </section>
 
   <script>
-    $(document).ready(function() {
-      $('#menu-toggle, #close-sidebar').click(function(e) {
+    $(document).ready(function () {
+      $('#menu-toggle, #close-sidebar').click(function (e) {
         e.preventDefault();
         $('#sidebar').toggleClass('active');
       });
