@@ -24,7 +24,7 @@
     }
     .nav-left {
       position: absolute;
-      left: 20px;
+      left: 150px;
     }
     .nav-left a {
       text-decoration: none;
@@ -35,16 +35,16 @@
     .nav-center {
       display: flex;
       justify-content: center;
+      gap: 20px;
     }
     .nav-center a {
-      margin: 0 10px;
       text-decoration: none;
       color: #444;
       font-size: 14px;
     }
     .nav-right {
       position: absolute;
-      right: 20px;
+      right: 40px;
       font-size: 14px;
     }
     #sidebar {
@@ -58,9 +58,11 @@
       transition: right 0.3s ease;
       padding: 20px;
       z-index: 1000;
+      display: none;
     }
     #sidebar.active {
       right: 0;
+      display: block;
     }
     .sidebar-header {
       display: flex;
@@ -120,6 +122,12 @@
       text-align: center;
     }
     @media (max-width: 768px) {
+      .nav-left {
+        left: 10px;
+      }
+      .nav-right {
+        right: 10px;
+      }
       .nav-center a {
         margin: 0 6px;
         font-size: 13px;
@@ -162,7 +170,7 @@
   </div>
 
   <section>
-    <img src="wedding.JPG" alt="wedding" class="wedding-photo" />
+    <img src="wedding.jpg" alt="wedding" class="wedding-photo" />
     <h2>강준호 & 박예원</h2>
     <div class="divider">-------♥♥-------</div>
     <p style="font-family: 'Nanum Brush Script', cursive; font-size: 20px;">
