@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>갤러리 - 강준호 & 박예원 결혼합니다.</title>
-  <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Gowun+Dodum&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>강준호 & 박예원 결혼합니다.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Gowun+Dodum&display=swap" rel="stylesheet" />
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
     body {
@@ -15,11 +15,16 @@
     }
     nav {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
       padding: 10px 20px;
       border-bottom: 1px solid #ddd;
       background: #fff;
+      position: relative;
+    }
+    .nav-left {
+      position: absolute;
+      left: 20px;
     }
     .nav-left a {
       text-decoration: none;
@@ -27,13 +32,19 @@
       color: #5c3dc2;
       font-size: 18px;
     }
+    .nav-center {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+    }
     .nav-center a {
-      margin: 0 10px;
       text-decoration: none;
       color: #444;
       font-size: 14px;
     }
     .nav-right {
+      position: absolute;
+      right: 30px;
       font-size: 14px;
     }
     #sidebar {
@@ -73,28 +84,38 @@
       padding: 30px;
       text-align: center;
     }
+    .gallery-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 30px;
+    }
+    .gallery-container img {
+      width: 300px;
+      height: auto;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
     h2 {
       font-family: 'Nanum Brush Script', cursive;
       font-size: 28px;
       color: #2b5c94;
       margin-bottom: 20px;
     }
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 10px;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-    .gallery-grid img {
-      width: 100%;
-      height: auto;
-      border-radius: 5px;
-    }
-    @media screen and (max-width: 600px) {
-      .nav-center a {
-        margin: 0 5px;
-        font-size: 12px;
+    @media (max-width: 768px) {
+      .nav-left {
+        left: 10px;
+      }
+      .nav-right {
+        right: 10px;
+      }
+      .nav-center {
+        gap: 15px;
+      }
+      .gallery-container img {
+        width: 90%;
       }
     }
   </style>
@@ -130,21 +151,20 @@
   </div>
 
   <section>
-    <h2>우리의 순간들</h2>
-    <div class="gallery-grid">
-      <img src="gallery1.jpg" alt="gallery image 1">
-      <img src="gallery2.jpg" alt="gallery image 2">
-      <img src="gallery3.jpg" alt="gallery image 3">
-      <img src="gallery4.jpg" alt="gallery image 4">
-      <img src="gallery5.jpg" alt="gallery image 5">
-      <img src="gallery6.jpg" alt="gallery image 6">
-      <!-- 필요에 따라 이미지 추가 -->
+    <h2>우리의 갤러리</h2>
+    <div class="gallery-container">
+      <img src="images/gallery/RIMI4905.JPG" alt="사진1" />
+      <img src="images/gallery/RIMI5104.JPG" alt="사진2" />
+      <img src="images/gallery/RIMI5234.JPG" alt="사진3" />
+      <img src="images/gallery/RIMI5302.JPG" alt="사진4" />
+      <img src="images/gallery/RIMI5486.JPG" alt="사진5" />
+      <img src="images/gallery/RIMI5550.JPG" alt="사진6" />
     </div>
   </section>
 
   <script>
-    $(document).ready(function() {
-      $('#menu-toggle, #close-sidebar').click(function(e) {
+    $(document).ready(function () {
+      $('#menu-toggle, #close-sidebar').click(function (e) {
         e.preventDefault();
         $('#sidebar').toggleClass('active');
       });
