@@ -1,54 +1,135 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>축하 메시지</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>축하메시지 - 준호♥예원</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Gowun+Dodum&display=swap" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      background: #fff;
+      font-family: 'Gowun Dodum', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      border-bottom: 1px solid #ddd;
+      background: #fff;
+    }
+    .nav-left a {
+      text-decoration: none;
+      font-weight: bold;
+      color: #5c3dc2;
+      font-size: 18px;
+    }
+    .nav-center a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #444;
+      font-size: 14px;
+    }
+    .nav-right {
+      font-size: 14px;
+    }
+    #sidebar {
+      position: fixed;
+      top: 0;
+      right: -250px;
+      width: 250px;
+      height: 100%;
+      background-color: #4e7942;
+      color: white;
+      transition: right 0.3s ease;
+      padding: 20px;
+      z-index: 1000;
+    }
+    #sidebar.active {
+      right: 0;
+    }
+    .sidebar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    #sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 30px;
+    }
+    #sidebar ul li {
+      margin-bottom: 20px;
+    }
+    #sidebar ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+    }
+    .guestbook {
+      padding: 30px;
+      text-align: center;
+    }
+    .guestbook h2 {
+      font-family: 'Nanum Brush Script', cursive;
+      font-size: 28px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    .guestbook p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #555;
+    }
+  </style>
 </head>
 <body>
+  <nav>
+    <div class="nav-left">
+      <a href="index.html"><strong>준호♥예원</strong></a>
+    </div>
+    <div class="nav-center">
+      <a href="gallery.html">갤러리</a>
+      <a href="info.html">정보</a>
+      <a href="guestbook.html">축하메시지</a>
+      <a href="location.html">오시는 길</a>
+    </div>
+    <div class="nav-right">
+      <a href="#" id="menu-toggle">≡전체보기</a>
+    </div>
+  </nav>
 
-    <!-- 네비게이션 바 -->
-    <nav>
-        <div class="nav-left">
-            <a href="index.html"><strong>준호♥예원</strong></a>
-        </div>
-        <div class="nav-center">
-            <a href="gallery.html">갤러리</a>
-            <a href="info.html">정보</a>
-            <a href="guestbook.html">축하메시지</a>
-            <a href="location.html">오시는 길</a>
-        </div>
-        <div class="nav-right">
-            <a href="#" id="menu-toggle">≡전체보기</a>
-        </div>
-    </nav>
+  <div id="sidebar">
+    <div class="sidebar-header">
+      <h2>준호♥예원</h2>
+      <a href="#" id="close-sidebar">✖</a>
+    </div>
+    <ul>
+      <li><a href="index.html">홈</a></li>
+      <li><a href="gallery.html">갤러리</a></li>
+      <li><a href="info.html">정보</a></li>
+      <li><a href="guestbook.html">축하메시지</a></li>
+      <li><a href="location.html">오시는 길</a></li>
+    </ul>
+  </div>
 
-    <!-- 축하 메시지 작성 버튼 -->
-    <section id="guestbook">
-        <h2>축하 메시지</h2>
-        <button id="writeMessageBtn">축하 메시지 작성하기</button>
+  <section class="guestbook">
+    <h2>축하 메시지를 남겨주세요</h2>
+    <p>이 공간은 여러분의 따뜻한 마음을 담는 공간입니다.<br>준호와 예원이 함께 소중히 간직할게요 💌</p>
+  </section>
 
-        <!-- 메시지 작성 폼 -->
-        <div id="messageForm" style="display: none;">
-            <input type="text" id="userName" placeholder="이름" required>
-            <input type="text" id="messageTitle" placeholder="제목" required>
-            <textarea id="messageContent" placeholder="내용" required></textarea>
-            <button onclick="addMessage()">등록하기</button>
-        </div>
-
-        <!-- 보기 방식 선택 -->
-        <div class="view-toggle">
-            <button id="listViewBtn" class="active" onclick="toggleView('list')">목록 보기</button>
-            <button id="cardViewBtn" onclick="toggleView('card')">카드 보기</button>
-        </div>
-
-        <!-- 메시지 목록 (기본: 목록 보기) -->
-        <div id="messageList" class="list-view"></div>
-    </section>
-
-    <script src="script.js"></script>
-
+  <script>
+    $(document).ready(function() {
+      $('#menu-toggle').click(function() {
+        $('#sidebar').addClass('active');
+      });
+      $('#close-sidebar').click(function() {
+        $('#sidebar').removeClass('active');
+      });
+    });
+  </script>
 </body>
 </html>
