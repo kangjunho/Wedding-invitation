@@ -73,9 +73,12 @@
       padding: 30px;
       text-align: center;
     }
-    .main-image {
-      background: url('wedding.jpg') no-repeat center center/cover;
-      height: 80vh;
+    .main-image img {
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
     }
     h2 {
       font-family: 'Nanum Brush Script', cursive;
@@ -111,6 +114,15 @@
       font-size: 20px;
       margin: 20px 0;
     }
+    @media screen and (max-width: 600px) {
+      .nav-center a {
+        margin: 0 5px;
+        font-size: 12px;
+      }
+      #buttons button {
+        width: 80%;
+      }
+    }
   </style>
 </head>
 <body>
@@ -143,7 +155,9 @@
     </ul>
   </div>
 
-  <section class="main-image"></section>
+  <section class="main-image">
+    <img src="wedding.jpg" alt="wedding">
+  </section>
 
   <section class="about">
     <h2>강준호 & 박예원</h2>
@@ -184,10 +198,12 @@
 
   <script>
     $(document).ready(function() {
-      $('#menu-toggle').click(function() {
+      $('#menu-toggle').click(function(e) {
+        e.preventDefault();
         $('#sidebar').toggleClass('active');
       });
-      $('#close-sidebar').click(function() {
+      $('#close-sidebar').click(function(e) {
+        e.preventDefault();
         $('#sidebar').removeClass('active');
       });
     });
