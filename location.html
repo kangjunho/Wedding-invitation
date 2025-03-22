@@ -1,73 +1,136 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>오시는 길</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>오시는 길 - 준호♥예원</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Gowun+Dodum&display=swap" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      background: #fff;
+      font-family: 'Gowun Dodum', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      border-bottom: 1px solid #ddd;
+      background: #fff;
+    }
+    .nav-left a {
+      text-decoration: none;
+      font-weight: bold;
+      color: #5c3dc2;
+      font-size: 18px;
+    }
+    .nav-center a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #444;
+      font-size: 14px;
+    }
+    .nav-right {
+      font-size: 14px;
+    }
+    #sidebar {
+      position: fixed;
+      top: 0;
+      right: -250px;
+      width: 250px;
+      height: 100%;
+      background-color: #4e7942;
+      color: white;
+      transition: right 0.3s ease;
+      padding: 20px;
+      z-index: 1000;
+    }
+    #sidebar.active {
+      right: 0;
+    }
+    .sidebar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    #sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 30px;
+    }
+    #sidebar ul li {
+      margin-bottom: 20px;
+    }
+    #sidebar ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+    }
+    .location {
+      padding: 30px;
+      text-align: center;
+    }
+    .location h2 {
+      font-family: 'Nanum Brush Script', cursive;
+      font-size: 28px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    .location p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #555;
+    }
+  </style>
 </head>
 <body>
+  <nav>
+    <div class="nav-left">
+      <a href="index.html"><strong>준호♥예원</strong></a>
+    </div>
+    <div class="nav-center">
+      <a href="gallery.html">갤러리</a>
+      <a href="info.html">정보</a>
+      <a href="guestbook.html">축하메시지</a>
+      <a href="location.html">오시는 길</a>
+    </div>
+    <div class="nav-right">
+      <a href="#" id="menu-toggle">≡전체보기</a>
+    </div>
+  </nav>
 
-    <!-- 네비게이션 바 -->
-    <nav>
-        <div class="nav-left">
-            <a href="index.html"><strong>준호♥예원</strong></a>
-        </div>
-        <div class="nav-center">
-            <a href="gallery.html">갤러리</a>
-            <a href="info.html">정보</a>
-            <a href="guestbook.html">축하메시지</a>
-            <a href="location.html">오시는 길</a>
-        </div>
-        <div class="nav-right">
-            <a href="#" id="menu-toggle">≡전체보기</a>
-        </div>
-    </nav>
+  <div id="sidebar">
+    <div class="sidebar-header">
+      <h2>준호♥예원</h2>
+      <a href="#" id="close-sidebar">✖</a>
+    </div>
+    <ul>
+      <li><a href="index.html">홈</a></li>
+      <li><a href="gallery.html">갤러리</a></li>
+      <li><a href="info.html">정보</a></li>
+      <li><a href="guestbook.html">축하메시지</a></li>
+      <li><a href="location.html">오시는 길</a></li>
+    </ul>
+  </div>
 
-    <!-- 오시는 길 -->
-    <section id="location">
-        <h2>오시는 길</h2>
+  <section class="location">
+    <h2>오시는 길</h2>
+    <p>부산 해운대 팔레드시즈 웨딩홀<br>
+    (정확한 주소와 교통편을 여기에 작성해 주세요)</p>
+  </section>
 
-        <!-- 지도 -->
-        <div class="map-container">
-            <iframe
-                width="100%"
-                height="400"
-                frameborder="0"
-                style="border:0"
-                allowfullscreen
-                src="https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_MAPS_API_KEY&q=해운대+팔레드시즈+웨딩홀">
-            </iframe>
-        </div>
-
-        <!-- 주소 및 버튼 -->
-        <div class="location-info">
-            <h3>📍 해운대 팔레드시즈 웨딩홀</h3>
-            <p>부산광역시 해운대구 달맞이길 30</p>
-            <button onclick="window.open('https://www.google.com/maps/dir/?api=1&destination=해운대+팔레드시즈+웨딩홀')">🗺 길 찾기</button>
-            <button onclick="window.open('https://www.google.com/maps/place/해운대+팔레드시즈+웨딩홀')">📌 지도 자세히 보기</button>
-        </div>
-
-        <!-- 오시는 방법 -->
-        <div class="transport-info">
-            <h3>🚆 대중교통 이용</h3>
-            <ul>
-                <li>지하철 2호선 해운대역 하차 → 1번 출구 → 마을버스 2, 2-1번 이용</li>
-                <li>버스: 139, 307번 이용</li>
-                <li>택시: 해운대역에서 약 5~10분 소요</li>
-            </ul>
-
-            <h3>🚗 자가용 이용</h3>
-            <ul>
-                <li>네비게이션에 "해운대 팔레드시즈 웨딩홀" 입력</li>
-                <li>주차 가능 (발렛 서비스 제공)</li>
-            </ul>
-
-            <h3>📞 전화번호</h3>
-            <p>051-746-7900</p>
-        </div>
-    </section>
-
+  <script>
+    $(document).ready(function() {
+      $('#menu-toggle').click(function() {
+        $('#sidebar').addClass('active');
+      });
+      $('#close-sidebar').click(function() {
+        $('#sidebar').removeClass('active');
+      });
+    });
+  </script>
 </body>
 </html>
