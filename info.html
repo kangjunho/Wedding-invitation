@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>정보 - 준호♥예원</title>
-  <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Gowun+Dodum&display=swap" rel="stylesheet">
+  <title>결혼식 정보 - 준호♥예원</title>
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
     body {
@@ -69,20 +69,18 @@
       text-decoration: none;
       font-size: 16px;
     }
-    .content {
+    .info {
       padding: 30px;
-    }
-    .content h2 {
-      font-family: 'Nanum Brush Script', cursive;
-      font-size: 28px;
-      color: #333;
       text-align: center;
+    }
+    .info h2 {
+      font-size: 26px;
+      color: #333;
       margin-bottom: 20px;
     }
-    .content p {
+    .info p {
       font-size: 16px;
-      line-height: 1.8;
-      text-align: center;
+      color: #555;
     }
   </style>
 </head>
@@ -116,16 +114,15 @@
     </ul>
   </div>
 
-  <section class="content">
+  <section class="info">
     <h2>결혼식 정보</h2>
-    <p>결혼식 순서, 식사 안내, 드레스코드, 또는 부산 여행 팁 등 다양한 정보가 여기에 담길 수 있어요.<br>
-    원하시면 표, 이미지, 탭 형태로도 구성할 수 있어요 :)</p>
+    <p>예식 순서, 장소 안내, 추천 장소 등 세부 정보가 들어갈 수 있습니다.</p>
   </section>
 
   <script>
     $(document).ready(function() {
       $('#menu-toggle').click(function() {
-        $('#sidebar').addClass('active');
+        $('#sidebar').toggleClass('active');
       });
       $('#close-sidebar').click(function() {
         $('#sidebar').removeClass('active');
