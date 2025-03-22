@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>결혼식 정보 - 준호♥예원</title>
-  <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+  <title>정보 - 강준호 & 박예원 결혼합니다.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Gowun+Dodum&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
     body {
@@ -69,18 +69,35 @@
       text-decoration: none;
       font-size: 16px;
     }
-    .info {
+    section {
       padding: 30px;
       text-align: center;
     }
-    .info h2 {
-      font-size: 26px;
-      color: #333;
+    h2 {
+      font-family: 'Nanum Brush Script', cursive;
+      font-size: 28px;
+      color: #2b5c94;
       margin-bottom: 20px;
     }
-    .info p {
+    .info-section {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: left;
+      line-height: 1.8;
       font-size: 16px;
-      color: #555;
+    }
+    .info-section h3 {
+      color: #4e7942;
+      margin-top: 30px;
+    }
+    .info-section ul {
+      padding-left: 20px;
+    }
+    @media screen and (max-width: 600px) {
+      .nav-center a {
+        margin: 0 5px;
+        font-size: 12px;
+      }
     }
   </style>
 </head>
@@ -114,18 +131,38 @@
     </ul>
   </div>
 
-  <section class="info">
-    <h2>결혼식 정보</h2>
-    <p>예식 순서, 장소 안내, 추천 장소 등 세부 정보가 들어갈 수 있습니다.</p>
+  <section>
+    <h2>결혼식 순서 & 부산 여행 정보</h2>
+    <div class="info-section">
+      <h3>결혼식 순서</h3>
+      <ul>
+        <li>1. 개식사</li>
+        <li>2. 화촉점화 및 부모님 입장</li>
+        <li>3. 신랑 입장 / 신부 입장</li>
+        <li>4. 맞절 및 혼인 서약</li>
+        <li>5. 예물 교환</li>
+        <li>6. 성혼 선언</li>
+        <li>7. 부모님께 인사</li>
+        <li>8. 축가</li>
+        <li>9. 신랑 신부 인사</li>
+        <li>10. 폐식</li>
+      </ul>
+
+      <h3>부산 여행 정보</h3>
+      <p>예식장 근처에서 갈 수 있는 멋진 장소들을 소개합니다.</p>
+      <ul>
+        <li><strong>신기숲 카페</strong>: 부산 영도구 와치로 65 - 숲과 햇살이 어우러진 감성카페</li>
+        <li><strong>신기산업</strong>: 와치로 51번길 2 - 루프탑에서 보는 바다 전망이 훌륭함</li>
+        <li><strong>태종대</strong>: 부산 명소 중 하나로 자연 절경과 바다 전망이 압도적</li>
+      </ul>
+    </div>
   </section>
 
   <script>
     $(document).ready(function() {
-      $('#menu-toggle').click(function() {
+      $('#menu-toggle, #close-sidebar').click(function(e) {
+        e.preventDefault();
         $('#sidebar').toggleClass('active');
-      });
-      $('#close-sidebar').click(function() {
-        $('#sidebar').removeClass('active');
       });
     });
   </script>
