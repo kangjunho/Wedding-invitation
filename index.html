@@ -5,11 +5,116 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>강준호 & 박예원 결혼합니다.</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Gowun+Dodum&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            background: #fff;
+            font-family: 'Gowun Dodum', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            border-bottom: 1px solid #ddd;
+            background: #fff;
+        }
+        .nav-left a {
+            text-decoration: none;
+            font-weight: bold;
+            color: #5c3dc2;
+            font-size: 18px;
+        }
+        .nav-center a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #444;
+            font-size: 14px;
+        }
+        .nav-right {
+            font-size: 14px;
+        }
+        #sidebar {
+            position: fixed;
+            top: 0;
+            right: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: #4e7942;
+            color: white;
+            transition: right 0.3s ease;
+            padding: 20px;
+            z-index: 1000;
+        }
+        #sidebar.active {
+            right: 0;
+        }
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 30px;
+        }
+        #sidebar ul li {
+            margin-bottom: 20px;
+        }
+        #sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .background-image {
+            background-image: url('wedding.JPG');
+            background-size: cover;
+            background-position: center;
+            height: 600px;
+        }
+        .main-text h1 {
+            font-size: 36px;
+            text-align: center;
+            font-family: 'Nanum Brush Script', cursive;
+            margin: 30px 0;
+        }
+        #about h2 {
+            font-family: 'Nanum Brush Script', cursive;
+            font-size: 30px;
+            color: #4682b4;
+            text-align: center;
+            margin-top: 20px;
+        }
+        #invitation, #parents, #wedding-info {
+            text-align: center;
+            font-family: 'Nanum Brush Script', cursive;
+            font-size: 18px;
+            line-height: 2;
+            margin: 20px;
+        }
+        #buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 30px 0;
+        }
+        #buttons button {
+            background-color: #4e7942;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-
-    <!-- 네비게이션 바 -->
 <nav>
     <div class="nav-left">
         <a href="index.html"><strong>준호♥예원</strong></a>
@@ -25,66 +130,63 @@
     </div>
 </nav>
 
-    <!-- 사이드바 메뉴 -->
-    <div id="sidebar">
-        <div class="sidebar-header">
-            <h2>준호♥예원</h2>
-            <a href="#" id="close-sidebar">✖</a>
-        </div>
-        <ul>
-            <li><a href="#home">홈</a></li>
-            <li><a href="#gallery">갤러리</a></li>
-            <li><a href="#info">정보</a></li>
-            <li><a href="#guestbook">축하메시지</a></li>
-            <li><a href="#location">오시는 길</a></li>
-        </ul>
+<div id="sidebar">
+    <div class="sidebar-header">
+        <h2>준호♥예원</h2>
+        <a href="#" id="close-sidebar">✖</a>
     </div>
+    <ul>
+        <li><a href="index.html">홈</a></li>
+        <li><a href="gallery.html">갤러리</a></li>
+        <li><a href="info.html">정보</a></li>
+        <li><a href="guestbook.html">축하메시지</a></li>
+        <li><a href="location.html">오시는 길</a></li>
+    </ul>
+</div>
 
-    <!-- 메인 웨딩 사진 -->
-    <section id="home">
-        <div class="main-text">
-            <h1>결혼합니다</h1>
-        </div>
-        <div class="background-image"></div>
-    </section>
+<section id="home">
+    <div class="main-text">
+        <h1>결혼합니다</h1>
+    </div>
+    <div class="background-image"></div>
+</section>
 
-    <!-- 신랑 & 신부 소개 -->
-    <section id="about">
-        <h2>강준호 & 박예원</h2>
-    </section>
+<section id="about">
+    <h2>강준호 & 박예원</h2>
+</section>
 
-    <!-- 초대의 글 -->
-    <section id="invitation">
-        <p>스물 넷 여름<br>
-        처음 마주친 눈 인사로 연인이 되었고,<br>
-        서른 둘 봄<br>
-        매일 서로를 바라보는 가족이 되고자 합니다.<br>
-        먼 길 힘드시겠지만 꼭 오셔서<br>
-        시작하는 부부의 앞날을 축복해주세요.<br>
-        늘 서로만 바라보며 살겠습니다.</p>
-    </section>
+<section id="invitation">
+    <p>스물 넷 여름<br>처음 마주친 눈 인사로 연인이 되었고,<br>서른 둘 봄<br>매일 서로를 바라보는 가족이 되고자 합니다.<br>먼 길 힘드시겠지만 꼭 오셔서<br>시작하는 부부의 앞날을 축복해주세요.<br>늘 서로만 바라보며 살겠습니다.</p>
+</section>
 
-    <!-- 부모님 성함 -->
-    <section id="parents">
-        <p><strong>강재두·민영미</strong>의 아들 <strong>준호</strong></p>
-        <p><strong>박수생·고경선</strong>의 딸 <strong>예원</strong></p>
-    </section>
+<section id="parents">
+    <p><strong>강재두·민영미</strong>의 아들 <strong>준호</strong></p>
+    <p><strong>박수생·고경선</strong>의 딸 <strong>예원</strong></p>
+</section>
 
-    <!-- 결혼식 정보 -->
-    <section id="wedding-info">
-        <p><strong>2025년 5월 10일 토요일 오후 12시</strong></p>
-        <p>부산 해운대 팔레드시즈 웨딩홀</p>
-    </section>
+<section id="wedding-info">
+    <p><strong>2025년 5월 10일 토요일 오후 12시</strong></p>
+    <p>부산 해운대 팔레드시즈 웨딩홀</p>
+</section>
 
-    <!-- 네 개의 버튼 -->
-    <section id="buttons">
-        <button onclick="scrollToSection('gallery')">갤러리</button>
-        <button onclick="scrollToSection('info')">결혼식 정보</button>
-        <button onclick="scrollToSection('guestbook')">축하 메시지</button>
-        <button onclick="scrollToSection('location')">오시는 길</button>
-    </section>
+<section id="buttons">
+    <button onclick="location.href='gallery.html'">갤러리</button>
+    <button onclick="location.href='info.html'">결혼식 정보</button>
+    <button onclick="location.href='guestbook.html'">축하 메시지</button>
+    <button onclick="location.href='location.html'">오시는 길</button>
+</section>
 
-    <script src="script.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#menu-toggle').click(function() {
+            $('#sidebar').addClass('active');
+        });
+
+        $('#close-sidebar').click(function() {
+            $('#sidebar').removeClass('active');
+        });
+    });
+</script>
 
 </body>
 </html>
