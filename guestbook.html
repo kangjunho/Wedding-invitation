@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>축하메시지 - 강준호 & 박예원 결혼합니다.</title>
-  <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Gowun+Dodum&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>강준호 & 박예원 결혼합니다.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Gowun+Dodum&family=Noto+Sans+KR:wght@400;700&family=Noto+Serif+KR&family=Poor+Story&display=swap" rel="stylesheet" />
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
     body {
@@ -14,27 +14,78 @@
       padding: 0;
     }
     nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
       padding: 10px 20px;
-      border-bottom: 1px solid #ddd;
       background: #fff;
+      position: relative;
     }
     .nav-left a {
       text-decoration: none;
       font-weight: bold;
-      color: #5c3dc2;
+      color: black;
       font-size: 18px;
     }
+    .green-heart {
+      color: green;
+    }
+    .white-heart {
+      font-size: 18px;
+      color: white;
+    }
+    .nav-center {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-grow: 1;
+    }
     .nav-center a {
-      margin: 0 10px;
+      text-decoration: none;
+      color: #444;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+    .nav-right a {
+      font-size: 32px;
+      text-decoration: none;
+      color: #000;
+    }
+    .nav-desktop {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      border-bottom: 1px solid #ddd;
+    }
+    .nav-mobile {
+      display: none;
+      width: 100%;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 18px;
+      padding: 10px 20px;
+    }
+    .nav-mobile-left a {
+      font-size: 40px;
+      color: #000;
+    }
+    .nav-mobile-center {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .nav-mobile-center a {
       text-decoration: none;
       color: #444;
       font-size: 14px;
     }
-    .nav-right {
-      font-size: 14px;
+    @media (max-width: 768px) {
+      .nav-desktop {
+        display: none;
+      }
+      .nav-mobile {
+        display: flex;
+        flex-wrap: wrap;
+        border-bottom: none;
+      }
     }
     #sidebar {
       position: fixed;
@@ -47,14 +98,19 @@
       transition: right 0.3s ease;
       padding: 20px;
       z-index: 1000;
+      display: none;
     }
     #sidebar.active {
       right: 0;
+      display: block;
     }
     .sidebar-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
+    }
+    .sidebar-header h2 {
+      color: white;
     }
     #sidebar ul {
       list-style: none;
@@ -73,74 +129,76 @@
       padding: 30px;
       text-align: center;
     }
-    h2 {
-      font-family: 'Nanum Brush Script', cursive;
-      font-size: 28px;
-      color: #2b5c94;
-      margin-bottom: 20px;
-    }
-    .guestbook-list {
-      max-width: 800px;
-      margin: 0 auto;
-      text-align: left;
-    }
-    .guest-message {
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      padding: 15px;
-      margin-bottom: 20px;
-    }
-    .guest-message h4 {
-      margin: 0 0 10px;
-      font-weight: bold;
-    }
-    .guest-message small {
-      display: block;
-      color: #888;
-      margin-top: 10px;
-    }
-    .guest-form {
-      max-width: 600px;
-      margin: 0 auto 40px;
-      text-align: left;
-    }
-    .guest-form input, .guest-form textarea {
+    .wedding-photo {
       width: 100%;
-      margin-bottom: 10px;
-      padding: 8px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-family: 'Gowun Dodum', sans-serif;
+      max-width: 700px;
+      height: auto;
+      display: block;
+      margin: 0 auto 30px;
     }
-    .guest-form button {
+    h2 {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 28px;
+      color: black;
+      margin-bottom: 20px;
+    }
+    .divider {
+      font-size: 20px;
+      color: green;
+      margin: 20px 0;
+    }
+    .nav-buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      margin-top: 40px;
+    }
+    .nav-buttons a {
       background-color: #4e7942;
       color: white;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 5px;
-      cursor: pointer;
+      padding: 10px 30px;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 16px;
+      min-width: 180px;
+      text-align: center;
     }
   </style>
 </head>
 <body>
   <nav>
-    <div class="nav-left">
-      <a href="index.html"><strong>준호♥예원</strong></a>
+    <div class="nav-desktop">
+      <div class="nav-left">
+        <a href="index.html"><strong>준호<span class="green-heart">♥</span>예원</strong></a>
+      </div>
+      <div class="nav-center">
+        <a href="gallery.html">갤러리</a>
+        <a href="info.html">정보</a>
+        <a href="guestbook.html">축하메시지</a>
+        <a href="location.html">오시는 길</a>
+      </div>
+      <div class="nav-right">
+        <a href="#" id="menu-toggle">≡</a>
+      </div>
     </div>
-    <div class="nav-center">
-      <a href="gallery.html">갤러리</a>
-      <a href="info.html">정보</a>
-      <a href="guestbook.html">축하메시지</a>
-      <a href="location.html">오시는 길</a>
-    </div>
-    <div class="nav-right">
-      <a href="#" id="menu-toggle">≡전체보기</a>
+    <div class="nav-mobile">
+      <div class="nav-mobile-left">
+        <a href="#" id="menu-toggle">≡</a>
+      </div>
+      <div class="nav-mobile-center">
+        <a href="index.html" class="white-heart">♡</a>
+        <a href="gallery.html">갤러리</a>
+        <a href="info.html">정보</a>
+        <a href="guestbook.html">축하메시지</a>
+        <a href="location.html">오시는 길</a>
+      </div>
     </div>
   </nav>
 
   <div id="sidebar">
     <div class="sidebar-header">
-      <h2>준호♥예원</h2>
+      <h2>준호<span class="white-heart">♥</span>예원</h2>
       <a href="#" id="close-sidebar">✖</a>
     </div>
     <ul>
