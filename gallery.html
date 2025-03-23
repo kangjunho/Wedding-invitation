@@ -3,11 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>강준호 & 박예원 결혼합니다.</title>
-  <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Gowun+Dodum&display=swap" rel="stylesheet" />
+  <title>갤러리 - 강준호 & 박예원 결혼합니다.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Gowun+Dodum&family=Noto+Sans+KR:wght@400;700&family=Noto+Serif+KR&family=Poor+Story&display=swap" rel="stylesheet" />
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
   <style>
     body {
       background: #fff;
@@ -16,31 +14,28 @@
       padding: 0;
     }
     nav {
-      display: flex;
-      justify-content: center;
-      align-items: center;
       padding: 10px 20px;
-      border-bottom: 1px solid #ddd;
       background: #fff;
       position: relative;
-      flex-wrap: nowrap;
-      overflow-x: auto;
-    }
-    .nav-left {
-      margin-right: 20px;
     }
     .nav-left a {
       text-decoration: none;
       font-weight: bold;
-      color: #5c3dc2;
+      color: black;
       font-size: 18px;
-      white-space: nowrap;
+    }
+    .green-heart {
+      color: green;
+    }
+    .white-heart {
+      font-size: 18px;
+      color: white;
     }
     .nav-center {
       display: flex;
       justify-content: center;
-      gap: 20px;
-      flex-wrap: nowrap;
+      gap: 30px;
+      flex-grow: 1;
     }
     .nav-center a {
       text-decoration: none;
@@ -48,10 +43,49 @@
       font-size: 14px;
       white-space: nowrap;
     }
-    .nav-right {
-      margin-left: auto;
+    .nav-right a {
+      font-size: 32px;
+      text-decoration: none;
+      color: #000;
+    }
+    .nav-desktop {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      border-bottom: 1px solid #ddd;
+    }
+    .nav-mobile {
+      display: none;
+      width: 100%;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 18px;
+      padding: 10px 20px;
+    }
+    .nav-mobile-left a {
+      font-size: 40px;
+      color: #000;
+    }
+    .nav-mobile-center {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .nav-mobile-center a {
+      text-decoration: none;
+      color: #444;
       font-size: 14px;
-      white-space: nowrap;
+    }
+    @media (max-width: 768px) {
+      .nav-desktop {
+        display: none;
+      }
+      .nav-mobile {
+        display: flex;
+        flex-wrap: wrap;
+        border-bottom: none;
+      }
     }
     #sidebar {
       position: fixed;
@@ -75,6 +109,9 @@
       justify-content: space-between;
       align-items: center;
     }
+    .sidebar-header h2 {
+      color: white;
+    }
     #sidebar ul {
       list-style: none;
       padding: 0;
@@ -92,34 +129,19 @@
       padding: 30px;
       text-align: center;
     }
-    .slider-wrapper {
-      position: relative;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-    .main-image {
-      width: 100%;
-      border-radius: 8px;
-    }
-    .thumbnail-wrapper {
+    .gallery-container {
       display: flex;
-      justify-content: center;
-      gap: 8px;
-      margin-top: 15px;
       flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 30px;
     }
-    .thumbnail-wrapper img {
-      width: 60px;
-      height: 60px;
+    .gallery-container img {
+      width: 300px;
+      height: auto;
       object-fit: cover;
-      border-radius: 6px;
-      cursor: pointer;
-      opacity: 0.6;
-      transition: opacity 0.3s;
-    }
-    .thumbnail-wrapper img.active,
-    .thumbnail-wrapper img:hover {
-      opacity: 1;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
     h2 {
       font-family: 'Nanum Brush Script', cursive;
@@ -128,18 +150,8 @@
       margin-bottom: 20px;
     }
     @media (max-width: 768px) {
-      nav {
-        flex-wrap: wrap;
-      }
-      .nav-left, .nav-right {
-        flex-basis: 100%;
-        text-align: center;
-        margin: 5px 0;
-      }
-      .nav-center {
-        justify-content: center;
-        gap: 15px;
-        flex-wrap: wrap;
+      .gallery-container img {
+        width: 90%;
       }
     }
   </style>
