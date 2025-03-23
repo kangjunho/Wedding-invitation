@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>강준호 & 박예원 결혼합니다.</title>
-  <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Gowun+Dodum&family=Noto+Sans+KR:wght@400;700&family=Noto+Serif+KR&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Gowun+Dodum&family=Noto+Sans+KR:wght@400;700&family=Noto+Serif+KR&family=Poor+Story&display=swap" rel="stylesheet" />
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
     body {
@@ -17,6 +17,7 @@
       padding: 10px 20px;
       background: #fff;
       position: relative;
+      border-bottom: 1px solid #ddd;
     }
     .nav-left a {
       text-decoration: none;
@@ -30,7 +31,6 @@
     .white-heart {
       font-size: 18px;
       color: #ccc;
-      margin-right: 10px;
     }
     .nav-center {
       display: flex;
@@ -55,19 +55,19 @@
       justify-content: space-between;
       align-items: center;
       width: 100%;
-      border-bottom: none;
     }
     .nav-mobile {
       display: none;
       width: 100%;
       align-items: center;
-      justify-content: space-between;
-      border-bottom: none;
+      justify-content: flex-start;
+      gap: 18px;
+      padding: 10px 20px;
+      border-bottom: 1px solid #ddd;
     }
     .nav-mobile-left a {
-      font-size: 36px;
+      font-size: 40px;
       color: #000;
-      margin-right: 10px;
     }
     .nav-mobile-center {
       display: flex;
@@ -78,7 +78,6 @@
       text-decoration: none;
       color: #444;
       font-size: 14px;
-      border-bottom: none;
     }
     @media (max-width: 768px) {
       .nav-desktop {
@@ -86,8 +85,7 @@
       }
       .nav-mobile {
         display: flex;
-        flex-direction: row;
-        padding: 10px;
+        flex-wrap: wrap;
       }
     }
     #sidebar {
@@ -111,6 +109,9 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+    }
+    .sidebar-header h2 {
+      color: white;
     }
     #sidebar ul {
       list-style: none;
@@ -214,7 +215,7 @@
     <img src="wedding.JPG" alt="wedding" class="wedding-photo" />
     <h2>강준호 & 박예원</h2>
     <div class="divider">-------♥♥-------</div>
-    <p style="font-family: 'Gowun Dodum', cursive; font-size: 16px;">
+    <p style="font-family: 'Poor Story', cursive; font-size: 16px; color: black;">
       2016년 싱그러웠던 여름,<br>
       빼꼼 고개를 내밀고 했던<br>
       눈 인사로 연인이 되었고,<br><br>
@@ -226,7 +227,7 @@
       축복해주시면 감사하겠습니다.
     </p>
     <div class="divider">-------♥♥-------</div>
-    <p style="font-family: 'Noto Sans KR', sans-serif; font-size: 18px;">
+    <p style="font-family: 'Noto Sans KR', sans-serif; font-size: 18px; color: black;">
       <strong>강재두·민영미</strong>의 아들 <strong>준호</strong><br>
       <strong>박수생·고경선</strong>의 딸 <strong>예원</strong>
     </p>
@@ -240,6 +241,7 @@
       <a href="location.html">오시는 길</a>
     </div>
   </section>
+
   <script>
     $(document).ready(function () {
       $('#menu-toggle, #close-sidebar').click(function (e) {
