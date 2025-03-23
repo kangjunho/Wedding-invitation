@@ -21,6 +21,7 @@
       border-bottom: 1px solid #ddd;
       background: #fff;
       position: relative;
+      flex-wrap: wrap;
     }
     .nav-left {
       position: absolute;
@@ -122,15 +123,24 @@
       text-align: center;
     }
     @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+      }
       .nav-left {
-        left: 10px;
+        position: static;
+        margin-bottom: 5px;
+      }
+      .nav-center {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
       }
       .nav-right {
-        right: 10px;
-      }
-      .nav-center a {
-        margin: 0 6px;
-        font-size: 13px;
+        position: static;
+        margin-top: 10px;
+        align-self: flex-end;
       }
       .nav-buttons a {
         font-size: 15px;
@@ -177,15 +187,12 @@
       2016년 싱그러웠던 여름,<br>
       빼꼼 고개를 내밀고 했던<br>
       눈 인사로 연인이 되었고,<br>
-      </p>
       10년이 되던해 봄,<br>
       이제는 매일 서로를 바라보는<br>
       가족이 되고자 합니다.<br>
-      </p>
       귀한 발걸음 하시어<br>
       두사람의 앞날을<br>
       축복해주시면 감사하겠습니다.
-      
     </p>
     <div class="divider">-------♥♥-------</div>
     <p style="font-family: 'Nanum Brush Script', cursive; font-size: 18px;">
