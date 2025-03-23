@@ -24,13 +24,8 @@
       color: black;
       font-size: 18px;
     }
-    .green-heart {
-      color: green;
-    }
-    .white-heart {
-      font-size: 18px;
-      color: white;
-    }
+    .green-heart { color: green; }
+    .white-heart { font-size: 18px; color: white; }
     .nav-center {
       display: flex;
       justify-content: center;
@@ -78,9 +73,7 @@
       font-size: 14px;
     }
     @media (max-width: 768px) {
-      .nav-desktop {
-        display: none;
-      }
+      .nav-desktop { display: none; }
       .nav-mobile {
         display: flex;
         flex-wrap: wrap;
@@ -100,18 +93,13 @@
       z-index: 1000;
       display: none;
     }
-    #sidebar.active {
-      right: 0;
-      display: block;
-    }
+    #sidebar.active { right: 0; display: block; }
     .sidebar-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    .sidebar-header h2 {
-      color: white;
-    }
+    .sidebar-header h2 { color: white; }
     #sidebar ul {
       list-style: none;
       padding: 0;
@@ -129,40 +117,46 @@
       padding: 30px;
       text-align: center;
     }
-    .wedding-photo {
+    .guest-form input, .guest-form textarea {
       width: 100%;
-      max-width: 700px;
-      height: auto;
+      max-width: 400px;
+      padding: 10px;
+      margin: 10px auto;
       display: block;
-      margin: 0 auto 30px;
+      font-family: 'Gowun Dodum';
+      font-size: 14px;
     }
-    h2 {
-      font-family: 'Noto Serif KR', serif;
-      font-size: 28px;
-      color: black;
-      margin-bottom: 20px;
-    }
-    .divider {
-      font-size: 20px;
-      color: green;
-      margin: 20px 0;
-    }
-    .nav-buttons {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      margin-top: 40px;
-    }
-    .nav-buttons a {
+    .guest-form button {
+      padding: 10px 20px;
       background-color: #4e7942;
       color: white;
-      padding: 10px 30px;
-      text-decoration: none;
-      border-radius: 6px;
+      border: none;
       font-size: 16px;
-      min-width: 180px;
-      text-align: center;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .guestbook-list {
+      margin-top: 30px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .guest-message {
+      border: 1px solid #ccc;
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    .guest-message h4 {
+      margin: 0 0 10px;
+    }
+    .guest-message button {
+      background: none;
+      border: none;
+      color: red;
+      cursor: pointer;
+      float: right;
     }
   </style>
 </head>
@@ -212,17 +206,13 @@
 
   <section>
     <h2>축하 메시지</h2>
-
     <div class="guest-form">
       <input type="text" id="name" placeholder="이름">
       <input type="text" id="title" placeholder="제목">
       <textarea id="message" rows="5" placeholder="내용"></textarea>
       <button onclick="addMessage()">등록하기</button>
     </div>
-
-    <div class="guestbook-list" id="guestbook">
-      <!-- 등록된 메시지가 여기에 나타납니다 -->
-    </div>
+    <div class="guestbook-list" id="guestbook"></div>
   </section>
 
   <script>
@@ -231,6 +221,13 @@
         e.preventDefault();
         $('#sidebar').toggleClass('active');
       });
+
+      // Load saved messages
+      const saved = localStorage.getItem('guestbook');
+      if (saved) {
+        $('#guestbook').html(saved);
+        attachDeleteHandlers();
+      }
     });
 
     function addMessage() {
@@ -241,18 +238,35 @@
       if (name && title && message) {
         const html = `
           <div class="guest-message">
+            <button onclick="deleteMessage(this)">삭제</button>
             <h4>${title}</h4>
             <div>${message}</div>
             <small>작성자: ${name} · ${new Date().toLocaleDateString()}</small>
           </div>
         `;
         $('#guestbook').prepend(html);
-        $('#name').val('');
-        $('#title').val('');
-        $('#message').val('');
+        $('#name, #title, #message').val('');
+        saveMessages();
+        attachDeleteHandlers();
       } else {
         alert('모든 항목을 입력해주세요.');
       }
+    }
+
+    function deleteMessage(button) {
+      $(button).closest('.guest-message').remove();
+      saveMessages();
+    }
+
+    function attachDeleteHandlers() {
+      $('.guest-message button').off('click').on('click', function() {
+        deleteMessage(this);
+      });
+    }
+
+    function saveMessages() {
+      const content = $('#guestbook').html();
+      localStorage.setItem('guestbook', content);
     }
   </script>
 </body>
