@@ -14,8 +14,6 @@
       padding: 0;
     }
     nav {
-      display: flex;
-      align-items: center;
       padding: 10px 20px;
       border-bottom: 1px solid #ddd;
       background: #fff;
@@ -31,7 +29,7 @@
       color: green;
     }
     .white-heart {
-      font-size: 22px;
+      font-size: 18px;
       color: #ccc;
       margin-right: 10px;
     }
@@ -46,9 +44,10 @@
       color: #444;
       font-size: 14px;
       white-space: nowrap;
+      border-bottom: none;
     }
     .nav-right a {
-      font-size: 28px;
+      font-size: 32px;
       text-decoration: none;
       color: #000;
     }
@@ -61,16 +60,24 @@
     .nav-mobile {
       display: none;
       width: 100%;
+      align-items: center;
       justify-content: space-between;
-      align-items: center;
     }
-    .nav-mobile-left {
-      display: flex;
-      align-items: center;
+    .nav-mobile-left a {
+      font-size: 32px;
+      color: #000;
+      margin-right: 10px;
     }
     .nav-mobile-center {
       display: flex;
-      gap: 20px;
+      align-items: center;
+      gap: 16px;
+    }
+    .nav-mobile-center a {
+      text-decoration: none;
+      color: #444;
+      font-size: 14px;
+      border-bottom: none;
     }
     @media (max-width: 768px) {
       .nav-desktop {
