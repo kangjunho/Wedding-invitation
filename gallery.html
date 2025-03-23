@@ -6,6 +6,8 @@
   <title>강준호 & 박예원 결혼합니다.</title>
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Gowun+Dodum&display=swap" rel="stylesheet" />
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
   <style>
     body {
       background: #fff;
@@ -21,31 +23,35 @@
       border-bottom: 1px solid #ddd;
       background: #fff;
       position: relative;
+      flex-wrap: nowrap;
+      overflow-x: auto;
     }
     .nav-left {
-      position: absolute;
-      left: 20px;
+      margin-right: 20px;
     }
     .nav-left a {
       text-decoration: none;
       font-weight: bold;
       color: #5c3dc2;
       font-size: 18px;
+      white-space: nowrap;
     }
     .nav-center {
       display: flex;
       justify-content: center;
-      gap: 30px;
+      gap: 20px;
+      flex-wrap: nowrap;
     }
     .nav-center a {
       text-decoration: none;
       color: #444;
       font-size: 14px;
+      white-space: nowrap;
     }
     .nav-right {
-      position: absolute;
-      right: 30px;
+      margin-left: auto;
       font-size: 14px;
+      white-space: nowrap;
     }
     #sidebar {
       position: fixed;
@@ -58,9 +64,11 @@
       transition: right 0.3s ease;
       padding: 20px;
       z-index: 1000;
+      display: none;
     }
     #sidebar.active {
       right: 0;
+      display: block;
     }
     .sidebar-header {
       display: flex;
@@ -84,19 +92,34 @@
       padding: 30px;
       text-align: center;
     }
-    .gallery-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-      margin-top: 30px;
+    .slider-wrapper {
+      position: relative;
+      max-width: 700px;
+      margin: 0 auto;
     }
-    .gallery-container img {
-      width: 300px;
-      height: auto;
-      object-fit: cover;
+    .main-image {
+      width: 100%;
       border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .thumbnail-wrapper {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 15px;
+      flex-wrap: wrap;
+    }
+    .thumbnail-wrapper img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 6px;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: opacity 0.3s;
+    }
+    .thumbnail-wrapper img.active,
+    .thumbnail-wrapper img:hover {
+      opacity: 1;
     }
     h2 {
       font-family: 'Nanum Brush Script', cursive;
@@ -105,17 +128,18 @@
       margin-bottom: 20px;
     }
     @media (max-width: 768px) {
-      .nav-left {
-        left: 10px;
+      nav {
+        flex-wrap: wrap;
       }
-      .nav-right {
-        right: 10px;
+      .nav-left, .nav-right {
+        flex-basis: 100%;
+        text-align: center;
+        margin: 5px 0;
       }
       .nav-center {
+        justify-content: center;
         gap: 15px;
-      }
-      .gallery-container img {
-        width: 90%;
+        flex-wrap: wrap;
       }
     }
   </style>
@@ -151,39 +175,11 @@
   </div>
 
   <section>
-    <h2>우리의 갤러리</h2>
-    <div class="gallery-container">
-      <img src="images/gallery/RIMI4579.JPG" alt="사진1" />
-      <img src="images/gallery/RIMI4678-1.jpg" alt="사진2" />
-      <img src="images/gallery/RIMI4717.JPG" alt="사진2" />
-      <img src="images/gallery/RIMI4823.JPG" alt="사진3" />
-      <img src="images/gallery/RIMI4984.JPG" alt="사진4" />
-      <img src="images/gallery/RIMI5010.JPG" alt="사진5" />
-      <img src="images/gallery/RIMI5018.JPG" alt="사진6" />
-      <img src="images/gallery/RIMI5064.JPG" alt="사진7" />
-      <img src="images/gallery/RIMI5085.JPG" alt="사진8" />
-      <img src="images/gallery/RIMI5103.JPG" alt="사진9" />
-      <img src="images/gallery/RIMI5104.JPG" alt="사진10" />
-      <img src="images/gallery/RIMI5125.JPG" alt="사진11" />
-      <img src="images/gallery/RIMI5181.JPG" alt="사진12" />
-      <img src="images/gallery/RIMI5187.JPG" alt="사진13" />
-      <img src="images/gallery/RIMI5241.JPG" alt="사진14" />
-      <img src="images/gallery/RIMI5294.JPG" alt="사진15" />
-      <img src="images/gallery/RIMI5303.JPG" alt="사진16" />
-      <img src="images/gallery/RIMI5312.JPG" alt="사진17" />
-      <img src="images/gallery/RIMI5357.JPG" alt="사진18" />
-      <img src="images/gallery/RIMI5384.JPG" alt="사진19" />
-      <img src="images/gallery/RIMI5393.JPG" alt="사진20" />
-      <img src="images/gallery/RIMI5414.JPG" alt="사진21" />
-      <img src="images/gallery/RIMI5430.JPG" alt="사진22" />
-      <img src="images/gallery/RIMI5441.JPG" alt="사진23" />
-      <img src="images/gallery/RIMI5459.JPG" alt="사진24" />
-      <img src="images/gallery/RIMI5486.JPG" alt="사진25" />
-      <img src="images/gallery/RIMI5518.JPG" alt="사진26" />
-      <img src="images/gallery/RIMI5547.JPG" alt="사진27" />
-      <img src="images/gallery/RIMI5550.JPG" alt="사진28" />
-      <img src="images/gallery/RIMI5586.JPG" alt="사진29" />
-      
+    <h2>웨딩 사진</h2>
+    <div class="slider-wrapper">
+      <img id="mainImage" class="main-image" src="images/gallery/RIMI4579.JPG" alt="main" />
+      <div class="thumbnail-wrapper" id="thumbnailContainer">
+      </div>
     </div>
   </section>
 
@@ -194,6 +190,51 @@
         $('#sidebar').toggleClass('active');
       });
     });
+
+    const imageList = [
+      "RIMI4579.JPG", "RIMI4678-1.jpg", "RIMI4717.JPG", "RIMI4823.JPG",
+      "RIMI4984.JPG", "RIMI5010.JPG", "RIMI5018.JPG", "RIMI5064.JPG",
+      "RIMI5085.JPG", "RIMI5103.JPG", "RIMI5104.JPG", "RIMI5125.JPG",
+      "RIMI5181.JPG", "RIMI5187.JPG", "RIMI5241.JPG", "RIMI5294.JPG",
+      "RIMI5303.JPG", "RIMI5312.JPG", "RIMI5357.JPG", "RIMI5384.JPG",
+      "RIMI5393.JPG", "RIMI5414.JPG", "RIMI5430.JPG", "RIMI5441.JPG",
+      "RIMI5459.JPG", "RIMI5486.JPG", "RIMI5518.JPG", "RIMI5547.JPG",
+      "RIMI5550.JPG", "RIMI5586.JPG"
+    ];
+
+    let current = 0;
+    const mainImage = document.getElementById("mainImage");
+    const thumbnailContainer = document.getElementById("thumbnailContainer");
+
+    function renderThumbnails() {
+      imageList.forEach((img, idx) => {
+        const el = document.createElement("img");
+        el.src = `images/gallery/${img}`;
+        el.onclick = () => {
+          current = idx;
+          changeImage();
+        };
+        if (idx === 0) el.classList.add("active");
+        thumbnailContainer.appendChild(el);
+      });
+    }
+
+    function changeImage() {
+      mainImage.src = `images/gallery/${imageList[current]}`;
+      const thumbs = document.querySelectorAll(".thumbnail-wrapper img");
+      thumbs.forEach(t => t.classList.remove("active"));
+      thumbs[current].classList.add("active");
+    }
+
+    function startSlider() {
+      setInterval(() => {
+        current = (current + 1) % imageList.length;
+        changeImage();
+      }, 3000);
+    }
+
+    renderThumbnails();
+    startSlider();
   </script>
 </body>
 </html>
