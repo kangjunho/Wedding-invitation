@@ -23,7 +23,9 @@
       position: relative;
     }
     .nav-left {
-      margin-right: 30px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
     .nav-left a {
       text-decoration: none;
@@ -32,10 +34,14 @@
       font-size: 18px;
       white-space: nowrap;
     }
-    .nav-left .green-heart {
+    .green-heart {
       color: green;
-      margin: 0 5px;
       font-size: 18px;
+    }
+    .white-heart {
+      font-size: 22px;
+      color: #ccc;
+      margin-right: 5px;
     }
     .nav-center {
       display: flex;
@@ -51,7 +57,7 @@
     }
     .nav-right {
       margin-left: auto;
-      font-size: 14px;
+      font-size: 20px;
       white-space: nowrap;
     }
     #sidebar {
@@ -130,49 +136,45 @@
     }
     @media (max-width: 768px) {
       nav {
-        justify-content: space-between;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
       }
       .nav-left {
-        order: 1;
-        margin: 0;
-      }
-      .nav-left a {
-        font-size: 18px;
-        margin-left: 10px;
-      }
-      .nav-left .white-heart {
-        font-size: 20px;
-        color: #ccc;
-        margin-left: 10px;
+        order: 0;
+        justify-content: center;
+        width: 100%;
       }
       .nav-center {
-        order: 3;
-        flex: 1 1 100%;
+        order: 1;
+        width: 100%;
         justify-content: center;
         flex-wrap: wrap;
         gap: 15px;
-        margin-top: 10px;
       }
       .nav-right {
-        order: 0;
-        margin-left: 10px;
+        order: 2;
+        width: 100%;
+        text-align: center;
+        font-size: 24px;
       }
     }
   </style>
 </head>
 <body>
   <nav>
-    <div class="nav-right">
-      <a href="#" id="menu-toggle">≡</a>
-    </div>
     <div class="nav-left">
       <a href="index.html" class="white-heart">♡</a>
+      <a href="index.html"><strong>준호<span class="green-heart">♥</span>예원</strong></a>
     </div>
     <div class="nav-center">
       <a href="gallery.html">갤러리</a>
       <a href="info.html">정보</a>
       <a href="guestbook.html">축하메시지</a>
       <a href="location.html">오시는 길</a>
+    </div>
+    <div class="nav-right">
+      <a href="#" id="menu-toggle">≡</a>
     </div>
   </nav>
 
