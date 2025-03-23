@@ -15,39 +15,31 @@
     }
     nav {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
       padding: 10px 20px;
       border-bottom: 1px solid #ddd;
       background: #fff;
       position: relative;
     }
-    .nav-left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
     .nav-left a {
       text-decoration: none;
       font-weight: bold;
       color: black;
       font-size: 18px;
-      white-space: nowrap;
     }
     .green-heart {
       color: green;
-      font-size: 18px;
     }
     .white-heart {
       font-size: 22px;
       color: #ccc;
-      margin-right: 5px;
+      margin-right: 10px;
     }
     .nav-center {
       display: flex;
       justify-content: center;
       gap: 30px;
-      flex-wrap: nowrap;
     }
     .nav-center a {
       text-decoration: none;
@@ -55,10 +47,10 @@
       font-size: 14px;
       white-space: nowrap;
     }
-    .nav-right {
-      margin-left: auto;
-      font-size: 20px;
-      white-space: nowrap;
+    .nav-right a {
+      font-size: 26px;
+      text-decoration: none;
+      color: #000;
     }
     #sidebar {
       position: fixed;
@@ -137,32 +129,43 @@
     @media (max-width: 768px) {
       nav {
         flex-wrap: wrap;
+        flex-direction: column;
+        align-items: center;
+      }
+      .nav-left {
+        order: 1;
+        width: 100%;
+        display: flex;
+        align-items: center;
         justify-content: center;
         gap: 10px;
       }
-      .nav-left {
-        order: 0;
-        justify-content: center;
-        width: 100%;
-      }
       .nav-center {
-        order: 1;
-        width: 100%;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 15px;
-      }
-      .nav-right {
         order: 2;
         width: 100%;
-        text-align: center;
-        font-size: 24px;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 10px;
+      }
+      .nav-right {
+        order: 0;
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+      }
+      .nav-right a {
+        font-size: 28px;
+        padding-left: 10px;
       }
     }
   </style>
 </head>
 <body>
   <nav>
+    <div class="nav-right">
+      <a href="#" id="menu-toggle">≡</a>
+    </div>
     <div class="nav-left">
       <a href="index.html" class="white-heart">♡</a>
       <a href="index.html"><strong>준호<span class="green-heart">♥</span>예원</strong></a>
@@ -172,9 +175,6 @@
       <a href="info.html">정보</a>
       <a href="guestbook.html">축하메시지</a>
       <a href="location.html">오시는 길</a>
-    </div>
-    <div class="nav-right">
-      <a href="#" id="menu-toggle">≡</a>
     </div>
   </nav>
 
