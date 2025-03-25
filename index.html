@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>강준호 & 박예원 결혼합니다.</title>
-  <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Gowun+Dodum&family=Noto+Sans+KR:wght@400;700&family=Noto+Serif+KR&family=Poor+Story&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Gowun+Dodum&family=Noto+Sans+KR:wght@400;700&family=Noto+Serif+KR&family=Poor+Story&family=Gamja+Flower&display=swap" rel="stylesheet" />
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
     body {
@@ -136,9 +136,10 @@
       display: block;
       margin: 0 auto 30px;
     }
-    h2 {
-      font-family: 'Noto Serif KR', serif;
+    .title-text {
+      font-family: 'Gamja Flower', cursive;
       font-size: 28px;
+      font-weight: 700;
       color: black;
       margin-bottom: 20px;
     }
@@ -167,6 +168,11 @@
   </style>
 </head>
 <body>
+  <audio autoplay loop>
+    <source src="music.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
   <nav>
     <div class="nav-desktop">
       <div class="nav-left">
@@ -212,9 +218,7 @@
 
   <section>
     <img src="wedding.JPG" alt="wedding" class="wedding-photo" />
-    <div style="font-family: 'Noto Sans KR', sans-serif; font-weight: 700; font-size: 24px; color: black; margin-bottom: 20px;">
-      강준호 & 박예원
-    </div>
+    <div class="title-text">강준호 & 박예원</div>
     <div class="divider">-------♥♥-------</div>
     <p style="font-family: 'Gowun Dodum', sans-serif; font-size: 16px; color: black;">
       2016년 싱그러웠던 여름,<br>
@@ -266,10 +270,8 @@
     function handleSwipe() {
       const threshold = 50;
       if (endX - startX > threshold) {
-        // 오른쪽 스와이프 → 마지막 페이지에서 왼쪽으로는 이동 금지
-        // index.html에서는 왼쪽으로는 이동 불가
+        // 오른쪽 스와이프 → 현재는 이전 페이지 없음
       } else if (startX - endX > threshold) {
-        // 왼쪽 스와이프 → 다음 페이지로 이동
         window.location.href = "gallery.html";
       }
     }
