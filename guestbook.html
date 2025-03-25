@@ -74,11 +74,7 @@
     }
     @media (max-width: 768px) {
       .nav-desktop { display: none; }
-      .nav-mobile {
-        display: flex;
-        flex-wrap: wrap;
-        border-bottom: none;
-      }
+      .nav-mobile { display: flex; flex-wrap: wrap; border-bottom: none; }
     }
     #sidebar {
       position: fixed;
@@ -105,9 +101,7 @@
       padding: 0;
       margin-top: 30px;
     }
-    #sidebar ul li {
-      margin-bottom: 20px;
-    }
+    #sidebar ul li { margin-bottom: 20px; }
     #sidebar ul li a {
       color: white;
       text-decoration: none;
@@ -222,11 +216,33 @@
         $('#sidebar').toggleClass('active');
       });
 
-      // Load saved messages
       const saved = localStorage.getItem('guestbook');
       if (saved) {
         $('#guestbook').html(saved);
         attachDeleteHandlers();
+      }
+
+      // 모바일 스와이프
+      let touchstartX = 0;
+      let touchendX = 0;
+      const threshold = 50;
+
+      document.addEventListener('touchstart', function(e) {
+        touchstartX = e.changedTouches[0].screenX;
+      }, false);
+
+      document.addEventListener('touchend', function(e) {
+        touchendX = e.changedTouches[0].screenX;
+        handleSwipe();
+      }, false);
+
+      function handleSwipe() {
+        const distance = touchendX - touchstartX;
+        if (distance > threshold) {
+          window.location.href = 'info.html';
+        } else if (distance < -threshold) {
+          window.location.href = 'location.html';
+        }
       }
     });
 
