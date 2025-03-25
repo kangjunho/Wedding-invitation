@@ -257,7 +257,6 @@
       });
     });
 
-    // 모바일 스와이프 이벤트 처리
     let startX = 0;
     let endX = 0;
     document.addEventListener('touchstart', function (e) {
@@ -267,10 +266,11 @@
       endX = e.changedTouches[0].screenX;
       handleSwipe();
     });
+
     function handleSwipe() {
       const threshold = 50;
       if (endX - startX > threshold) {
-        // 오른쪽 스와이프 → 현재는 이전 페이지 없음
+        // swipe right (no previous)
       } else if (startX - endX > threshold) {
         window.location.href = "gallery.html";
       }
