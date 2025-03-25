@@ -74,16 +74,9 @@
       font-size: 14px;
     }
     @media (max-width: 768px) {
-      .nav-desktop {
-        display: none;
-      }
-      .nav-mobile {
-        display: flex;
-        flex-wrap: wrap;
-        border-bottom: none;
-      }
+      .nav-desktop { display: none; }
+      .nav-mobile { display: flex; flex-wrap: wrap; }
     }
-
     #sidebar {
       position: fixed;
       top: 0;
@@ -97,10 +90,7 @@
       z-index: 1000;
       display: none;
     }
-    #sidebar.active {
-      right: 0;
-      display: block;
-    }
+    #sidebar.active { right: 0; display: block; }
     .sidebar-header {
       display: flex;
       justify-content: space-between;
@@ -118,16 +108,35 @@
       text-decoration: none;
       font-size: 16px;
     }
-
+    .subnav {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 20px 10px;
+      border-bottom: 1px solid #ccc;
+      flex-wrap: wrap;
+    }
+    .subnav a {
+      text-decoration: none;
+      color: #4e7942;
+      font-weight: bold;
+    }
     section {
       padding: 30px;
       text-align: center;
     }
-    h2 {
-      font-family: 'Noto Serif KR', serif;
-      font-size: 28px;
-      color: black;
-      margin-bottom: 20px;
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    table {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      font-size: 14px;
     }
   </style>
 </head>
@@ -175,12 +184,45 @@
     </ul>
   </div>
 
-  <section>
-    <h2>결혼식 정보</h2>
-    <p style="font-size: 16px; color: #333;">
-      예식 순서와 복장 안내, 축의금 계좌 등을 포함한 안내를 여기에 넣을 수 있어요.<br>
-      필요한 내용을 자유롭게 채워주세요!
-    </p>
+  <div class="subnav">
+    <a href="#tab1" class="tab-link" data-tab="tab1">결혼식 순서</a>
+    <a href="#tab2" class="tab-link" data-tab="tab2">부산 여행 정보</a>
+    <a href="#tab3" class="tab-link" data-tab="tab3">자주 묻는 질문</a>
+  </div>
+
+  <section id="tab1" class="tab-content active">
+    <h2>결혼식 순서</h2>
+    <table>
+      <tr><th>순서</th><th>내용</th></tr>
+      <tr><td>1</td><td>개식사</td></tr>
+      <tr><td>2</td><td>화촉점화 · 양가 어머님 입장</td></tr>
+      <tr><td>3</td><td>양가 아버님 입장</td></tr>
+      <tr><td>4</td><td>신랑 ♡ 신부 입장</td></tr>
+      <tr><td>5</td><td>신랑 ♡ 신부 맞절</td></tr>
+      <tr><td>6</td><td>혼인 서약</td></tr>
+      <tr><td>7</td><td>예물 교환</td></tr>
+      <tr><td>8</td><td>성혼 선언</td></tr>
+      <tr><td>9</td><td>신랑 아버님 덕담</td></tr>
+      <tr><td>10</td><td>신부 아버님 덕담</td></tr>
+      <tr><td>11</td><td>양가 부모님 및 하객 인사</td></tr>
+      <tr><td>12</td><td>축가</td></tr>
+      <tr><td>13</td><td>감사 인사</td></tr>
+    </table>
+  </section>
+
+  <section id="tab2" class="tab-content">
+    <h2>부산 여행 정보</h2>
+    <p>예식장 근처 추천 장소: 카페 신기숲, 카페 신기산업, 해운대 해변, 동백섬 등</p>
+  </section>
+
+  <section id="tab3" class="tab-content">
+    <h2>자주 묻는 질문</h2>
+    <p>Q. 신부는 어떤 사람인가요?<br>언제 결혼해도 좋은 배우자라는 생각이 들었나요?<br>A. 생각이 깊고 배려심이 많으며, 어리지만 배울점이 많은 사랑스러운 사람입니다.<br> 저는 부족한 부분이 많은 사람이었는데, 예원이랑 만난 후 1년, 2년 ~ 10년이 되는 동안 예원이 덕에 스스로 많이 발전한 모습을 봤을때 놓쳐서는 안되는, 평생 같이하고 싶은 사람이라고 생각했습니다.</p>
+    <p>Q. 신랑은 어떤 사람인가요?<br>언제 결혼해도 좋은 배우자라는 생각이 들었나요?<br>A. 배려가 많고 따뜻한 마음을 가진<br> 개구쟁이(?)입니다.<br> 항상 곁에서 제편이 되어주었고, 긍정적인 신랑의 성향이 저에게는 안정감으로 다가왔어요. 때론 의견이 다를 때도 서로 대화로 풀었던 순간들, 맞춰주려 노력해준 모습들이 모여 이사람과 결혼해도 좋겠다는 생각이 들게 했던 것 같아요!</p>
+    <p>Q. 둘은 어떻게 만났나요?<br>A. 신랑이 석사 대학원생이었을때 학부 연구생이었던 신부와의 첫만남으로 시작되었습니다! 쾌활하면서 꾸밈없고, 선하게 느껴졌던 신랑의 모습에 눈길이 갔던 신부가 먼저 고백해서 사귀게 되었답니다!<br>"오빠, 손!"🤝</p>
+    <p>Q. 왜 부산에서 결혼하나요?<br>A. 신부의 고향이자, 둘의 추억이 가장 많이 담긴 도시이기 때문입니다!<br>그리고 신혼생활은 직장 위치를 고려해서 대구에서 시작될 예정입니다!</p>
+    <p>Q. 신혼여행은 어디로 가나요?<br>A. 발리로 떠납니다♥<br>걷는것과 요가를 좋아하는 신부가 지금까지 생각정리나, 용기가 필요한 순간에 항상 찾게 되었던, 애정하는 여행지인 발리의 매력을 신랑에게 소개해주고 싶어 선택하게 되었습니다!<br>발리만의 자유로운 분위기와 발리에서 아침을 여는 의식인 차낭이라는 꽃접시 그리고 향스틱이 놓여진 길은 산책만으로도 힐링되는 느낌이에요~! 발리를 배경으로 하는 '먹고 기도하고 사랑하라!'라는 영화는 지금도 신부의 최애 영화랍니다 ㅎㅎ</p>
+    <p>Q. 앞으로 어떻게 살아갈건가요?<br>A. '잘자고 일어났어?'하는 다정한 한마디,<br>'요즘 지내는 하루는 어때?'라는 관심어린 대화 정도는<br>나눌 수 있는 마음의 여유는 가지고 살아가고 싶어요~!</p>
   </section>
 
   <script>
@@ -189,27 +231,36 @@
         e.preventDefault();
         $('#sidebar').toggleClass('active');
       });
-    });
+      $('.tab-link').click(function(e) {
+        e.preventDefault();
+        var tabID = $(this).data('tab');
+        $('.tab-content').removeClass('active');
+        $('#' + tabID).addClass('active');
+      });
 
-    // 스와이프 기능
-    let startX = 0;
-    let endX = 0;
-    document.addEventListener('touchstart', function (e) {
-      startX = e.changedTouches[0].screenX;
-    });
-    document.addEventListener('touchend', function (e) {
-      endX = e.changedTouches[0].screenX;
-      handleSwipe();
-    });
-
-    function handleSwipe() {
+      // 모바일 스와이프 처리
+      let touchstartX = 0;
+      let touchendX = 0;
       const threshold = 50;
-      if (endX - startX > threshold) {
-        window.location.href = 'gallery.html';
-      } else if (startX - endX > threshold) {
-        window.location.href = 'guestbook.html';
+
+      document.addEventListener('touchstart', function(e) {
+        touchstartX = e.changedTouches[0].screenX;
+      }, false);
+
+      document.addEventListener('touchend', function(e) {
+        touchendX = e.changedTouches[0].screenX;
+        handleSwipe();
+      }, false);
+
+      function handleSwipe() {
+        const distance = touchendX - touchstartX;
+        if (distance > threshold) {
+          window.location.href = 'gallery.html';
+        } else if (distance < -threshold) {
+          window.location.href = 'guestbook.html';
+        }
       }
-    }
+    });
   </script>
 </body>
 </html>
