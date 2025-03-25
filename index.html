@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>강준호 & 박예원 결혼합니다.</title>
-  <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Gowun+Dodum&family=Noto+Sans+KR:wght@400;700&family=Noto+Serif+KR&family=Poor+Story&family=Gamja+Flower&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Gowun+Dodum&family=Noto+Sans+KR:wght@400;700&family=Noto+Serif+KR&family=Poor+Story&display=swap" rel="stylesheet" />
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
     body {
@@ -12,7 +12,6 @@
       font-family: 'Gowun Dodum', sans-serif;
       margin: 0;
       padding: 0;
-      overflow-x: hidden;
     }
     nav {
       padding: 10px 20px;
@@ -25,8 +24,13 @@
       color: black;
       font-size: 18px;
     }
-    .green-heart { color: green; }
-    .white-heart { font-size: 18px; color: white; }
+    .green-heart {
+      color: green;
+    }
+    .white-heart {
+      font-size: 18px;
+      color: white;
+    }
     .nav-center {
       display: flex;
       justify-content: center;
@@ -74,7 +78,9 @@
       font-size: 14px;
     }
     @media (max-width: 768px) {
-      .nav-desktop { display: none; }
+      .nav-desktop {
+        display: none;
+      }
       .nav-mobile {
         display: flex;
         flex-wrap: wrap;
@@ -94,13 +100,18 @@
       z-index: 1000;
       display: none;
     }
-    #sidebar.active { right: 0; display: block; }
+    #sidebar.active {
+      right: 0;
+      display: block;
+    }
     .sidebar-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    .sidebar-header h2 { color: white; }
+    .sidebar-header h2 {
+      color: white;
+    }
     #sidebar ul {
       list-style: none;
       padding: 0;
@@ -120,17 +131,16 @@
     }
     .wedding-photo {
       width: 100%;
-      max-width: 500px;
+      max-width: 700px;
       height: auto;
       display: block;
-      margin: 0 auto 20px;
+      margin: 0 auto 30px;
     }
-    .gallery-title {
-      font-family: 'Gamja Flower', cursive;
+    h2 {
+      font-family: 'Noto Serif KR', serif;
       font-size: 28px;
-      font-weight: bold;
+      color: black;
       margin-bottom: 20px;
-      color: #000;
     }
     .divider {
       font-size: 20px;
@@ -157,11 +167,6 @@
   </style>
 </head>
 <body>
-  <audio autoplay loop hidden>
-    <source src="music.mp3" type="audio/mpeg">
-    브라우저가 오디오를 지원하지 않습니다.
-  </audio>
-
   <nav>
     <div class="nav-desktop">
       <div class="nav-left">
@@ -207,7 +212,9 @@
 
   <section>
     <img src="wedding.JPG" alt="wedding" class="wedding-photo" />
-    <div class="gallery-title">강준호 & 박예원</div>
+    <div style="font-family: 'Noto Sans KR', sans-serif; font-weight: 700; font-size: 24px; color: black; margin-bottom: 20px;">
+      강준호 & 박예원
+    </div>
     <div class="divider">-------♥♥-------</div>
     <p style="font-family: 'Gowun Dodum', sans-serif; font-size: 16px; color: black;">
       2016년 싱그러웠던 여름,<br>
@@ -228,7 +235,7 @@
     <div class="divider">-------♥♥-------</div>
     <div style="font-family: 'Noto Sans KR', sans-serif; font-weight: 700; font-size: 16px; color: black; margin-bottom: 20px;">
       <p><strong>2025년 5월 10일 토요일 오후 12시</strong><br>
-        부산 해운대 팔레드시즈 웨딩홀</p>
+      부산 해운대 팔레드시즈 웨딩홀</p>
     </div>
     <div class="nav-buttons">
       <a href="gallery.html">갤러리</a>
@@ -245,6 +252,27 @@
         $('#sidebar').toggleClass('active');
       });
     });
+
+    // 모바일 스와이프 이벤트 처리
+    let startX = 0;
+    let endX = 0;
+    document.addEventListener('touchstart', function (e) {
+      startX = e.changedTouches[0].screenX;
+    });
+    document.addEventListener('touchend', function (e) {
+      endX = e.changedTouches[0].screenX;
+      handleSwipe();
+    });
+    function handleSwipe() {
+      const threshold = 50;
+      if (endX - startX > threshold) {
+        // 오른쪽 스와이프 → 마지막 페이지에서 왼쪽으로는 이동 금지
+        // index.html에서는 왼쪽으로는 이동 불가
+      } else if (startX - endX > threshold) {
+        // 왼쪽 스와이프 → 다음 페이지로 이동
+        window.location.href = "gallery.html";
+      }
+    }
   </script>
 </body>
 </html>
