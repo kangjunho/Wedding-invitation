@@ -302,10 +302,13 @@
     </div>
   </section>
 
-  <section class="calendar-section">
+    <section class="calendar-section">
     <div class="calendar">
       <h2>2025. 5. 10</h2>
       <p>토요일 오후 12시</p>
+    </div>
+    <div class="calendar-container">
+      <div id="calendar"></div>
     </div>
     <div class="countdown" id="countdown">
       <div id="days">0일</div>
@@ -324,6 +327,22 @@
         e.preventDefault();
         $('#sidebar').toggleClass('active');
       });
+
+      let calendarEl = document.getElementById('calendar');
+      let calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        initialDate: '2025-05-10',
+        locale: 'ko',
+        events: [
+          {
+            title: '💒 결혼식',
+            start: '2025-05-10',
+            display: 'background',
+            backgroundColor: '#f9dada'
+          }
+        ]
+      });
+      calendar.render();
     });
 
     let startX = 0;
@@ -339,7 +358,7 @@
     function handleSwipe() {
       const threshold = 50;
       if (endX - startX > threshold) {
-        // swipe right (no previous)
+        // swipe right
       } else if (startX - endX > threshold) {
         window.location.href = "gallery.html";
       }
