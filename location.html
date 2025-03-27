@@ -8,85 +8,93 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
     body { font-family: 'Noto Sans KR', sans-serif; margin: 0; padding: 0; background: #fff; }
-    nav {
-      padding: 10px 20px;
-      background: #fff;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #ddd;
-    }
-    .nav-left a {
-      text-decoration: none;
-      font-weight: bold;
-      color: black;
-      font-size: 18px;
-    }
-    .nav-center {
-      display: flex;
-      gap: 30px;
-    }
-    .nav-center a {
-      text-decoration: none;
-      color: #444;
-      font-size: 14px;
-    }
-    .green-heart { color: green; }
-    .location-section { max-width: 600px; margin: auto; text-align: left; line-height: 1.6; padding: 20px; }
+    nav, #sidebar, .nav-desktop, .nav-mobile, section { padding: 20px; }
+    nav a, #sidebar a { text-decoration: none; color: #000; }
+    .location-section { max-width: 600px; margin: auto; text-align: left; line-height: 1.6; }
     h2.title { text-align: center; margin-bottom: 20px; font-size: 22px; color: #444; }
     .map-container iframe { width: 100%; height: 300px; border: none; margin: 20px 0; }
     .map-buttons { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
-    .map-buttons a {
-      padding: 8px 12px;
-      background: #ddd;
-      border-radius: 5px;
-      text-decoration: none;
-      color: #333;
-      font-size: 14px;
-    }
+    .map-buttons a { padding: 8px 12px; background: #ddd; border-radius: 5px; text-decoration: none; color: #333; font-size: 14px; display: flex; align-items: center; gap: 5px; }
+    .map-buttons img { width: 18px; height: 18px; }
     .transport-section { margin-top: 20px; }
-    .transport-section h3 {
-      font-size: 16px;
-      margin: 10px 0 5px;
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 3px;
-    }
-    .transport-section p {
-      margin-left: 10px;
-      font-size: 14px;
-    }
+    .transport-section h3 { font-size: 16px; margin: 10px 0 5px; border-bottom: 1px solid #ccc; padding-bottom: 3px; }
+    .transport-section p { margin-left: 10px; font-size: 14px; }
+    #sidebar { position: fixed; top: 0; right: -250px; width: 250px; height: 100%; background-color: #4e7942; color: white; transition: right 0.3s ease; padding: 20px; z-index: 1000; display: none; }
+    #sidebar.active { right: 0; display: block; }
+    .sidebar-header { display: flex; justify-content: space-between; align-items: center; }
+    .sidebar-header h2 { color: white; }
+    #sidebar ul { list-style: none; padding: 0; margin-top: 30px; }
+    #sidebar ul li { margin-bottom: 20px; }
+    #sidebar ul li a { color: white; text-decoration: none; font-size: 16px; }
   </style>
 </head>
 <body>
   <nav>
-    <div class="nav-left">
-      <a href="index.html"><strong>준호<span class="green-heart">♥</span>예원</strong></a>
+    <div class="nav-desktop">
+      <div class="nav-left">
+        <a href="index.html"><strong>준호<span style="color:green">♥</span>예원</strong></a>
+      </div>
+      <div class="nav-center">
+        <a href="gallery.html">갤러리</a>
+        <a href="info.html">정보</a>
+        <a href="guestbook.html">축하메시지</a>
+        <a href="location.html">오시는 길</a>
+      </div>
+      <div class="nav-right">
+        <a href="#" id="menu-toggle">≡</a>
+      </div>
     </div>
-    <div class="nav-center">
-      <a href="gallery.html">갤러리</a>
-      <a href="info.html">정보</a>
-      <a href="guestbook.html">축하메시지</a>
-      <a href="location.html">오시는 길</a>
+    <div class="nav-mobile">
+      <div class="nav-mobile-left">
+        <a href="#" id="menu-toggle">≡</a>
+      </div>
+      <div class="nav-mobile-center">
+        <a href="index.html" class="white-heart">♡</a>
+        <a href="gallery.html">갤러리</a>
+        <a href="info.html">정보</a>
+        <a href="guestbook.html">축하메시지</a>
+        <a href="location.html">오시는 길</a>
+      </div>
     </div>
   </nav>
 
+  <div id="sidebar">
+    <div class="sidebar-header">
+      <h2>준호<span class="white-heart">♥</span>예원</h2>
+      <a href="#" id="close-sidebar">✖</a>
+    </div>
+    <ul>
+      <li><a href="index.html">홈</a></li>
+      <li><a href="gallery.html">갤러리</a></li>
+      <li><a href="info.html">정보</a></li>
+      <li><a href="guestbook.html">축하메시지</a></li>
+      <li><a href="location.html">오시는 길</a></li>
+    </ul>
+  </div>
+
   <section class="location-section">
     <h2 class="title">오시는 길</h2>
-    <p><strong>부산 해운대 팔레드시즈 웨딩홀</strong><br>부산광역시 해운대구 해운대해변로 298번길 24</p>
+    <p><strong>부산 해운대 팔레드시즈 웨딩홀</strong><br>부산광역시 해운대구 해운대해변로 298</p>
 
     <div class="map-container">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3263.225993391438!2d129.16528547612126!3d35.16152007275607!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3568ed4d6d99a14f%3A0x8ff1f1218f2d3b02!2z64KY7J207IqkIOq1rCDslYXqs7XsnY0!5e0!3m2!1sko!2skr!4v1710000000000" allowfullscreen loading="lazy"></iframe>
+      <iframe src="https://map.kakao.com/?q=부산+해운대+팔레드시즈+웨딩홀" allowfullscreen></iframe>
     </div>
 
     <div class="map-buttons">
-      <a href="https://map.naver.com/p/search/팔레드시즈웨딩홀" target="_blank">네이버 지도</a>
-      <a href="https://map.kakao.com/link/to/팔레드시즈웨딩홀,35.158697,129.160384" target="_blank">카카오내비</a>
-      <a href="https://tmap.co.kr" target="_blank">티맵</a>
+      <a href="https://map.naver.com/p/search/팔레드시즈웨딩홀" target="_blank">
+        <img src="images/naver.png" alt="네이버" />네이버 지도
+      </a>
+      <a href="https://map.kakao.com/link/to/팔레드시즈웨딩홀,35.158697,129.160384" target="_blank">
+        <img src="images/kakao.png" alt="카카오" />카카오내비
+      </a>
+      <a href="https://tmap.co.kr" target="_blank">
+        <img src="images/tmap.png" alt="티맵" />티맵
+      </a>
     </div>
 
     <div class="transport-section">
       <h3>지하철</h3>
-      <p>2호선 해운대역 하차 (3번 또는 5번 출구), 도보 약 10분</p>
+      <p>2호선 해운대역 하차 (3번 출구), 도보 약 10분</p>
 
       <h3>버스</h3>
       <p>해운대해수욕장 정류장 하차<br>
@@ -101,24 +109,31 @@
 
   <script>
     $(document).ready(function () {
-      // 스와이프 지원
-      let startX = 0;
-      let endX = 0;
+      $('#menu-toggle, #close-sidebar').click(function (e) {
+        e.preventDefault();
+        $('#sidebar').toggleClass('active');
+      });
 
-      document.addEventListener('touchstart', function (e) {
-        startX = e.changedTouches[0].screenX;
-      });
-      document.addEventListener('touchend', function (e) {
-        endX = e.changedTouches[0].screenX;
+      // 모바일 스와이프
+      let touchstartX = 0;
+      let touchendX = 0;
+      const threshold = 50;
+
+      document.addEventListener('touchstart', function(e) {
+        touchstartX = e.changedTouches[0].screenX;
+      }, false);
+
+      document.addEventListener('touchend', function(e) {
+        touchendX = e.changedTouches[0].screenX;
         handleSwipe();
-      });
+      }, false);
 
       function handleSwipe() {
-        const threshold = 50;
-        if (endX - startX > threshold) {
-          window.location.href = "guestbook.html";
-        } else if (startX - endX > threshold) {
-          window.location.href = "index.html";
+        const distance = touchendX - touchstartX;
+        if (distance > threshold) {
+          window.location.href = 'guestbook.html';
+        } else if (distance < -threshold) {
+          window.location.href = 'index.html';
         }
       }
     });
