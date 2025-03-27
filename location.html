@@ -8,17 +8,22 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
     body { font-family: 'Noto Sans KR', sans-serif; margin: 0; padding: 0; background: #fff; }
-    nav, #sidebar, .nav-desktop, .nav-mobile, section { padding: 20px; }
-    nav a, #sidebar a { text-decoration: none; color: #000; }
-    .location-section { max-width: 600px; margin: auto; text-align: left; line-height: 1.6; }
-    h2.title { text-align: center; margin-bottom: 20px; font-size: 22px; color: #444; }
-    .map-container iframe { width: 100%; height: 300px; border: none; margin: 20px 0; }
-    .map-buttons { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
-    .map-buttons a { padding: 8px 12px; background: #ddd; border-radius: 5px; text-decoration: none; color: #333; font-size: 14px; display: flex; align-items: center; gap: 5px; }
-    .map-buttons img { width: 18px; height: 18px; }
-    .transport-section { margin-top: 20px; }
-    .transport-section h3 { font-size: 16px; margin: 10px 0 5px; border-bottom: 1px solid #ccc; padding-bottom: 3px; }
-    .transport-section p { margin-left: 10px; font-size: 14px; }
+    nav { padding: 10px 20px; background: #fff; position: relative; }
+    .nav-left a { text-decoration: none; font-weight: bold; color: black; font-size: 18px; }
+    .green-heart { color: green; }
+    .white-heart { font-size: 18px; color: white; }
+    .nav-center { display: flex; justify-content: center; gap: 30px; flex-grow: 1; }
+    .nav-center a { text-decoration: none; color: #444; font-size: 14px; white-space: nowrap; }
+    .nav-right a { font-size: 32px; text-decoration: none; color: #000; }
+    .nav-desktop { display: flex; justify-content: space-between; align-items: center; width: 100%; border-bottom: 1px solid #ddd; }
+    .nav-mobile { display: none; width: 100%; align-items: center; justify-content: flex-start; gap: 18px; padding: 10px 20px; }
+    .nav-mobile-left a { font-size: 40px; color: #000; }
+    .nav-mobile-center { display: flex; align-items: center; gap: 18px; }
+    .nav-mobile-center a { text-decoration: none; color: #444; font-size: 14px; }
+    @media (max-width: 768px) {
+      .nav-desktop { display: none; }
+      .nav-mobile { display: flex; flex-wrap: wrap; border-bottom: none; }
+    }
     #sidebar { position: fixed; top: 0; right: -250px; width: 250px; height: 100%; background-color: #4e7942; color: white; transition: right 0.3s ease; padding: 20px; z-index: 1000; display: none; }
     #sidebar.active { right: 0; display: block; }
     .sidebar-header { display: flex; justify-content: space-between; align-items: center; }
@@ -26,13 +31,23 @@
     #sidebar ul { list-style: none; padding: 0; margin-top: 30px; }
     #sidebar ul li { margin-bottom: 20px; }
     #sidebar ul li a { color: white; text-decoration: none; font-size: 16px; }
+    section { padding: 30px; text-align: center; }
+    .location-section { max-width: 600px; margin: auto; text-align: center; line-height: 1.6; }
+    h2.title { text-align: center; margin: 40px 0 20px; font-size: 22px; color: #444; }
+    .map-container iframe { width: 100%; height: 300px; border: none; margin: 20px 0; }
+    .map-buttons { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
+    .map-buttons a { padding: 8px 12px; background: #ddd; border-radius: 5px; text-decoration: none; color: #333; font-size: 14px; display: flex; align-items: center; gap: 5px; }
+    .map-buttons img { width: 18px; height: 18px; }
+    .transport-section { margin-top: 20px; text-align: left; }
+    .transport-section h3 { font-size: 16px; margin: 10px 0 5px; border-bottom: 1px solid #ccc; padding-bottom: 3px; }
+    .transport-section p { margin-left: 10px; font-size: 14px; }
   </style>
 </head>
 <body>
   <nav>
     <div class="nav-desktop">
       <div class="nav-left">
-        <a href="index.html"><strong>준호<span style="color:green">♥</span>예원</strong></a>
+        <a href="index.html"><strong>준호<span class="green-heart">♥</span>예원</strong></a>
       </div>
       <div class="nav-center">
         <a href="gallery.html">갤러리</a>
@@ -74,7 +89,7 @@
 
   <section class="location-section">
     <h2 class="title">오시는 길</h2>
-    <p><strong>부산 해운대 팔레드시즈 웨딩홀</strong><br>부산광역시 해운대구 해운대해변로 298</p>
+    <p><strong>부산 해운대 팔레드시즈 웨딩홀</strong><br>부산광역시 해운대구 해운대해변로298번길 24 팔레드시즈 B1F</p>
 
     <div class="map-container">
       <iframe src="https://map.kakao.com/?q=부산+해운대+팔레드시즈+웨딩홀" allowfullscreen></iframe>
@@ -114,7 +129,6 @@
         $('#sidebar').toggleClass('active');
       });
 
-      // 모바일 스와이프
       let touchstartX = 0;
       let touchendX = 0;
       const threshold = 50;
