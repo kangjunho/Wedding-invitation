@@ -7,136 +7,65 @@
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Gowun+Dodum&family=Noto+Sans+KR:wght@400;700&family=Noto+Serif+KR&display=swap" rel="stylesheet" />
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
-    body {
-      background: #fff;
-      font-family: 'Gowun Dodum', sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-    nav {
-      padding: 10px 20px;
-      background: #fff;
-      position: relative;
-    }
-    .nav-left a {
-      text-decoration: none;
-      font-weight: bold;
-      color: black;
-      font-size: 18px;
-    }
+    body { background: #fff; font-family: 'Gowun Dodum', sans-serif; margin: 0; padding: 0; }
+    nav { padding: 10px 20px; background: #fff; position: relative; }
+    .nav-left a { text-decoration: none; font-weight: bold; color: black; font-size: 18px; }
     .green-heart { color: green; }
     .white-heart { font-size: 18px; color: white; }
-
-    .nav-center {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      flex-grow: 1;
-    }
-    .nav-center a {
-      text-decoration: none;
-      color: #444;
-      font-size: 14px;
-      white-space: nowrap;
-    }
-    .nav-right a {
-      font-size: 32px;
-      text-decoration: none;
-      color: #000;
-    }
-    .nav-desktop {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-      border-bottom: 1px solid #ddd;
-    }
-    .nav-mobile {
-      display: none;
-      width: 100%;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 18px;
-      padding: 10px 20px;
-    }
-    .nav-mobile-left a {
-      font-size: 40px;
-      color: #000;
-    }
-    .nav-mobile-center {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-    }
-    .nav-mobile-center a {
-      text-decoration: none;
-      color: #444;
-      font-size: 14px;
-    }
+    .nav-center { display: flex; justify-content: center; gap: 30px; flex-grow: 1; }
+    .nav-center a { text-decoration: none; color: #444; font-size: 14px; white-space: nowrap; }
+    .nav-right a { font-size: 32px; text-decoration: none; color: #000; }
+    .nav-desktop { display: flex; justify-content: space-between; align-items: center; width: 100%; border-bottom: 1px solid #ddd; }
+    .nav-mobile { display: none; width: 100%; align-items: center; justify-content: flex-start; gap: 18px; padding: 10px 20px; }
+    .nav-mobile-left a { font-size: 40px; color: #000; }
+    .nav-mobile-center { display: flex; align-items: center; gap: 18px; }
+    .nav-mobile-center a { text-decoration: none; color: #444; font-size: 14px; }
     @media (max-width: 768px) {
       .nav-desktop { display: none; }
       .nav-mobile { display: flex; flex-wrap: wrap; }
     }
-    #sidebar {
-      position: fixed;
-      top: 0;
-      right: -250px;
-      width: 250px;
-      height: 100%;
-      background-color: #4e7942;
-      color: white;
-      transition: right 0.3s ease;
-      padding: 20px;
-      z-index: 1000;
-      display: none;
-    }
+    #sidebar { position: fixed; top: 0; right: -250px; width: 250px; height: 100%; background-color: #4e7942; color: white; transition: right 0.3s ease; padding: 20px; z-index: 1000; display: none; }
     #sidebar.active { right: 0; display: block; }
-    .sidebar-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+    .sidebar-header { display: flex; justify-content: space-between; align-items: center; }
     .sidebar-header h2 { color: white; }
-    #sidebar ul {
-      list-style: none;
-      padding: 0;
-      margin-top: 30px;
-    }
+    #sidebar ul { list-style: none; padding: 0; margin-top: 30px; }
     #sidebar ul li { margin-bottom: 20px; }
-    #sidebar ul li a {
-      color: white;
-      text-decoration: none;
-      font-size: 16px;
-    }
-    .subnav {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      padding: 20px 10px;
-      border-bottom: 1px solid #ccc;
-      flex-wrap: wrap;
-    }
-    .subnav a {
-      text-decoration: none;
-      color: #4e7942;
-      font-weight: bold;
-    }
-    section {
-      padding: 30px;
-      text-align: center;
-    }
+    #sidebar ul li a { color: white; text-decoration: none; font-size: 16px; }
+    .subnav { display: flex; justify-content: center; gap: 30px; padding: 20px 10px; border-bottom: 1px solid #ccc; flex-wrap: wrap; }
+    .subnav a { text-decoration: none; color: #4e7942; font-weight: bold; }
+    section { padding: 30px; text-align: center; }
     .tab-content { display: none; }
     .tab-content.active { display: block; }
-    table {
-      width: 100%;
-      max-width: 600px;
-      margin: 0 auto;
-      border-collapse: collapse;
+    table { width: 100%; max-width: 600px; margin: 0 auto; border-collapse: collapse; }
+    th, td { border: 1px solid #ccc; padding: 10px; font-size: 14px; }
+    .travel-category { text-align: left; max-width: 1000px; margin: 0 auto; margin-bottom: 50px; }
+    .travel-category h3 { font-size: 20px; margin: 20px 0 10px; }
+    .card-container { display: flex; flex-wrap: wrap; gap: 16px; }
+    .travel-card {
+      background: #f8f8f8;
+      border-radius: 12px;
+      overflow: hidden;
+      width: calc(33% - 10px);
+      min-width: 240px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
-    th, td {
-      border: 1px solid #ccc;
-      padding: 10px;
-      font-size: 14px;
+    .travel-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+    .travel-card .card-text {
+      padding: 10px 12px;
+    }
+    .travel-card .card-text h4 {
+      margin: 5px 0;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .travel-card .card-text p {
+      margin: 0;
+      font-size: 13px;
+      color: #666;
     }
   </style>
 </head>
@@ -169,7 +98,6 @@
       </div>
     </div>
   </nav>
-
   <div id="sidebar">
     <div class="sidebar-header">
       <h2>준호<span class="white-heart">♥</span>예원</h2>
@@ -183,13 +111,11 @@
       <li><a href="location.html">오시는 길</a></li>
     </ul>
   </div>
-
   <div class="subnav">
     <a href="#tab1" class="tab-link" data-tab="tab1">결혼식 순서</a>
     <a href="#tab2" class="tab-link" data-tab="tab2">부산 여행 정보</a>
     <a href="#tab3" class="tab-link" data-tab="tab3">자주 묻는 질문</a>
   </div>
-
   <section id="tab1" class="tab-content active">
     <h2>결혼식 순서</h2>
     <table>
@@ -209,10 +135,68 @@
       <tr><td>13</td><td>감사 인사</td></tr>
     </table>
   </section>
-
   <section id="tab2" class="tab-content">
     <h2>부산 여행 정보</h2>
-    <p>예식장 근처 추천 장소: 카페 신기숲, 카페 신기산업, 해운대 해변, 동백섬 등</p>
+
+    <div class="travel-category">
+      <h3>🌸 봄이 오면 꼭 가야하는 부산 카페 & 디저트 맛집 추천</h3>
+      <div class="card-container">
+        <div class="travel-card">
+          <img src="images/cafe1.jpg" alt="카페신기숲">
+          <div class="card-text">
+            <h4>카페 신기숲</h4>
+            <p>해운대 장산역 근처, 숲속 감성 디저트 카페</p>
+          </div>
+        </div>
+        <div class="travel-card">
+          <img src="images/cafe2.jpg" alt="카페어니언">
+          <div class="card-text">
+            <h4>카페 어니언</h4>
+            <p>흰 건물과 핑크 벚꽃이 어우러지는 인생샷 명소</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="travel-category">
+      <h3>🚗 봄이 담긴 부산 드라이브 & 산책 스팟</h3>
+      <div class="card-container">
+        <div class="travel-card">
+          <img src="images/drive1.jpg" alt="동백섬">
+          <div class="card-text">
+            <h4>동백섬 산책로</h4>
+            <p>벚꽃과 바다가 함께하는 아름다운 산책길</p>
+          </div>
+        </div>
+        <div class="travel-card">
+          <img src="images/drive2.jpg" alt="달맞이길">
+          <div class="card-text">
+            <h4>달맞이길 드라이브</h4>
+            <p>해운대 바다를 따라 달리는 낭만 드라이브 코스</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="travel-category">
+      <h3>🍴 부산 식도락 가이드</h3>
+      <div class="card-container">
+        <div class="travel-card">
+          <img src="images/food1.jpg" alt="밀면">
+          <div class="card-text">
+            <h4>가야밀면</h4>
+            <p>부산의 대표 시원한 밀면, 줄 서서 먹는 맛집</p>
+          </div>
+        </div>
+        <div class="travel-card">
+          <img src="images/food2.jpg" alt="돼지국밥">
+          <div class="card-text">
+            <h4>쌍둥이돼지국밥</h4>
+            <p>진한 육수의 따뜻한 국밥 한 그릇으로 든든하게!</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section id="tab3" class="tab-content">
@@ -242,16 +226,13 @@
       let touchstartX = 0;
       let touchendX = 0;
       const threshold = 50;
-
       document.addEventListener('touchstart', function(e) {
         touchstartX = e.changedTouches[0].screenX;
       }, false);
-
       document.addEventListener('touchend', function(e) {
         touchendX = e.changedTouches[0].screenX;
         handleSwipe();
       }, false);
-
       function handleSwipe() {
         const distance = touchendX - touchstartX;
         if (distance > threshold) {
