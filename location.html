@@ -4,19 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>오시는 길 - 강준호 & 박예원 결혼합니다.</title>
-  <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Gowun+Dodum&family=Noto+Sans+KR:wght@400;700&family=Noto+Serif+KR&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Gowun+Dodum&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet" />
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
-    body {
-      background: #fff;
-      font-family: 'Gowun Dodum', sans-serif;
-      margin: 0;
-      padding: 0;
-    }
+    body { font-family: 'Noto Sans KR', sans-serif; margin: 0; padding: 0; background: #fff; }
     nav {
       padding: 10px 20px;
       background: #fff;
-      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
     }
     .nav-left a {
       text-decoration: none;
@@ -24,201 +22,103 @@
       color: black;
       font-size: 18px;
     }
-    .green-heart { color: green; }
-    .white-heart { font-size: 18px; color: white; }
     .nav-center {
       display: flex;
-      justify-content: center;
       gap: 30px;
-      flex-grow: 1;
     }
     .nav-center a {
       text-decoration: none;
       color: #444;
       font-size: 14px;
-      white-space: nowrap;
     }
-    .nav-right a {
-      font-size: 32px;
+    .green-heart { color: green; }
+    .location-section { max-width: 600px; margin: auto; text-align: left; line-height: 1.6; padding: 20px; }
+    h2.title { text-align: center; margin-bottom: 20px; font-size: 22px; color: #444; }
+    .map-container iframe { width: 100%; height: 300px; border: none; margin: 20px 0; }
+    .map-buttons { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
+    .map-buttons a {
+      padding: 8px 12px;
+      background: #ddd;
+      border-radius: 5px;
       text-decoration: none;
-      color: #000;
-    }
-    .nav-desktop {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-      border-bottom: 1px solid #ddd;
-    }
-    .nav-mobile {
-      display: none;
-      width: 100%;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 18px;
-      padding: 10px 20px;
-    }
-    .nav-mobile-left a {
-      font-size: 40px;
-      color: #000;
-    }
-    .nav-mobile-center {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-    }
-    .nav-mobile-center a {
-      text-decoration: none;
-      color: #444;
+      color: #333;
       font-size: 14px;
     }
-    @media (max-width: 768px) {
-      .nav-desktop { display: none; }
-      .nav-mobile {
-        display: flex;
-        flex-wrap: wrap;
-        border-bottom: none;
-      }
-    }
-    #sidebar {
-      position: fixed;
-      top: 0;
-      right: -250px;
-      width: 250px;
-      height: 100%;
-      background-color: #4e7942;
-      color: white;
-      transition: right 0.3s ease;
-      padding: 20px;
-      z-index: 1000;
-      display: none;
-    }
-    #sidebar.active { right: 0; display: block; }
-    .sidebar-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .sidebar-header h2 { color: white; }
-    #sidebar ul {
-      list-style: none;
-      padding: 0;
-      margin-top: 30px;
-    }
-    #sidebar ul li { margin-bottom: 20px; }
-    #sidebar ul li a {
-      color: white;
-      text-decoration: none;
+    .transport-section { margin-top: 20px; }
+    .transport-section h3 {
       font-size: 16px;
+      margin: 10px 0 5px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 3px;
     }
-    section {
-      padding: 30px;
-      text-align: center;
-    }
-    .map-container {
-      width: 100%;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    iframe {
-      width: 100%;
-      height: 400px;
-      border: none;
-    }
-    .address, .directions {
-      margin-top: 20px;
+    .transport-section p {
+      margin-left: 10px;
       font-size: 14px;
     }
   </style>
 </head>
 <body>
   <nav>
-    <div class="nav-desktop">
-      <div class="nav-left">
-        <a href="index.html"><strong>준호<span class="green-heart">♥</span>예원</strong></a>
-      </div>
-      <div class="nav-center">
-        <a href="gallery.html">갤러리</a>
-        <a href="info.html">정보</a>
-        <a href="guestbook.html">축하메시지</a>
-        <a href="location.html">오시는 길</a>
-      </div>
-      <div class="nav-right">
-        <a href="#" id="menu-toggle">≡</a>
-      </div>
+    <div class="nav-left">
+      <a href="index.html"><strong>준호<span class="green-heart">♥</span>예원</strong></a>
     </div>
-    <div class="nav-mobile">
-      <div class="nav-mobile-left">
-        <a href="#" id="menu-toggle">≡</a>
-      </div>
-      <div class="nav-mobile-center">
-        <a href="index.html" class="white-heart">♡</a>
-        <a href="gallery.html">갤러리</a>
-        <a href="info.html">정보</a>
-        <a href="guestbook.html">축하메시지</a>
-        <a href="location.html">오시는 길</a>
-      </div>
+    <div class="nav-center">
+      <a href="gallery.html">갤러리</a>
+      <a href="info.html">정보</a>
+      <a href="guestbook.html">축하메시지</a>
+      <a href="location.html">오시는 길</a>
     </div>
   </nav>
 
-  <div id="sidebar">
-    <div class="sidebar-header">
-      <h2>준호<span class="white-heart">♥</span>예원</h2>
-      <a href="#" id="close-sidebar">✖</a>
-    </div>
-    <ul>
-      <li><a href="index.html">홈</a></li>
-      <li><a href="gallery.html">갤러리</a></li>
-      <li><a href="info.html">정보</a></li>
-      <li><a href="guestbook.html">축하메시지</a></li>
-      <li><a href="location.html">오시는 길</a></li>
-    </ul>
-  </div>
+  <section class="location-section">
+    <h2 class="title">오시는 길</h2>
+    <p><strong>부산 해운대 팔레드시즈 웨딩홀</strong><br>부산광역시 해운대구 해운대해변로 298번길 24</p>
 
-  <section>
-    <h2>오시는 길</h2>
     <div class="map-container">
       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3263.225993391438!2d129.16528547612126!3d35.16152007275607!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3568ed4d6d99a14f%3A0x8ff1f1218f2d3b02!2z64KY7J207IqkIOq1rCDslYXqs7XsnY0!5e0!3m2!1sko!2skr!4v1710000000000" allowfullscreen loading="lazy"></iframe>
     </div>
-    <div class="address">
-      <p><strong>부산 해운대 팔레드시즈 웨딩홀</strong><br>부산광역시 해운대구 해운대해변로 298</p>
+
+    <div class="map-buttons">
+      <a href="https://map.naver.com/p/search/팔레드시즈웨딩홀" target="_blank">네이버 지도</a>
+      <a href="https://map.kakao.com/link/to/팔레드시즈웨딩홀,35.158697,129.160384" target="_blank">카카오내비</a>
+      <a href="https://tmap.co.kr" target="_blank">티맵</a>
     </div>
-    <div class="directions">
-      <p>
-        ✔ 지하철 2호선 해운대역 3번 또는 5번 출구 → 도보 약 10분<br>
-        ✔ 버스 39, 100, 115-1, 139, 141, 200번 탑승 후 '중1동' 정류장 하차 → 도보 약 2분<br>
-        ✔ 자가용 이용 시 팔레드시즈 웨딩홀 건물 주차장 이용 가능
-      </p>
+
+    <div class="transport-section">
+      <h3>지하철</h3>
+      <p>2호선 해운대역 하차 (3번 또는 5번 출구), 도보 약 10분</p>
+
+      <h3>버스</h3>
+      <p>해운대해수욕장 정류장 하차<br>
+      - 일반: 100, 139, 307, 1003번<br>
+      - 좌석: 200번</p>
+
+      <h3>자가용</h3>
+      <p>네비게이션에 “팔레드시즈 웨딩홀” 검색<br>
+      건물 내 지하주차장 이용 가능</p>
     </div>
   </section>
 
   <script>
     $(document).ready(function () {
-      $('#menu-toggle, #close-sidebar').click(function (e) {
-        e.preventDefault();
-        $('#sidebar').toggleClass('active');
+      // 스와이프 지원
+      let startX = 0;
+      let endX = 0;
+
+      document.addEventListener('touchstart', function (e) {
+        startX = e.changedTouches[0].screenX;
+      });
+      document.addEventListener('touchend', function (e) {
+        endX = e.changedTouches[0].screenX;
+        handleSwipe();
       });
 
-      // 모바일 스와이프
-      let touchstartX = 0;
-      let touchendX = 0;
-      const threshold = 50;
-
-      document.addEventListener('touchstart', function(e) {
-        touchstartX = e.changedTouches[0].screenX;
-      }, false);
-
-      document.addEventListener('touchend', function(e) {
-        touchendX = e.changedTouches[0].screenX;
-        handleSwipe();
-      }, false);
-
       function handleSwipe() {
-        const distance = touchendX - touchstartX;
-        if (distance > threshold) {
-          window.location.href = 'guestbook.html';
-        } else if (distance < -threshold) {
-          window.location.href = 'index.html';
+        const threshold = 50;
+        if (endX - startX > threshold) {
+          window.location.href = "guestbook.html";
+        } else if (startX - endX > threshold) {
+          window.location.href = "index.html";
         }
       }
     });
