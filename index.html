@@ -24,13 +24,8 @@
       color: black;
       font-size: 18px;
     }
-    .green-heart {
-      color: green;
-    }
-    .white-heart {
-      font-size: 18px;
-      color: white;
-    }
+    .green-heart { color: green; }
+    .white-heart { font-size: 18px; color: white; }
     .nav-center {
       display: flex;
       justify-content: center;
@@ -78,9 +73,7 @@
       font-size: 14px;
     }
     @media (max-width: 768px) {
-      .nav-desktop {
-        display: none;
-      }
+      .nav-desktop { display: none; }
       .nav-mobile {
         display: flex;
         flex-wrap: wrap;
@@ -100,26 +93,19 @@
       z-index: 1000;
       display: none;
     }
-    #sidebar.active {
-      right: 0;
-      display: block;
-    }
+    #sidebar.active { right: 0; display: block; }
     .sidebar-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    .sidebar-header h2 {
-      color: white;
-    }
+    .sidebar-header h2 { color: white; }
     #sidebar ul {
       list-style: none;
       padding: 0;
       margin-top: 30px;
     }
-    #sidebar ul li {
-      margin-bottom: 20px;
-    }
+    #sidebar ul li { margin-bottom: 20px; }
     #sidebar ul li a {
       color: white;
       text-decoration: none;
@@ -165,6 +151,61 @@
       min-width: 180px;
       text-align: center;
     }
+    .contact-box button {
+      font-size: 16px;
+      padding: 10px 30px;
+      border: 1px solid #ccc;
+      border-radius: 25px;
+      background-color: white;
+      cursor: pointer;
+    }
+    .contact-list {
+      display: none;
+      margin-top: 20px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 15px;
+    }
+    .contact-list div {
+      display: flex;
+      justify-content: space-between;
+      margin: 8px 0;
+      align-items: center;
+    }
+    .contact-list a {
+      margin-left: 8px;
+      text-decoration: none;
+    }
+    .calendar-section {
+      margin-top: 60px;
+    }
+    .calendar {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .countdown div {
+      background: #f8f8f8;
+      padding: 10px;
+      border-radius: 8px;
+      min-width: 50px;
+    }
+    .count-message {
+      margin-top: 15px;
+      font-size: 16px;
+    }
+    .count-message span {
+      color: #e97474;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
@@ -173,48 +214,7 @@
     Your browser does not support the audio element.
   </audio>
 
-  <nav>
-    <div class="nav-desktop">
-      <div class="nav-left">
-        <a href="index.html"><strong>준호<span class="green-heart">♥</span>예원</strong></a>
-      </div>
-      <div class="nav-center">
-        <a href="gallery.html">갤러리</a>
-        <a href="info.html">정보</a>
-        <a href="guestbook.html">축하메시지</a>
-        <a href="location.html">오시는 길</a>
-      </div>
-      <div class="nav-right">
-        <a href="#" id="menu-toggle">≡</a>
-      </div>
-    </div>
-    <div class="nav-mobile">
-      <div class="nav-mobile-left">
-        <a href="#" id="menu-toggle">≡</a>
-      </div>
-      <div class="nav-mobile-center">
-        <a href="index.html" class="white-heart">♡</a>
-        <a href="gallery.html">갤러리</a>
-        <a href="info.html">정보</a>
-        <a href="guestbook.html">축하메시지</a>
-        <a href="location.html">오시는 길</a>
-      </div>
-    </div>
-  </nav>
-
-  <div id="sidebar">
-    <div class="sidebar-header">
-      <h2>준호<span class="white-heart">♥</span>예원</h2>
-      <a href="#" id="close-sidebar">✖</a>
-    </div>
-    <ul>
-      <li><a href="index.html">홈</a></li>
-      <li><a href="gallery.html">갤러리</a></li>
-      <li><a href="info.html">정보</a></li>
-      <li><a href="guestbook.html">축하메시지</a></li>
-      <li><a href="location.html">오시는 길</a></li>
-    </ul>
-  </div>
+  <!-- 네비게이션 생략 -->
 
   <section>
     <img src="wedding.JPG" alt="wedding" class="wedding-photo" />
@@ -236,6 +236,17 @@
       <strong>강재두·민영미</strong>의 아들 <strong>준호</strong><br>
       <strong>박수생·고경선</strong>의 딸 <strong>예원</strong>
     </p>
+    <div class="contact-box">
+      <button onclick="$('.contact-list').slideToggle()">📞 연락하기</button>
+      <div class="contact-list">
+        <div><span>신랑</span><span>강준호 <a href="tel:01067406399">📞</a></span></div>
+        <div><span>신랑 아버지</span><span>010-6788-0022 <a href="tel:01067880022">📞</a></span></div>
+        <div><span>신랑 어머니</span><span>010-6740-7077 <a href="tel:01067407077">📞</a></span></div>
+        <div><span>신부</span><span>박예원 <a href="tel:01021126676">📞</a></span></div>
+        <div><span>신부 아버지</span><span>010-7712-6676 <a href="tel:01077126676">📞</a></span></div>
+        <div><span>신부 어머니</span><span>010-5598-6676 <a href="tel:01055986676">📞</a></span></div>
+      </div>
+    </div>
     <div class="divider">-------♥♥-------</div>
     <div style="font-family: 'Noto Sans KR', sans-serif; font-weight: 700; font-size: 16px; color: black; margin-bottom: 20px;">
       <p><strong>2025년 5월 10일 토요일 오후 12시</strong><br>
@@ -246,6 +257,22 @@
       <a href="info.html">결혼식 정보</a>
       <a href="guestbook.html">축하 메시지</a>
       <a href="location.html">오시는 길</a>
+    </div>
+  </section>
+
+  <section class="calendar-section">
+    <div class="calendar">
+      <h2>2025. 5. 10</h2>
+      <p>토요일 오후 12시</p>
+    </div>
+    <div class="countdown" id="countdown">
+      <div id="days">0일</div>
+      <div id="hours">0시간</div>
+      <div id="minutes">0분</div>
+      <div id="seconds">0초</div>
+    </div>
+    <div class="count-message">
+      준호 <span>♥</span> 예원의 결혼식이 <span id="remain-days">0일</span> 남았습니다.
     </div>
   </section>
 
@@ -275,6 +302,23 @@
         window.location.href = "gallery.html";
       }
     }
+
+    function updateCountdown() {
+      const weddingDate = new Date("2025-05-10T12:00:00");
+      const now = new Date();
+      const diff = weddingDate - now;
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+      document.getElementById("days").innerText = days + "일";
+      document.getElementById("hours").innerText = hours + "시간";
+      document.getElementById("minutes").innerText = minutes + "분";
+      document.getElementById("seconds").innerText = seconds + "초";
+      document.getElementById("remain-days").innerText = days + "일";
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
   </script>
 </body>
 </html>
