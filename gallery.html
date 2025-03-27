@@ -9,7 +9,7 @@
   <style>
     body {
       background: #fff;
-      font-family: 'Gowun Dodum', sans-serif;
+      font-family: 'Noto Sans KR', sans-serif;
       margin: 0;
       padding: 0;
     }
@@ -26,7 +26,6 @@
     }
     .green-heart { color: green; }
     .white-heart { font-size: 18px; color: white; }
-
     .nav-center {
       display: flex;
       justify-content: center;
@@ -83,7 +82,6 @@
         border-bottom: none;
       }
     }
-
     #sidebar {
       position: fixed;
       top: 0;
@@ -118,7 +116,6 @@
       text-decoration: none;
       font-size: 16px;
     }
-
     section {
       padding: 30px;
       text-align: center;
@@ -130,6 +127,8 @@
     }
     .main-image {
       width: 100%;
+      height: 600px;
+      object-fit: cover;
       border-radius: 8px;
     }
     .thumbnail-wrapper {
@@ -151,6 +150,22 @@
     .thumbnail-wrapper img.active,
     .thumbnail-wrapper img:hover {
       opacity: 1;
+    }
+    #moreThumbs {
+      display: none;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 15px;
+    }
+    .more-button {
+      margin-top: 15px;
+      background-color: #4e7942;
+      color: white;
+      padding: 8px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -199,10 +214,12 @@
   </div>
 
   <section>
-    <h2 style="font-family: 'Nanum Brush Script', cursive; font-size: 28px; color: #2b5c94; margin-bottom: 20px;">웨딩 사진</h2>
+    <h2 style="font-family: 'Noto Sans KR', sans-serif; font-size: 24px; color: black; margin-bottom: 20px;">웨딩 사진</h2>
     <div class="slider-wrapper">
       <img id="mainImage" class="main-image" src="images/gallery/RIMI4579.JPG" alt="main" />
       <div class="thumbnail-wrapper" id="thumbnailContainer"></div>
+      <div id="moreThumbs"></div>
+      <button class="more-button" onclick="showMore()">더 보기</button>
     </div>
   </section>
 
@@ -213,19 +230,18 @@
         $('#sidebar').toggleClass('active');
       });
 
-      // 모바일 스와이프 이벤트 처리
       let touchstartX = 0;
       let touchendX = 0;
-      const threshold = 50; // 스와이프 감도
+      const threshold = 50;
 
       document.addEventListener('touchstart', function(e) {
         touchstartX = e.changedTouches[0].screenX;
-      }, false);
+      });
 
       document.addEventListener('touchend', function(e) {
         touchendX = e.changedTouches[0].screenX;
         handleSwipe();
-      }, false);
+      });
 
       function handleSwipe() {
         const distance = touchendX - touchstartX;
@@ -251,6 +267,7 @@
     let current = 0;
     const mainImage = document.getElementById("mainImage");
     const thumbnailContainer = document.getElementById("thumbnailContainer");
+    const moreThumbs = document.getElementById("moreThumbs");
 
     function renderThumbnails() {
       imageList.forEach((img, idx) => {
@@ -261,13 +278,17 @@
           changeImage();
         };
         if (idx === 0) el.classList.add("active");
-        thumbnailContainer.appendChild(el);
+        if (idx < 5) {
+          thumbnailContainer.appendChild(el);
+        } else {
+          moreThumbs.appendChild(el);
+        }
       });
     }
 
     function changeImage() {
       mainImage.src = `images/gallery/${imageList[current]}`;
-      const thumbs = document.querySelectorAll(".thumbnail-wrapper img");
+      const thumbs = document.querySelectorAll(".thumbnail-wrapper img, #moreThumbs img");
       thumbs.forEach(t => t.classList.remove("active"));
       thumbs[current].classList.add("active");
     }
@@ -277,6 +298,11 @@
         current = (current + 1) % imageList.length;
         changeImage();
       }, 3000);
+    }
+
+    function showMore() {
+      document.getElementById("moreThumbs").style.display = 'flex';
+      document.querySelector(".more-button").style.display = 'none';
     }
 
     renderThumbnails();
