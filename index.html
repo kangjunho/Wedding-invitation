@@ -324,6 +324,8 @@
     </div>
   </section>
 
+
+  
 <section class="calendar-section">
 <div class="calendar-wrapper">
   <div id="calendar"></div>
@@ -333,60 +335,39 @@
     </div>
   </section>
 
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/locales-all.min.js"></script>
   <script>
-document.addEventListener('DOMContentLoaded', function () {
-  let calendarEl = document.getElementById('calendar');
-  if (calendarEl) {
-    let calendar = new FullCalendar.Calendar(calendarEl, {
-      initialView: 'dayGridMonth',
-      initialDate: '2025-05-10',
-      locale: 'ko',
-      events: [
-        {
-          title: '💒 결혼식',
-          start: '2025-05-10',
-          display: 'background',
-          backgroundColor: '#f9dada'
-        }
-      ]
-    });
-    calendar.render();
-  }
-});
-
-    let startX = 0;
-    let endX = 0;
-    document.addEventListener('touchstart', function (e) {
-      startX = e.changedTouches[0].screenX;
-    });
-    document.addEventListener('touchend', function (e) {
-      endX = e.changedTouches[0].screenX;
-      handleSwipe();
-    });
-
-    function handleSwipe() {
-      const threshold = 50;
-      if (endX - startX > threshold) {
-        // swipe right
-      } else if (startX - endX > threshold) {
-        window.location.href = "gallery.html";
+    document.addEventListener('DOMContentLoaded', function () {
+      let calendarEl = document.getElementById('calendar');
+      if (calendarEl) {
+        let calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth',
+          initialDate: '2025-05-10',
+          locale: 'ko',
+          events: [
+            {
+              title: '💒 경남시혜',
+              start: '2025-05-10',
+              display: 'background',
+              backgroundColor: '#f9dada'
+            }
+          ]
+        });
+        calendar.render();
       }
-    }
 
-    function updateCountdown() {
-      const weddingDate = new Date("2025-05-10T12:00:00");
-      const now = new Date();
-      const diff = weddingDate - now;
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-      document.getElementById("remain-days").innerText = days + "일";
-    }
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
+      // D-Day Countdown
+      function updateCountdown() {
+        const weddingDate = new Date("2025-05-10T12:00:00");
+        const now = new Date();
+        const diff = weddingDate - now;
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        document.getElementById("remain-days").innerText = days + "일";
+      }
+      setInterval(updateCountdown, 1000);
+      updateCountdown();
+    });
   </script>
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/locales-all.min.js"></script>
 </body>
 </html>
