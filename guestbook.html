@@ -15,69 +15,6 @@
       margin: 0;
       padding: 0;
     }
-    nav {
-      padding: 10px 20px;
-      background: #fff;
-      position: relative;
-    }
-    .nav-left a {
-      text-decoration: none;
-      font-weight: bold;
-      color: black;
-      font-size: 18px;
-    }
-    .green-heart { color: green; }
-    .white-heart { font-size: 18px; color: white; }
-    .nav-center {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      flex-grow: 1;
-    }
-    .nav-center a {
-      text-decoration: none;
-      color: #444;
-      font-size: 14px;
-      white-space: nowrap;
-    }
-    .nav-right a {
-      font-size: 32px;
-      text-decoration: none;
-      color: #000;
-    }
-    .nav-desktop {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-      border-bottom: 1px solid #ddd;
-    }
-    .nav-mobile {
-      display: none;
-      width: 100%;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 18px;
-      padding: 10px 20px;
-    }
-    .nav-mobile-left a {
-      font-size: 40px;
-      color: #000;
-    }
-    .nav-mobile-center {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-    }
-    .nav-mobile-center a {
-      text-decoration: none;
-      color: #444;
-      font-size: 14px;
-    }
-    @media (max-width: 768px) {
-      .nav-desktop { display: none; }
-      .nav-mobile { display: flex; flex-wrap: wrap; border-bottom: none; }
-    }
     section {
       padding: 30px;
       text-align: center;
@@ -124,23 +61,6 @@
   </style>
 </head>
 <body>
-  <nav>
-    <div class="nav-desktop">
-      <div class="nav-left">
-        <a href="index.html"><strong>준호<span class="green-heart">♥</span>예원</strong></a>
-      </div>
-      <div class="nav-center">
-        <a href="gallery.html">갤러리</a>
-        <a href="info.html">정보</a>
-        <a href="guestbook.html">축하메시지</a>
-        <a href="location.html">오시는 길</a>
-      </div>
-      <div class="nav-right">
-        <a href="#" id="menu-toggle">≡</a>
-      </div>
-    </div>
-  </nav>
-
   <section>
     <h2>축하 메시지</h2>
     <div class="guest-form">
@@ -153,16 +73,22 @@
   </section>
 
   <script>
+    // Firebase 설정
     const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-      projectId: "YOUR_PROJECT_ID",
-      storageBucket: "YOUR_PROJECT_ID.appspot.com",
-      messagingSenderId: "YOUR_SENDER_ID",
-      appId: "YOUR_APP_ID"
+      apiKey: "AIzaSyBFHWEgTj7TIhMXeg1IiYCgYV6fgTFthKo",
+      authDomain: "junhokangwedding.firebaseapp.com",
+      projectId: "junhokangwedding",
+      storageBucket: "junhokangwedding.firebasestorage.app",
+      messagingSenderId: "528189903658",
+      appId: "1:528189903658:web:fd239e06826c2e08ea8453",
+      measurementId: "G-524GZPSHW9"
     };
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
+
+    document.addEventListener('DOMContentLoaded', function () {
+      loadMessages();
+    });
 
     async function loadMessages() {
       const snapshot = await db.collection("guestbook").orderBy("timestamp", "desc").get();
@@ -174,7 +100,7 @@
           <div class="guest-message">
             <h4>${data.title}</h4>
             <div>${data.message}</div>
-            <small>작성자: ${data.name} · ${new Date(data.timestamp.toDate()).toLocaleDateString()}</small>
+            <small>작성자: ${data.name} · ${new Date(data.timestamp?.toDate()).toLocaleDateString()}</small>
           </div>
         `;
         container.innerHTML += html;
@@ -203,10 +129,6 @@
       document.getElementById('message').value = '';
       loadMessages();
     }
-
-    document.addEventListener("DOMContentLoaded", function() {
-      loadMessages();
-    });
   </script>
 </body>
 </html>
