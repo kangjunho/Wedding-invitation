@@ -190,6 +190,16 @@
       font-size: 14px;
       margin-bottom: 20px;
     }
+    .calendar-wrapper {
+    max-width: 600px;
+    margin: 40px auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  #calendar {
+    max-width: 100%;
+  }
     .countdown {
       display: flex;
       justify-content: center;
@@ -315,36 +325,34 @@
   </section>
 
 <section class="calendar-section">
-<div class="calendar-container">
+<div class="calendar-wrapper">
   <div id="calendar"></div>
+</div>
     <div class="count-message">
       준호 <span>♥</span> 예원의 결혼식이 <span id="remain-days">0일</span> 남았습니다.
     </div>
   </section>
 
   <script>
-    $(document).ready(function () {
-      $('#menu-toggle, #close-sidebar').click(function (e) {
-        e.preventDefault();
-        $('#sidebar').toggleClass('active');
-      });
-
-      let calendarEl = document.getElementById('calendar');
-      let calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
-        initialDate: '2025-05-10',
-        locale: 'ko',
-        events: [
-          {
-            title: '💒 결혼식',
-            start: '2025-05-10',
-            display: 'background',
-            backgroundColor: '#f9dada'
-          }
-        ]
-      });
-      calendar.render();
+document.addEventListener('DOMContentLoaded', function () {
+  let calendarEl = document.getElementById('calendar');
+  if (calendarEl) {
+    let calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth',
+      initialDate: '2025-05-10',
+      locale: 'ko',
+      events: [
+        {
+          title: '💒 결혼식',
+          start: '2025-05-10',
+          display: 'background',
+          backgroundColor: '#f9dada'
+        }
+      ]
     });
+    calendar.render();
+  }
+});
 
     let startX = 0;
     let endX = 0;
