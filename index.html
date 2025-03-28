@@ -317,15 +317,6 @@
 <section class="calendar-section">
 <div class="calendar-container">
   <div id="calendar"></div>
-  <h2>2025. 5. 10</h2>
-  <p>토요일 오후 12시</p>
-  
-      <div class="countdown" id="countdown">
-      <div id="days">0일</div>
-      <div id="hours">0시간</div>
-      <div id="minutes">0분</div>
-      <div id="seconds">0초</div>
-    </div>
     <div class="count-message">
       준호 <span>♥</span> 예원의 결혼식이 <span id="remain-days">0일</span> 남았습니다.
     </div>
@@ -382,10 +373,6 @@
       const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
       const minutes = Math.floor((diff / (1000 * 60)) % 60);
       const seconds = Math.floor((diff / 1000) % 60);
-      document.getElementById("days").innerText = days + "일";
-      document.getElementById("hours").innerText = hours + "시간";
-      document.getElementById("minutes").innerText = minutes + "분";
-      document.getElementById("seconds").innerText = seconds + "초";
       document.getElementById("remain-days").innerText = days + "일";
     }
     setInterval(updateCountdown, 1000);
