@@ -115,8 +115,15 @@
       font-size: 16px;
     }
     #calendar {
-  max-width: 600px;
-  margin: 0 auto 20px;
+      max-width: 600px;
+      margin: 0 auto 30px;
+    }
+    .count-message {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .count-message span {
+      color: #e97474;
     }
     section {
       padding: 30px;
@@ -322,7 +329,7 @@
 
 
   
-<section class="calendar-section">
+  <section>
     <div id="calendar"></div>
     <div class="count-message">
       준호 <span>♥</span> 예원의 결혼식이 <span id="remain-days">0일</span> 남았습니다.
@@ -349,12 +356,12 @@
       calendar.render();
 
       function updateCountdown() {
-        const weddingDate = new Date("2025-05-10T00:00:00");
-        const today = new Date();
-        const todayMidnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-        const diff = weddingDate - todayMidnight;
-        const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
-        document.getElementById("remain-days").innerText = days + "일";
+        const weddingDate = new Date("2025-05-10T00:00:00+09:00"); // KST 기준
+        const now = new Date();
+        const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        const diffTime = weddingDate.getTime() - today.getTime();
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        document.getElementById("remain-days").innerText = diffDays + "일";
       }
 
       updateCountdown();
