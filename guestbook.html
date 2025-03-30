@@ -23,6 +23,8 @@
     @media (max-width: 768px) {
       .nav-desktop { display: none; }
       .nav-mobile { display: flex; flex-wrap: wrap; border-bottom: none; }
+      section { padding: 20px 10px; }
+      .message-form { width: 100%; }
     }
     #sidebar { position: fixed; top: 0; right: -250px; width: 250px; height: 100%; background-color: #4e7942; color: white; transition: right 0.3s ease; padding: 20px; z-index: 1000; display: none; }
     #sidebar.active { right: 0; display: block; }
@@ -36,6 +38,7 @@
     .message-form input, .message-form textarea, .message-form button {
       width: 100%; margin: 5px 0; padding: 10px; border: 1px solid #ccc; border-radius: 4px;
     }
+    #message-list { margin-top: 20px; }
   </style>
 </head>
 <body>
@@ -89,6 +92,7 @@
       <textarea placeholder="축하 메시지를 남겨주세요" rows="5" required></textarea>
       <button type="submit">메시지 남기기</button>
     </form>
+    <div id="message-list"></div>
   </section>
 
   <script>
@@ -97,6 +101,28 @@
         e.preventDefault();
         $('#sidebar').toggleClass('active');
       });
+
+      function loadMessages() {
+        const messages = JSON.parse(localStorage.getItem('guestbookMessages')) || [];
+        const messageList = messages.map((msg) => `<p><strong>${msg.name}:</strong> ${msg.message}</p>`).join('');
+        $('#message-list').html(messageList);
+      }
+
+      $('.message-form').submit(function (e) {
+        e.preventDefault();
+        const name = $(this).find('input').val();
+        const message = $(this).find('textarea').val();
+        if (name && message) {
+          const messages = JSON.parse(localStorage.getItem('guestbookMessages')) || [];
+          messages.push({ name, message });
+          localStorage.setItem('guestbookMessages', JSON.stringify(messages));
+          loadMessages();
+          $(this).find('input, textarea').val('');
+          alert('메시지가 등록되었습니다!');
+        }
+      });
+
+      loadMessages();
     });
   </script>
 </body>
