@@ -30,6 +30,7 @@
     @media (max-width: 768px) {
       .nav-desktop { display: none; }
       .nav-mobile { display: flex; }
+      .gallery-grid { grid-template-columns: repeat(3, 1fr); }
     }
 
     .slider-wrapper { position: relative; max-width: 900px; margin: 80px auto 20px; text-align: center; }
@@ -38,7 +39,7 @@
     .more-button { margin-top: 15px; background-color: #4e7942; color: white; padding: 8px 20px; border: none; border-radius: 6px; cursor: pointer; }
 
     .gallery-grid {
-      display: grid;
+      display: none;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: 15px;
       margin-top: 20px;
@@ -82,42 +83,39 @@
     </div>
   </nav>
 
-  <div class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-      <h2>준호♥예원</h2>
-      <a href="#" id="close-sidebar">✖</a>
-    </div>
-    <a href="index.html">홈</a>
-    <a href="gallery.html">갤러리</a>
-    <a href="info.html">정보</a>
-    <a href="guestbook.html">축하메시지</a>
-    <a href="location.html">오시는 길</a>
-  </div>
-
   <section>
     <h2 style="text-align: center; font-size: 24px; margin-top: 100px;">웨딩 사진</h2>
     <div class="slider-wrapper">
       <img id="mainImage" class="main-image" src="images/gallery/RIMI4579.JPG" alt="main" />
       <div class="thumbnail-wrapper" id="thumbnailContainer"></div>
-      <button class="more-button" onclick="showMore()">더 보기</button>
-      <div class="gallery-grid" id="galleryGrid" style="display:none;"></div>
+      <button class="more-button" id="toggleButton">더 보기</button>
+      <div class="gallery-grid" id="galleryGrid"></div>
     </div>
   </section>
 
   <script>
     const imageList = ["RIMI4579.JPG", "RIMI4678-1.jpg", "RIMI4717.JPG", "RIMI4823.JPG", "RIMI5018.JPG", "RIMI5064.JPG", "RIMI5085.JPG", "RIMI5103.JPG", "RIMI5104.JPG", "RIMI5125.JPG", "RIMI5181.JPG", "RIMI5187.JPG", "RIMI5241.JPG", "RIMI5294.JPG", "RIMI5303.JPG", "RIMI5312.JPG", "RIMI5357.JPG", "RIMI5384.JPG", "RIMI5393.JPG", "RIMI5414.JPG", "RIMI5430.JPG", "RIMI5441.JPG", "RIMI5459.JPG", "RIMI5486.JPG", "RIMI5518.JPG", "RIMI5547.JPG", "RIMI5550.JPG", "RIMI5586.JPG"];
 
-    function showMore() {
-      const grid = document.getElementById('galleryGrid');
-      grid.innerHTML = '';
-      imageList.forEach(img => {
-        const image = document.createElement('img');
-        image.src = `images/gallery/${img}`;
-        grid.appendChild(image);
-      });
-      grid.style.display = 'grid';
-      document.querySelector('.more-button').style.display = 'none';
+    let current = 0;
+
+    function updateMainImage() {
+      document.getElementById("mainImage").src = `images/gallery/${imageList[current]}`;
+      current = (current + 1) % imageList.length;
     }
+
+    setInterval(updateMainImage, 3000);
+
+    $('#toggleButton').click(function() {
+      const grid = $('#galleryGrid');
+      grid.toggle();
+      $(this).text(grid.is(':visible') ? '줄이기' : '더 보기');
+
+      if(grid.is(':visible') && grid.is(':empty')) {
+        imageList.forEach(img => {
+          grid.append(`<img src="images/gallery/${img}">`);
+        });
+      }
+    });
   </script>
 </body>
 </html>
