@@ -42,30 +42,20 @@
     .travel-category h3 { font-size: 20px; margin: 20px 0 10px; }
     .card-container { display: flex; flex-wrap: wrap; gap: 16px; }
     .travel-card {
-      background: #f8f8f8;
-      border-radius: 12px;
-      overflow: hidden;
-      width: calc(33% - 10px);
-      min-width: 240px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      width: calc(33% - 10px); /* 모바일에서도 3장씩 보이게 유지 */
+      min-width: unset;        /* 최소 너비 제한 해제 */
     }
+  
     .travel-card img {
-      width: 100%;
-      height: 150px;
-      object-fit: cover;
+      height: 100px; /* 모바일 환경에서 이미지 높이를 좀 더 줄임 (선택적) */
     }
-    .travel-card .card-text {
-      padding: 10px 12px;
-    }
+
     .travel-card .card-text h4 {
-      margin: 5px 0;
-      font-size: 16px;
-      font-weight: bold;
+      font-size: 14px; /* 모바일에서 글씨 크기 조정 (선택적) */
     }
+
     .travel-card .card-text p {
-      margin: 0;
-      font-size: 13px;
-      color: #666;
+      font-size: 11px; /* 모바일에서 글씨 크기 조정 (선택적) */
     }
   </style>
 </head>
