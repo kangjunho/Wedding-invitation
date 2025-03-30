@@ -144,10 +144,11 @@
       margin-bottom: 20px;
     }
     .divider {
-      font-size: 20px;
-      color: green;
-      margin: 20px 0;
-    }
+    font-size: 20px;
+    color: green;
+    margin: 20px auto;
+    text-align: center;
+   }
     .nav-buttons {
       display: flex;
       flex-direction: column;
@@ -224,53 +225,55 @@
       color: #e97474;
       font-weight: bold;
     }
-.accordion {
-    margin: 0 auto;
-    max-width: 400px;
-    text-align: center;
-}
-.accordion-button {
-    width: 90%;
-    background-color: #f0f0f0;
-    color: #333;
-    padding: 15px;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: left;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin: 5px auto;
-    border-radius: 8px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.accordion-button:hover {
-    background-color: #ddd;
-}
-.accordion-content {
-    display: none;
-    background-color: #fafafa;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    margin: 5px auto;
-    width: 90%;
-    text-align: left;
-}
-.copy-btn {
-    margin-left: 10px;
-    background-color: #e7e7e7;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-.copy-btn:hover {
-    background-color: #ddd;
-}
+   .accordion {
+      margin: 0 auto;
+      max-width: 400px;
+      text-align: center;
+    }
+
+   .accordion-button {
+      width: 100%;
+      background-color: #4e7942;
+      color: white;
+      padding: 15px;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin: 5px auto;
+      border-radius: 6px;
+    }
+
+   .accordion-button:hover {
+      background-color: #3c5d31;
+    }
+
+   .accordion-content {
+      display: none;
+      background-color: #fafafa;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      margin: 5px auto;
+      width: 90%;
+      text-align: left;
+    }
+
+   .copy-btn {
+      margin-left: 10px;
+      background-color: #e7e7e7;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+   .copy-btn:hover {
+      background-color: #ddd;
+    }
 </style>
 
 </head>
@@ -381,7 +384,7 @@
     </div>
   </section>
 
-    <div class="divider">-------♥♥-------</div>
+<div class="divider">-------♥♥-------</div>
 <div style="font-family: 'Noto Sans KR', sans-serif; font-weight: 700; font-size: 16px; color: black; margin-bottom: 20px; text-align: center;">
     <p><strong>마음 전하실 곳</strong></p>
     <p style="font-size: 14px; line-height: 1.5; color: #555;">
@@ -407,7 +410,7 @@
         <p>고경선 - 국민은행: 126301-04-253578 <button class="copy-btn" onclick="copyText('126301-04-253578')">📋 복사</button></p>
     </div>
 </div>
-    <div class="divider">-------♥♥-------</div>
+<div class="divider">-------♥♥-------</div>
 
 
 
