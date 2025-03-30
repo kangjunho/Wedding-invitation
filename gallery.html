@@ -16,11 +16,6 @@
     .nav-center a { text-decoration: none; color: #444; font-size: 14px; white-space: nowrap; }
     .nav-right a { font-size: 32px; text-decoration: none; color: #000; }
 
-    .nav-mobile { display: none; align-items: center; justify-content: flex-start; gap: 18px; padding: 10px 20px; }
-    .nav-mobile-left a { font-size: 32px; color: #000; text-decoration: none; }
-    .nav-mobile-center { display: flex; align-items: center; gap: 18px; }
-    .nav-mobile-center a { text-decoration: none; color: #444; font-size: 14px; }
-
     .sidebar { position: fixed; top: 0; left: -260px; width: 250px; height: 100%; background-color: #4e7942; color: white; transition: left 0.3s ease; padding: 20px; z-index: 1000; }
     .sidebar.active { left: 0; }
     .sidebar-header { display: flex; justify-content: space-between; align-items: center; }
@@ -29,8 +24,6 @@
 
     @media (max-width: 768px) {
       .nav-desktop { display: none; }
-      .nav-mobile { display: flex; }
-      .gallery-grid { grid-template-columns: repeat(3, 1fr); }
     }
 
     .slider-wrapper { position: relative; max-width: 900px; margin: 80px auto 20px; text-align: center; }
@@ -40,7 +33,7 @@
 
     .gallery-grid {
       display: none;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 15px;
       margin-top: 20px;
     }
@@ -69,18 +62,6 @@
         <a href="#" id="menu-toggle">≡</a>
       </div>
     </div>
-
-    <div class="nav-mobile">
-      <div class="nav-mobile-left">
-        <a href="#" id="menu-toggle-mobile">≡</a>
-      </div>
-      <div class="nav-mobile-center">
-        <a href="gallery.html">갤러리</a>
-        <a href="info.html">정보</a>
-        <a href="guestbook.html">축하메시지</a>
-        <a href="location.html">오시는 길</a>
-      </div>
-    </div>
   </nav>
 
   <section>
@@ -107,13 +88,15 @@
 
     $('#toggleButton').click(function() {
       const grid = $('#galleryGrid');
-      grid.toggle();
-      $(this).text(grid.is(':visible') ? '줄이기' : '더 보기');
-
-      if(grid.is(':visible') && grid.is(':empty')) {
+      if(grid.is(':empty')) {
         imageList.forEach(img => {
           grid.append(`<img src="images/gallery/${img}">`);
         });
+        $(this).text('줄이기');
+        grid.show();
+      } else {
+        grid.toggle();
+        $(this).text(grid.is(':visible') ? '줄이기' : '더 보기');
       }
     });
   </script>
