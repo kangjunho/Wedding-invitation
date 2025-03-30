@@ -126,7 +126,7 @@
     </div>
   </nav>
   <section>
-    <h2 style="font-size: 24px;">웨딩 사진</h2>
+    <h2 style="text-align: center; font-size: 24px;">웨딩 사진</h2>
     <div class="slider-wrapper">
       <img id="mainImage" class="main-image" src="images/gallery/RIMI4579.JPG" alt="main" />
       <div class="thumbnail-wrapper" id="thumbnailContainer"></div>
@@ -135,11 +135,8 @@
     </div>
   </section>
   <script>
-    const imageList = ["RIMI4579.JPG", "RIMI4678-1.jpg", "RIMI4717.JPG", "RIMI4823.JPG", "RIMI5018.JPG", "RIMI5064.JPG", "RIMI5085.JPG", "RIMI5103.JPG", "RIMI5104.JPG", "RIMI5125.JPG", "RIMI5181.JPG", "RIMI5187.JPG", "RIMI5241.JPG", "RIMI5294.JPG", "RIMI5303.JPG", "RIMI5312.JPG", "RIMI5357.JPG", "RIMI5384.JPG", "RIMI5393.JPG", "RIMI5414.JPG", "RIMI5430.JPG", "RIMI5441.JPG", "RIMI5459.JPG", "RIMI5486.JPG", "RIMI5518.JPG", "RIMI5547.JPG", "RIMI5550.JPG", "RIMI5586.JPG"];
+    const imageList = ["RIMI4579.JPG", "RIMI4678-1.jpg", "RIMI4717.JPG", "RIMI4823.JPG", "RIMI5018.JPG", "RIMI5064.JPG", "RIMI5085.JPG", "RIMI5103.JPG", "RIMI5104.JPG", "RIMI5125.JPG", "RIMI5181.JPG", "RIMI5187.JPG", "RIMI5241.JPG", "RIMI5294.JPG", "RIMI5303.JPG", "RIMI5312.JPG", "RIMI5357.JPG", "RIMI5384.JPG", "RIMI5393.JPG", "RIMI5414.JPG", "RIMI5430.JPG", "RIMI5441.JPG", "RIMI5459.JPG", "RIMI5486.JPG", "RIMI5518.JPG", "RIMI5547.JPG", "RIMI5550.JPG", "RIMI5586.JPG"]; // 이전 이미지 리스트 유지
     let current = 0;
-    const mainImage = document.getElementById("mainImage");
-    const thumbnailContainer = document.getElementById("thumbnailContainer");
-    const moreThumbs = document.getElementById("moreThumbs");
 
     function changeImage(idx) {
       current = idx;
@@ -147,7 +144,7 @@
     }
 
     function renderThumbnails() {
-      imageList.forEach((img, idx) => {
+      imageList.slice(0, 5).forEach((img, idx) => {
         const el = document.createElement("img");
         el.src = `images/gallery/${img}`;
         el.onclick = () => changeImage(idx);
@@ -156,6 +153,12 @@
     }
 
     function showMore() {
+      imageList.slice(5).forEach((img, idx) => {
+        const el = document.createElement("img");
+        el.src = `images/gallery/${img}`;
+        el.onclick = () => changeImage(idx + 5);
+        moreThumbs.appendChild(el);
+      });
       moreThumbs.style.display = 'flex';
     }
 
