@@ -38,10 +38,23 @@
       font-size: 14px;
       white-space: nowrap;
     }
+    .nav-right a {
+      font-size: 32px;
+      text-decoration: none;
+      color: #000;
+    }
+    .nav-desktop {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      border-bottom: 1px solid #ddd;
+    }
     .slider-wrapper {
       position: relative;
-      max-width: 1000px;
-      margin: 0 auto;
+      max-width: 800px;
+      margin: 20px auto;
+      text-align: center;
     }
     .main-image {
       width: 100%;
@@ -49,6 +62,7 @@
       max-height: 600px;
       object-fit: contain;
       border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
     .thumbnail-wrapper {
       display: flex;
@@ -63,42 +77,89 @@
       object-fit: cover;
       border-radius: 6px;
       cursor: pointer;
-      opacity: 0.7;
+      opacity: 0.8;
+      transition: opacity 0.3s;
     }
-    .thumbnail-wrapper img:hover, .thumbnail-wrapper img.active {
+    .thumbnail-wrapper img:hover {
       opacity: 1;
-      border: 2px solid #4e7942;
+    }
+    #moreThumbs {
+      display: none;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+    .more-button {
+      margin-top: 15px;
+      background-color: #4e7942;
+      color: white;
+      padding: 8px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .more-thumb img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      margin: 5px;
+      border-radius: 8px;
+      border: 2px solid #ddd;
     }
   </style>
 </head>
 <body>
   <nav>
-    <div class="nav-left">
-      <a href="index.html"><strong>준호<span class="green-heart">♥</span>예원</strong></a>
-    </div>
-    <div class="nav-center">
-      <a href="gallery.html">갤러리</a>
-      <a href="info.html">정보</a>
-      <a href="guestbook.html">축하메시지</a>
-      <a href="location.html">오시는 길</a>
+    <div class="nav-desktop">
+      <div class="nav-left">
+        <a href="index.html"><strong>준호<span class="green-heart">♥</span>예원</strong></a>
+      </div>
+      <div class="nav-center">
+        <a href="gallery.html">갤러리</a>
+        <a href="info.html">정보</a>
+        <a href="guestbook.html">축하메시지</a>
+        <a href="location.html">오시는 길</a>
+      </div>
+      <div class="nav-right">
+        <a href="#" id="menu-toggle">≡</a>
+      </div>
     </div>
   </nav>
   <section>
-    <h2 style="text-align: center;">웨딩 사진</h2>
+    <h2 style="font-size: 24px;">웨딩 사진</h2>
     <div class="slider-wrapper">
-      <img id="mainImage" class="main-image" src="images/gallery/RIMI4579.JPG" alt="메인 이미지" />
+      <img id="mainImage" class="main-image" src="images/gallery/RIMI4579.JPG" alt="main" />
       <div class="thumbnail-wrapper" id="thumbnailContainer"></div>
+      <div id="moreThumbs"></div>
+      <button class="more-button" onclick="showMore()">더 보기</button>
     </div>
   </section>
   <script>
     const imageList = ["RIMI4579.JPG", "RIMI4678-1.jpg", "RIMI4717.JPG", "RIMI4823.JPG", "RIMI5018.JPG", "RIMI5064.JPG", "RIMI5085.JPG", "RIMI5103.JPG", "RIMI5104.JPG", "RIMI5125.JPG", "RIMI5181.JPG", "RIMI5187.JPG", "RIMI5241.JPG", "RIMI5294.JPG", "RIMI5303.JPG", "RIMI5312.JPG", "RIMI5357.JPG", "RIMI5384.JPG", "RIMI5393.JPG", "RIMI5414.JPG", "RIMI5430.JPG", "RIMI5441.JPG", "RIMI5459.JPG", "RIMI5486.JPG", "RIMI5518.JPG", "RIMI5547.JPG", "RIMI5550.JPG", "RIMI5586.JPG"];
     let current = 0;
-    function changeImage() {
-      const mainImage = document.getElementById("mainImage");
+    const mainImage = document.getElementById("mainImage");
+    const thumbnailContainer = document.getElementById("thumbnailContainer");
+    const moreThumbs = document.getElementById("moreThumbs");
+
+    function changeImage(idx) {
+      current = idx;
       mainImage.src = `images/gallery/${imageList[current]}`;
-      current = (current + 1) % imageList.length;
     }
-    setInterval(changeImage, 3000);
+
+    function renderThumbnails() {
+      imageList.forEach((img, idx) => {
+        const el = document.createElement("img");
+        el.src = `images/gallery/${img}`;
+        el.onclick = () => changeImage(idx);
+        thumbnailContainer.appendChild(el);
+      });
+    }
+
+    function showMore() {
+      moreThumbs.style.display = 'flex';
+    }
+
+    renderThumbnails();
   </script>
 </body>
 </html>
