@@ -57,18 +57,19 @@
       margin-top: 15px;
       flex-wrap: wrap;
     }
-    .thumbnail-wrapper img {
-      width: 80px;
-      height: 80px;
+    .thumbnail-wrapper img, #moreThumbs img {
+      width: 60px;
+      height: 60px;
       object-fit: cover;
       border-radius: 6px;
       cursor: pointer;
     }
     #moreThumbs {
       display: none;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
       justify-content: center;
+      margin-top: 15px;
     }
     .more-button {
       margin-top: 15px;
@@ -110,6 +111,13 @@
     function changeImage(idx) {
       current = idx;
       document.getElementById("mainImage").src = `images/gallery/${imageList[current]}`;
+      updateThumbnails();
+    }
+    function updateThumbnails() {
+      const thumbs = document.querySelectorAll(".thumbnail-wrapper img");
+      thumbs.forEach((thumb, idx) => {
+        thumb.src = `images/gallery/${imageList[(current + idx) % imageList.length]}`;
+      });
     }
     function autoSlide() {
       current = (current + 1) % imageList.length;
@@ -117,21 +125,24 @@
     }
     setInterval(autoSlide, 3000);
     function renderThumbnails() {
-      imageList.slice(0, 5).forEach((img, idx) => {
+      for (let i = 0; i < 5; i++) {
         const el = document.createElement("img");
-        el.src = `images/gallery/${img}`;
-        el.onclick = () => changeImage(idx);
+        el.onclick = () => changeImage((current + i) % imageList.length);
         document.getElementById("thumbnailContainer").appendChild(el);
-      });
+      }
+      updateThumbnails();
     }
     function showMore() {
-      imageList.slice(5).forEach((img, idx) => {
-        const el = document.createElement("img");
-        el.src = `images/gallery/${img}`;
-        el.onclick = () => changeImage(idx + 5);
-        document.getElementById("moreThumbs").appendChild(el);
-      });
-      document.getElementById("moreThumbs").style.display = 'grid';
+      const moreContainer = document.getElementById("moreThumbs");
+      if (moreContainer.style.display === 'none') {
+        imageList.slice(5).forEach((img, idx) => {
+          const el = document.createElement("img");
+          el.src = `images/gallery/${img}`;
+          el.onclick = () => changeImage(idx + 5);
+          moreContainer.appendChild(el);
+        });
+        moreContainer.style.display = 'grid';
+      }
     }
     renderThumbnails();
   </script>
