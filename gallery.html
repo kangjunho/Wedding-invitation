@@ -16,7 +16,10 @@
     nav {
       padding: 10px 20px;
       background: #fff;
-      position: relative;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
     }
     .nav-left a {
       text-decoration: none;
@@ -36,6 +39,16 @@
       color: #444;
       font-size: 14px;
       white-space: nowrap;
+    }
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 50px;
+      background-color: #f4f4f4;
+      padding: 10px;
+      width: 200px;
+      height: calc(100% - 50px);
+      border-right: 1px solid #ccc;
     }
     .slider-wrapper {
       position: relative;
@@ -96,7 +109,10 @@
       </div>
     </div>
   </nav>
-  <section>
+  <div class="sidebar">
+    <p>사이드바 내용</p>
+  </div>
+  <section style="margin-left: 220px; padding-top: 60px;">
     <h2 style="text-align: center; font-size: 24px;">웨딩 사진</h2>
     <div class="slider-wrapper">
       <img id="mainImage" class="main-image" src="images/gallery/RIMI4579.JPG" alt="main" />
@@ -111,40 +127,15 @@
     function changeImage(idx) {
       current = idx;
       document.getElementById("mainImage").src = `images/gallery/${imageList[current]}`;
-      updateThumbnails();
-    }
-    function updateThumbnails() {
-      const thumbs = document.querySelectorAll(".thumbnail-wrapper img");
-      thumbs.forEach((thumb, idx) => {
-        thumb.src = `images/gallery/${imageList[(current + idx) % imageList.length]}`;
-      });
-    }
-    function autoSlide() {
-      current = (current + 1) % imageList.length;
-      changeImage(current);
-    }
-    setInterval(autoSlide, 3000);
-    function renderThumbnails() {
-      for (let i = 0; i < 5; i++) {
-        const el = document.createElement("img");
-        el.onclick = () => changeImage((current + i) % imageList.length);
-        document.getElementById("thumbnailContainer").appendChild(el);
-      }
-      updateThumbnails();
     }
     function showMore() {
       const moreContainer = document.getElementById("moreThumbs");
-      if (moreContainer.style.display === 'none') {
-        imageList.slice(5).forEach((img, idx) => {
-          const el = document.createElement("img");
-          el.src = `images/gallery/${img}`;
-          el.onclick = () => changeImage(idx + 5);
-          moreContainer.appendChild(el);
-        });
+      if (moreContainer.style.display === 'none' || moreContainer.style.display === '') {
         moreContainer.style.display = 'grid';
+      } else {
+        moreContainer.style.display = 'none';
       }
     }
-    renderThumbnails();
   </script>
 </body>
 </html>
