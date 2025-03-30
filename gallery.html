@@ -32,10 +32,24 @@
       .nav-mobile { display: flex; }
     }
 
-    .slider-wrapper { position: relative; max-width: 800px; margin: 80px auto 20px; text-align: center; }
+    .slider-wrapper { position: relative; max-width: 900px; margin: 80px auto 20px; text-align: center; }
     .main-image { width: 100%; height: auto; max-height: 600px; object-fit: contain; border-radius: 8px; }
     .thumbnail-wrapper img { width: 60px; height: 60px; object-fit: cover; border-radius: 6px; cursor: pointer; }
     .more-button { margin-top: 15px; background-color: #4e7942; color: white; padding: 8px 20px; border: none; border-radius: 6px; cursor: pointer; }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .gallery-grid img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
   </style>
 </head>
 <body>
@@ -86,22 +100,24 @@
       <img id="mainImage" class="main-image" src="images/gallery/RIMI4579.JPG" alt="main" />
       <div class="thumbnail-wrapper" id="thumbnailContainer"></div>
       <button class="more-button" onclick="showMore()">더 보기</button>
+      <div class="gallery-grid" id="galleryGrid" style="display:none;"></div>
     </div>
   </section>
 
   <script>
     const imageList = ["RIMI4579.JPG", "RIMI4678-1.jpg", "RIMI4717.JPG", "RIMI4823.JPG", "RIMI5018.JPG", "RIMI5064.JPG", "RIMI5085.JPG", "RIMI5103.JPG", "RIMI5104.JPG", "RIMI5125.JPG", "RIMI5181.JPG", "RIMI5187.JPG", "RIMI5241.JPG", "RIMI5294.JPG", "RIMI5303.JPG", "RIMI5312.JPG", "RIMI5357.JPG", "RIMI5384.JPG", "RIMI5393.JPG", "RIMI5414.JPG", "RIMI5430.JPG", "RIMI5441.JPG", "RIMI5459.JPG", "RIMI5486.JPG", "RIMI5518.JPG", "RIMI5547.JPG", "RIMI5550.JPG", "RIMI5586.JPG"];
 
-    let current = 0;
-
-    function changeImage(idx) { current = idx; document.getElementById("mainImage").src = `images/gallery/${imageList[current]}`; }
-    function renderThumbnails(limit = 5) { const container = document.getElementById("thumbnailContainer"); container.innerHTML = ''; imageList.slice(0, limit).forEach((img, idx) => { const el = document.createElement("img"); el.src = `images/gallery/${img}`; el.onclick = () => changeImage(idx); container.appendChild(el); }); }
-    function showMore() { renderThumbnails(imageList.length); document.querySelector('.more-button').style.display = 'none'; }
-    renderThumbnails();
-
-    $('#menu-toggle, #menu-toggle-mobile, #close-sidebar').click(function (e) { e.preventDefault(); $('#sidebar').toggleClass('active'); });
-
-    setInterval(() => { current = (current + 1) % imageList.length; changeImage(current); }, 3000);
+    function showMore() {
+      const grid = document.getElementById('galleryGrid');
+      grid.innerHTML = '';
+      imageList.forEach(img => {
+        const image = document.createElement('img');
+        image.src = `images/gallery/${img}`;
+        grid.appendChild(image);
+      });
+      grid.style.display = 'grid';
+      document.querySelector('.more-button').style.display = 'none';
+    }
   </script>
 </body>
 </html>
