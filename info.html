@@ -217,19 +217,22 @@
     <p>Q. 앞으로 어떻게 살아갈건가요?<br>A. '잘자고 일어났어?'하는 다정한 한마디,<br>'요즘 지내는 하루는 어때?'라는 관심어린 대화 정도는 나눌 수 있는 마음의 여유는 가지고 살아가고 싶어요~!</p>
   </section>
 
-  <script>
-    $(document).ready(function () {
-      $('#menu-toggle, #close-sidebar').click(function (e) {
-        e.preventDefault();
-        $('#sidebar').toggleClass('active');
-      });
-      $('.tab-link').click(function(e) {
-        e.preventDefault();
-        var tabID = $(this).data('tab');
-        $('.tab-content').removeClass('active');
-        $('#' + tabID).addClass('active');
-      });
+<script>
+  $(document).ready(function () {
+    $('#menu-toggle, #close-sidebar').click(function (e) {
+      e.preventDefault();
+      $('#sidebar').toggleClass('active');
+    });
 
-  </script>
+    $('.tab-link').click(function(e) {
+      e.preventDefault();
+      var tabID = $(this).data('tab');
+      $('.tab-content').removeClass('active');
+      $('#' + tabID).addClass('active');
+    });
+  });
+</script>
+
+
 </body>
 </html>
