@@ -7,130 +7,54 @@
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Gowun+Dodum&family=Noto+Sans+KR:wght@400;700&family=Noto+Serif+KR&display=swap" rel="stylesheet" />
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
-    body {
-      background: #fff;
-      font-family: 'Noto Sans KR', sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-    nav {
-      padding: 10px 20px;
-      background: #fff;
-      position: fixed;
-      width: 100%;
-      top: 0;
-      left: 0;
-      z-index: 999;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    .nav-left a {
-      text-decoration: none;
-      font-weight: bold;
-      color: black;
-      font-size: 18px;
-    }
+    body { background: #fff; font-family: 'Noto Sans KR', sans-serif; margin: 0; padding: 0; }
+    nav { padding: 10px 20px; background: #fff; position: relative; }
+    .nav-desktop { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ddd; }
+    .nav-left a { text-decoration: none; font-weight: bold; color: black; font-size: 18px; }
     .green-heart { color: green; }
-    .nav-center {
-      display: flex;
-      gap: 30px;
-    }
-    .nav-center a {
-      text-decoration: none;
-      color: #444;
-      font-size: 14px;
-      white-space: nowrap;
-    }
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-    }
-    .hamburger div {
-      width: 25px;
-      height: 3px;
-      background-color: #444;
-      margin: 3px;
-    }
-    .sidebar {
-      position: fixed;
-      left: -250px;
-      top: 0;
-      width: 250px;
-      height: 100%;
-      background: #fff;
-      box-shadow: 2px 0 5px rgba(0,0,0,0.3);
-      transition: left 0.3s ease;
-      z-index: 1000;
-    }
-    .sidebar.show {
-      left: 0;
-    }
-    .sidebar a {
-      display: block;
-      padding: 15px;
-      text-decoration: none;
-      color: #444;
-    }
+    .nav-center { display: flex; gap: 30px; }
+    .nav-center a { text-decoration: none; color: #444; font-size: 14px; white-space: nowrap; }
+    .nav-right a { font-size: 32px; text-decoration: none; color: #000; }
+    .sidebar { position: fixed; top: 0; right: -250px; width: 250px; height: 100%; background-color: #4e7942; color: white; transition: right 0.3s ease; padding: 20px; z-index: 1000; }
+    .sidebar.active { right: 0; }
+    .sidebar-header { display: flex; justify-content: space-between; align-items: center; }
+    .sidebar-header h2 { color: white; }
+    .sidebar a { color: white; text-decoration: none; display: block; padding: 15px 0; }
+
     @media (max-width: 768px) {
-      .nav-center {
-        display: none;
-      }
-      .hamburger {
-        display: flex;
-      }
+      .nav-center { display: none; }
     }
-    .slider-wrapper {
-      position: relative;
-      max-width: 800px;
-      margin: 80px auto 20px;
-      text-align: center;
-    }
-    .main-image {
-      width: 100%;
-      height: auto;
-      max-height: 600px;
-      object-fit: contain;
-      border-radius: 8px;
-    }
-    .thumbnail-wrapper img {
-      width: 60px;
-      height: 60px;
-      object-fit: cover;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    .more-button {
-      margin-top: 15px;
-      background-color: #4e7942;
-      color: white;
-      padding: 8px 20px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
+
+    .slider-wrapper { position: relative; max-width: 800px; margin: 80px auto 20px; text-align: center; }
+    .main-image { width: 100%; height: auto; max-height: 600px; object-fit: contain; border-radius: 8px; }
+    .thumbnail-wrapper img { width: 60px; height: 60px; object-fit: cover; border-radius: 6px; cursor: pointer; }
+    .more-button { margin-top: 15px; background-color: #4e7942; color: white; padding: 8px 20px; border: none; border-radius: 6px; cursor: pointer; }
   </style>
 </head>
 <body>
   <nav>
-    <div class="nav-left">
-      <a href="index.html"><strong>준호<span class="green-heart">♥</span>예원</strong></a>
-    </div>
-    <div class="nav-center">
-      <a href="gallery.html">갤러리</a>
-      <a href="info.html">정보</a>
-      <a href="guestbook.html">축하메시지</a>
-      <a href="location.html">오시는 길</a>
-    </div>
-    <div class="hamburger" onclick="toggleSidebar()">
-      <div></div>
-      <div></div>
-      <div></div>
+    <div class="nav-desktop">
+      <div class="nav-left">
+        <a href="index.html"><strong>준호<span class="green-heart">♥</span>예원</strong></a>
+      </div>
+      <div class="nav-center">
+        <a href="gallery.html">갤러리</a>
+        <a href="info.html">정보</a>
+        <a href="guestbook.html">축하메시지</a>
+        <a href="location.html">오시는 길</a>
+      </div>
+      <div class="nav-right">
+        <a href="#" id="menu-toggle">≡</a>
+      </div>
     </div>
   </nav>
+
   <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h2>준호♥예원</h2>
+      <a href="#" id="close-sidebar">✖</a>
+    </div>
+    <a href="index.html">홈</a>
     <a href="gallery.html">갤러리</a>
     <a href="info.html">정보</a>
     <a href="guestbook.html">축하메시지</a>
@@ -150,10 +74,6 @@
     const imageList = ["RIMI4579.JPG", "RIMI4678-1.jpg", "RIMI4717.JPG", "RIMI4823.JPG", "RIMI5018.JPG", "RIMI5064.JPG", "RIMI5085.JPG", "RIMI5103.JPG", "RIMI5104.JPG", "RIMI5125.JPG", "RIMI5181.JPG", "RIMI5187.JPG", "RIMI5241.JPG", "RIMI5294.JPG", "RIMI5303.JPG", "RIMI5312.JPG", "RIMI5357.JPG", "RIMI5384.JPG", "RIMI5393.JPG", "RIMI5414.JPG", "RIMI5430.JPG", "RIMI5441.JPG", "RIMI5459.JPG", "RIMI5486.JPG", "RIMI5518.JPG", "RIMI5547.JPG", "RIMI5550.JPG", "RIMI5586.JPG"];
 
     let current = 0;
-
-    function toggleSidebar() {
-      document.getElementById("sidebar").classList.toggle("show");
-    }
 
     function changeImage(idx) {
       current = idx;
@@ -177,6 +97,12 @@
     }
 
     renderThumbnails();
+
+    $('#menu-toggle, #close-sidebar').click(function (e) {
+      e.preventDefault();
+      $('#sidebar').toggleClass('active');
+    });
+
     setInterval(() => {
       current = (current + 1) % imageList.length;
       changeImage(current);
