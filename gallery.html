@@ -38,6 +38,44 @@
       font-size: 14px;
       white-space: nowrap;
     }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background-color: #444;
+      margin: 3px;
+    }
+    @media (max-width: 768px) {
+      .nav-center {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+      }
+      .sidebar {
+        position: fixed;
+        left: -250px;
+        top: 0;
+        width: 250px;
+        height: 100%;
+        background: #fff;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+        transition: left 0.3s ease;
+      }
+      .sidebar.show {
+        left: 0;
+      }
+      .sidebar a {
+        display: block;
+        padding: 15px;
+        text-decoration: none;
+        color: #444;
+      }
+    }
     .slider-wrapper {
       position: relative;
       max-width: 800px;
@@ -58,7 +96,7 @@
       margin-top: 15px;
       flex-wrap: wrap;
     }
-    .thumbnail-wrapper img {
+    .thumbnail-wrapper img, #moreThumbs img {
       width: 60px;
       height: 60px;
       object-fit: cover;
@@ -105,11 +143,21 @@
     </div>
   </section>
   <script>
+    function toggleSidebar() {
+      document.getElementById("sidebar").classList.toggle("show");
+    }
     const imageList = ["RIMI4579.JPG", "RIMI4678-1.jpg", "RIMI4717.JPG", "RIMI4823.JPG", "RIMI5018.JPG", "RIMI5064.JPG", "RIMI5085.JPG", "RIMI5103.JPG", "RIMI5104.JPG", "RIMI5125.JPG", "RIMI5181.JPG", "RIMI5187.JPG", "RIMI5241.JPG", "RIMI5294.JPG", "RIMI5303.JPG", "RIMI5312.JPG", "RIMI5357.JPG", "RIMI5384.JPG", "RIMI5393.JPG", "RIMI5414.JPG", "RIMI5430.JPG", "RIMI5441.JPG", "RIMI5459.JPG", "RIMI5486.JPG", "RIMI5518.JPG", "RIMI5547.JPG", "RIMI5550.JPG", "RIMI5586.JPG"];
     let current = 0;
     function changeImage(idx) {
       current = idx;
       document.getElementById("mainImage").src = `images/gallery/${imageList[current]}`;
+      updateThumbnails();
+    }
+    function updateThumbnails() {
+      const thumbs = document.querySelectorAll(".thumbnail-wrapper img");
+      thumbs.forEach((thumb, idx) => {
+        thumb.src = `images/gallery/${imageList[(current + idx) % imageList.length]}`;
+      });
     }
     function autoSlide() {
       current = (current + 1) % imageList.length;
@@ -117,21 +165,12 @@
     }
     setInterval(autoSlide, 3000);
     function renderThumbnails() {
-      imageList.slice(0, 5).forEach((img, idx) => {
+      imageList.forEach((img, idx) => {
         const el = document.createElement("img");
         el.src = `images/gallery/${img}`;
         el.onclick = () => changeImage(idx);
         document.getElementById("thumbnailContainer").appendChild(el);
       });
-    }
-    function showMore() {
-      imageList.slice(5).forEach((img, idx) => {
-        const el = document.createElement("img");
-        el.src = `images/gallery/${img}`;
-        el.onclick = () => changeImage(idx + 5);
-        document.getElementById("moreThumbs").appendChild(el);
-      });
-      document.getElementById("moreThumbs").style.display = 'grid';
     }
     renderThumbnails();
   </script>
