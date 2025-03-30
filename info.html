@@ -201,26 +201,6 @@
         $('#' + tabID).addClass('active');
       });
 
-      // 모바일 스와이프 처리
-      let touchstartX = 0;
-      let touchendX = 0;
-      const threshold = 50;
-      document.addEventListener('touchstart', function(e) {
-        touchstartX = e.changedTouches[0].screenX;
-      }, false);
-      document.addEventListener('touchend', function(e) {
-        touchendX = e.changedTouches[0].screenX;
-        handleSwipe();
-      }, false);
-      function handleSwipe() {
-        const distance = touchendX - touchstartX;
-        if (distance > threshold) {
-          window.location.href = 'gallery.html';
-        } else if (distance < -threshold) {
-          window.location.href = 'guestbook.html';
-        }
-      }
-    });
   </script>
 </body>
 </html>
