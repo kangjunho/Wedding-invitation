@@ -16,10 +16,15 @@
     nav {
       padding: 10px 20px;
       background: #fff;
-      position: relative;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 999;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
     .nav-left a {
       text-decoration: none;
@@ -49,6 +54,26 @@
       background-color: #444;
       margin: 3px;
     }
+    .sidebar {
+      position: fixed;
+      left: -250px;
+      top: 0;
+      width: 250px;
+      height: 100%;
+      background: #fff;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+      transition: left 0.3s ease;
+      z-index: 1000;
+    }
+    .sidebar.show {
+      left: 0;
+    }
+    .sidebar a {
+      display: block;
+      padding: 15px;
+      text-decoration: none;
+      color: #444;
+    }
     @media (max-width: 768px) {
       .nav-center {
         display: none;
@@ -56,30 +81,11 @@
       .hamburger {
         display: flex;
       }
-      .sidebar {
-        position: fixed;
-        left: -250px;
-        top: 0;
-        width: 250px;
-        height: 100%;
-        background: #fff;
-        box-shadow: 2px 0 5px rgba(0,0,0,0.3);
-        transition: left 0.3s ease;
-      }
-      .sidebar.show {
-        left: 0;
-      }
-      .sidebar a {
-        display: block;
-        padding: 15px;
-        text-decoration: none;
-        color: #444;
-      }
     }
     .slider-wrapper {
       position: relative;
       max-width: 800px;
-      margin: 20px auto;
+      margin: 80px auto 20px;
       text-align: center;
     }
     .main-image {
@@ -89,26 +95,12 @@
       object-fit: contain;
       border-radius: 8px;
     }
-    .thumbnail-wrapper {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      margin-top: 15px;
-      flex-wrap: wrap;
-    }
-    .thumbnail-wrapper img, #moreThumbs img {
+    .thumbnail-wrapper img {
       width: 60px;
       height: 60px;
       object-fit: cover;
       border-radius: 6px;
       cursor: pointer;
-    }
-    #moreThumbs {
-      display: none;
-      grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
-      gap: 5px;
-      justify-content: center;
-      margin-top: 15px;
     }
     .more-button {
       margin-top: 15px;
@@ -132,47 +124,63 @@
       <a href="guestbook.html">축하메시지</a>
       <a href="location.html">오시는 길</a>
     </div>
+    <div class="hamburger" onclick="toggleSidebar()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
   </nav>
+  <div class="sidebar" id="sidebar">
+    <a href="gallery.html">갤러리</a>
+    <a href="info.html">정보</a>
+    <a href="guestbook.html">축하메시지</a>
+    <a href="location.html">오시는 길</a>
+  </div>
+
   <section>
-    <h2 style="text-align: center; font-size: 24px;">웨딩 사진</h2>
+    <h2 style="text-align: center; font-size: 24px; margin-top: 100px;">웨딩 사진</h2>
     <div class="slider-wrapper">
       <img id="mainImage" class="main-image" src="images/gallery/RIMI4579.JPG" alt="main" />
       <div class="thumbnail-wrapper" id="thumbnailContainer"></div>
-      <div id="moreThumbs"></div>
       <button class="more-button" onclick="showMore()">더 보기</button>
     </div>
   </section>
+
   <script>
+    const imageList = ["RIMI4579.JPG", "RIMI4678-1.jpg", "RIMI4717.JPG", "RIMI4823.JPG", "RIMI5018.JPG", "RIMI5064.JPG", "RIMI5085.JPG", "RIMI5103.JPG", "RIMI5104.JPG", "RIMI5125.JPG", "RIMI5181.JPG", "RIMI5187.JPG", "RIMI5241.JPG", "RIMI5294.JPG", "RIMI5303.JPG", "RIMI5312.JPG", "RIMI5357.JPG", "RIMI5384.JPG", "RIMI5393.JPG", "RIMI5414.JPG", "RIMI5430.JPG", "RIMI5441.JPG", "RIMI5459.JPG", "RIMI5486.JPG", "RIMI5518.JPG", "RIMI5547.JPG", "RIMI5550.JPG", "RIMI5586.JPG"];
+
+    let current = 0;
+
     function toggleSidebar() {
       document.getElementById("sidebar").classList.toggle("show");
     }
-    const imageList = ["RIMI4579.JPG", "RIMI4678-1.jpg", "RIMI4717.JPG", "RIMI4823.JPG", "RIMI5018.JPG", "RIMI5064.JPG", "RIMI5085.JPG", "RIMI5103.JPG", "RIMI5104.JPG", "RIMI5125.JPG", "RIMI5181.JPG", "RIMI5187.JPG", "RIMI5241.JPG", "RIMI5294.JPG", "RIMI5303.JPG", "RIMI5312.JPG", "RIMI5357.JPG", "RIMI5384.JPG", "RIMI5393.JPG", "RIMI5414.JPG", "RIMI5430.JPG", "RIMI5441.JPG", "RIMI5459.JPG", "RIMI5486.JPG", "RIMI5518.JPG", "RIMI5547.JPG", "RIMI5550.JPG", "RIMI5586.JPG"];
-    let current = 0;
+
     function changeImage(idx) {
       current = idx;
       document.getElementById("mainImage").src = `images/gallery/${imageList[current]}`;
-      updateThumbnails();
     }
-    function updateThumbnails() {
-      const thumbs = document.querySelectorAll(".thumbnail-wrapper img");
-      thumbs.forEach((thumb, idx) => {
-        thumb.src = `images/gallery/${imageList[(current + idx) % imageList.length]}`;
-      });
-    }
-    function autoSlide() {
-      current = (current + 1) % imageList.length;
-      changeImage(current);
-    }
-    setInterval(autoSlide, 3000);
-    function renderThumbnails() {
-      imageList.forEach((img, idx) => {
+
+    function renderThumbnails(limit = 5) {
+      const container = document.getElementById("thumbnailContainer");
+      container.innerHTML = '';
+      imageList.slice(0, limit).forEach((img, idx) => {
         const el = document.createElement("img");
         el.src = `images/gallery/${img}`;
         el.onclick = () => changeImage(idx);
-        document.getElementById("thumbnailContainer").appendChild(el);
+        container.appendChild(el);
       });
     }
+
+    function showMore() {
+      renderThumbnails(imageList.length);
+      document.querySelector('.more-button').style.display = 'none';
+    }
+
     renderThumbnails();
+    setInterval(() => {
+      current = (current + 1) % imageList.length;
+      changeImage(current);
+    }, 3000);
   </script>
 </body>
 </html>
