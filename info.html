@@ -96,6 +96,14 @@
     font-size: 11px;
   }
 }
+
+  .faq-container { margin: 20px; }
+  .faq-card { background: #f0f0f0; border-radius: 8px; margin: 10px 0; padding: 15px; cursor: pointer; transition: 0.3s; }
+  .faq-card:hover { background: #e0e0e0; }
+  .faq-question { font-weight: bold; margin-bottom: 8px; }
+  .faq-answer { display: none; color: #555; }
+  .faq-card.active .faq-answer { display: block; }
+    
   </style>
 </head>
 <body>
@@ -207,17 +215,38 @@
     </div>
   </section>
 
-  <section id="tab3" class="tab-content">
+<section id="tab3" class="tab-content">
     <h2>자주 묻는 질문</h2>
-    <p>Q. 신부는 어떤 사람인가요?<br>언제 결혼해도 좋은 배우자라는 생각이 들었나요?<br>A. 생각이 깊어 배울점이 많으면서도, 웃음이 사랑스러운 사람입니다.<br> 신부와 20대 어릴 때 만났고, 어렸던 만큼 때론 앞으로의 불확실함에 조급해지기도 했어요. 하지만 연애기간 동안 불안함은 조금씩 안정감으로 바뀌었고 상대를 배려할 수 있는 사람으로 변하고 있다는걸 알게 된 순간, 신부를 놓쳐서는 안되는 평생 같이하고 싶은 사람이라고 생각했습니다.</p>
-    <p>Q. 신랑은 어떤 사람인가요?<br>언제 결혼해도 좋은 배우자라는 생각이 들었나요?<br>A. 배려가 많고 따뜻한 마음을 가진<br> 개구쟁이(?)입니다.<br> 항상 곁에서 제편이 되어주었고, 긍정적인 신랑의 성향이 저에게는 안정감으로 다가왔어요. 때론 의견이 다를 때도 서로 대화로 풀었던 순간들, 맞춰주려 노력해준 모습들이 모여 이사람과 결혼해도 좋겠다는 생각이 들게 했던 것 같아요!</p>
-    <p>Q. 둘은 어떻게 만났나요?<br>A. 신랑이 석사 대학원생이었을때 학부 연구생이었던 신부와의 첫만남으로 시작되었습니다! 쾌활하면서 꾸밈없고, 선하게 느껴졌던 신랑의 모습에 눈길이 갔던 신부가 먼저 다가가서 사귀게 되었답니다!<br>"오빠, 손!"🤝</p>
-    <p>Q. 왜 부산에서 결혼하나요?<br>A. 신부의 고향이자, 둘의 추억이 가장 많이 담긴 도시이기 때문입니다!<br>그리고 신혼생활은 직장 위치를 고려해서 대구에서 시작될 예정입니다!</p>
-    <p>Q. 신혼여행은 어디로 가나요?<br>A. 발리로 떠납니다♥<br>걷는것과 요가를 좋아하는 신부가 지금까지 생각정리나 용기가 필요한 순간에 항상 찾게 되었던, 애정하는 여행지인 발리의 매력을 신랑에게 소개해주고 싶어 선택하게 되었습니다!<br>발리만의 자유로운 분위기와 발리에서 아침을 여는 의식인 차낭이라는 꽃접시 그리고 향스틱이 놓여진 길은 산책만으로도 힐링되는 느낌이에요~! 발리를 배경으로 하는 '먹고 기도하고 사랑하라!'라는 영화는 지금도 신부의 최애 영화랍니다 ㅎㅎ</p>
-    <p>Q. 앞으로 어떻게 살아갈건가요?<br>A. '잘자고 일어났어?'하는 다정한 한마디,<br>'요즘 지내는 하루는 어때?'라는 관심어린 대화 정도는 나눌 수 있는 마음의 여유는 가지고 살아가고 싶어요~!</p>
-  </section>
+    <div class="faq-container">
+        <div class="faq-card">
+            <div class="faq-question">Q. 신부는 어떤 사람인가요? 언제 결혼해도 좋은 배우자라는 생각이 들었나요?</div>
+            <div class="faq-answer">생각이 깊어 배울 점이 많으면서도, 웃음이 사랑스러운 사람입니다. 신부와 20대 어릴 때 만났고, 어렸던 만큼 때론 앞으로의 불확실함에 조급해지기도 했어요. 하지만 연애 기간 동안 불안함은 조금씩 안정감으로 바뀌었고 상대를 배려할 수 있는 사람으로 변하고 있다는 걸 알게 된 순간, 신부를 놓쳐서는 안 되는 평생 같이하고 싶은 사람이라고 생각했습니다.</div>
+        </div>
+        <div class="faq-card">
+            <div class="faq-question">Q. 신랑은 어떤 사람인가요? 언제 결혼해도 좋은 배우자라는 생각이 들었나요?</div>
+            <div class="faq-answer">배려가 많고 따뜻한 마음을 가진 개구쟁이(?)입니다. 항상 곁에서 제 편이 되어주었고, 긍정적인 신랑의 성향이 저에게는 안정감으로 다가왔어요. 때론 의견이 다를 때도 서로 대화로 풀었던 순간들, 맞춰주려 노력해준 모습들이 모여 이 사람과 결혼해도 좋겠다는 생각이 들게 했던 것 같아요!</div>
+        </div>
+        <div class="faq-card">
+            <div class="faq-question">Q. 둘은 어떻게 만났나요?</div>
+            <div class="faq-answer">신랑이 석사 대학원생이었을 때 학부 연구생이었던 신부와의 첫 만남으로 시작되었습니다! 쾌활하면서 꾸밈없고, 선하게 느껴졌던 신랑의 모습에 눈길이 갔던 신부가 먼저 다가가서 사귀게 되었답니다! "오빠, 손!"🤝</div>
+        </div>
+        <div class="faq-card">
+            <div class="faq-question">Q. 왜 부산에서 결혼하나요?</div>
+            <div class="faq-answer">신부의 고향이자, 둘의 추억이 가장 많이 담긴 도시이기 때문입니다! 그리고 신혼생활은 직장 위치를 고려해서 대구에서 시작될 예정입니다!</div>
+        </div>
+        <div class="faq-card">
+            <div class="faq-question">Q. 신혼여행은 어디로 가나요?</div>
+            <div class="faq-answer">발리로 떠납니다♥ 걷는 것과 요가를 좋아하는 신부가 지금까지 생각 정리나 용기가 필요한 순간에 항상 찾게 되었던, 애정하는 여행지인 발리의 매력을 신랑에게 소개해주고 싶어 선택하게 되었습니다!</div>
+        </div>
+    </div>
+</section>
 
 <script>
+  $(document).ready(function () {
+    $('.faq-card').click(function () {
+      $(this).toggleClass('active');
+    });
+    });
   $(document).ready(function () {
     $('#menu-toggle, #close-sidebar').click(function (e) {
       e.preventDefault();
