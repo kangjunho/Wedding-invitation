@@ -225,12 +225,14 @@
       color: #e97474;
       font-weight: bold;
     }
-   .accordion {
+    .accordion {
       margin: 0 auto;
       max-width: 400px;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
-
     .accordion-button {
       background-color: #4e7942;
       color: white;
@@ -247,7 +249,7 @@
       outline: none;
       cursor: pointer;
     }
-   .accordion-button:hover {
+    .accordion-button:hover {
       background-color: #3c5d31;
     }
 
@@ -394,21 +396,20 @@
         좋은 부부의 모습으로 보답하겠습니다.
     </p>
   </div>
-<div class="accordion">
+  <div class="accordion">
     <button class="accordion-button" onclick="toggleAccordion('groom-account')">신랑측</button>
     <div id="groom-account" class="accordion-content">
         <p>강준호 - 부산은행: 112-2111-6267-00 <button class="copy-btn" onclick="copyText('112-2111-6267-00')">📋 복사</button></p>
         <p>강재두 - 농협: 352-1859-7599-63 <button class="copy-btn" onclick="copyText('352-1859-7599-63')">📋 복사</button></p>
         <p>민영미 - 농협: 889-12-206062 <button class="copy-btn" onclick="copyText('889-12-206062')">📋 복사</button></p>
     </div>
-
     <button class="accordion-button" onclick="toggleAccordion('bride-account')">신부측</button>
     <div id="bride-account" class="accordion-content">
         <p>박예원 - 국민은행: 992402-00-007047 <button class="copy-btn" onclick="copyText('992402-00-007047')">📋 복사</button></p>
         <p>박수생 - 부산은행: 140-12-027163-0 <button class="copy-btn" onclick="copyText('140-12-027163-0')">📋 복사</button></p>
         <p>고경선 - 국민은행: 126301-04-253578 <button class="copy-btn" onclick="copyText('126301-04-253578')">📋 복사</button></p>
     </div>
-</div>
+  </div>
 
 
 
