@@ -25,7 +25,6 @@
       font-size: 18px;
     }
     .green-heart { color: green; }
-    .white-heart { font-size: 18px; color: white; }
     .nav-center {
       display: flex;
       justify-content: center;
@@ -37,18 +36,6 @@
       color: #444;
       font-size: 14px;
       white-space: nowrap;
-    }
-    .nav-right a {
-      font-size: 32px;
-      text-decoration: none;
-      color: #000;
-    }
-    .nav-desktop {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-      border-bottom: 1px solid #ddd;
     }
     .slider-wrapper {
       position: relative;
@@ -62,7 +49,6 @@
       max-height: 600px;
       object-fit: contain;
       border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
     .thumbnail-wrapper {
       display: flex;
@@ -77,17 +63,12 @@
       object-fit: cover;
       border-radius: 6px;
       cursor: pointer;
-      opacity: 0.8;
-      transition: opacity 0.3s;
-    }
-    .thumbnail-wrapper img:hover {
-      opacity: 1;
     }
     #moreThumbs {
       display: none;
-      flex-wrap: wrap;
-      justify-content: center;
+      grid-template-columns: repeat(3, 1fr);
       gap: 10px;
+      justify-content: center;
     }
     .more-button {
       margin-top: 15px;
@@ -97,14 +78,6 @@
       border: none;
       border-radius: 6px;
       cursor: pointer;
-    }
-    .more-thumb img {
-      width: 150px;
-      height: 150px;
-      object-fit: cover;
-      margin: 5px;
-      border-radius: 8px;
-      border: 2px solid #ddd;
     }
   </style>
 </head>
@@ -120,9 +93,6 @@
         <a href="guestbook.html">축하메시지</a>
         <a href="location.html">오시는 길</a>
       </div>
-      <div class="nav-right">
-        <a href="#" id="menu-toggle">≡</a>
-      </div>
     </div>
   </nav>
   <section>
@@ -135,62 +105,34 @@
     </div>
   </section>
   <script>
-    const imageList = ["RIMI4579.JPG", "RIMI4678-1.jpg", "RIMI4717.JPG", "RIMI4823.JPG", "RIMI5018.JPG", "RIMI5064.JPG", "RIMI5085.JPG", "RIMI5103.JPG", "RIMI5104.JPG", "RIMI5125.JPG", "RIMI5181.JPG", "RIMI5187.JPG", "RIMI5241.JPG", "RIMI5294.JPG", "RIMI5303.JPG", "RIMI5312.JPG", "RIMI5357.JPG", "RIMI5384.JPG", "RIMI5393.JPG", "RIMI5414.JPG", "RIMI5430.JPG", "RIMI5441.JPG", "RIMI5459.JPG", "RIMI5486.JPG", "RIMI5518.JPG", "RIMI5547.JPG", "RIMI5550.JPG", "RIMI5586.JPG"]; // 이전 이미지 리스트 유지
+    const imageList = ["RIMI4579.JPG", "RIMI4678-1.jpg", "RIMI4717.JPG", "RIMI4823.JPG", "RIMI5018.JPG", "RIMI5064.JPG", "RIMI5085.JPG", "RIMI5103.JPG", "RIMI5104.JPG", "RIMI5125.JPG", "RIMI5181.JPG", "RIMI5187.JPG", "RIMI5241.JPG", "RIMI5294.JPG", "RIMI5303.JPG", "RIMI5312.JPG", "RIMI5357.JPG", "RIMI5384.JPG", "RIMI5393.JPG", "RIMI5414.JPG", "RIMI5430.JPG", "RIMI5441.JPG", "RIMI5459.JPG", "RIMI5486.JPG", "RIMI5518.JPG", "RIMI5547.JPG", "RIMI5550.JPG", "RIMI5586.JPG"];
     let current = 0;
-
     function changeImage(idx) {
-  current = idx;
-  mainImage.src = `images/gallery/${imageList[current]}`;
-}
-
-function autoSlide() {
-  current = (current + 1) % imageList.length;
-  changeImage(current);
-}
-
-setInterval(autoSlide, 3000);`;
+      current = idx;
+      document.getElementById("mainImage").src = `images/gallery/${imageList[current]}`;
     }
-
+    function autoSlide() {
+      current = (current + 1) % imageList.length;
+      changeImage(current);
+    }
+    setInterval(autoSlide, 3000);
     function renderThumbnails() {
-  imageList.slice(0, 5).forEach((img, idx) => {
-    const el = document.createElement("img");
-    el.src = `images/gallery/${img}`;
-    el.onclick = () => changeImage(idx);
-    el.style.width = "100px";
-    el.style.height = "100px";
-    el.style.margin = "5px";
-    el.style.borderRadius = "8px";
-    el.style.border = "2px solid #ddd";
-    thumbnailContainer.appendChild(el);
-  });
-}`;
+      imageList.slice(0, 5).forEach((img, idx) => {
+        const el = document.createElement("img");
+        el.src = `images/gallery/${img}`;
         el.onclick = () => changeImage(idx);
-        thumbnailContainer.appendChild(el);
+        document.getElementById("thumbnailContainer").appendChild(el);
       });
     }
-
     function showMore() {
-  imageList.slice(5).forEach((img, idx) => {
-    const el = document.createElement("img");
-    el.src = `images/gallery/${img}`;
-    el.onclick = () => changeImage(idx + 5);
-    el.style.width = "100px";
-    el.style.height = "100px";
-    el.style.margin = "5px";
-    el.style.borderRadius = "8px";
-    el.style.border = "2px solid #ddd";
-    moreThumbs.appendChild(el);
-  });
-  moreThumbs.style.display = 'grid';
-  moreThumbs.style.gridTemplateColumns = 'repeat(3, 1fr)';
-  moreThumbs.style.gap = '10px';
-}`;
+      imageList.slice(5).forEach((img, idx) => {
+        const el = document.createElement("img");
+        el.src = `images/gallery/${img}`;
         el.onclick = () => changeImage(idx + 5);
-        moreThumbs.appendChild(el);
+        document.getElementById("moreThumbs").appendChild(el);
       });
-      moreThumbs.style.display = 'flex';
+      document.getElementById("moreThumbs").style.display = 'grid';
     }
-
     renderThumbnails();
   </script>
 </body>
