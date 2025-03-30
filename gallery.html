@@ -16,10 +16,10 @@
     nav {
       padding: 10px 20px;
       background: #fff;
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 100;
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
     .nav-left a {
       text-decoration: none;
@@ -30,7 +30,6 @@
     .green-heart { color: green; }
     .nav-center {
       display: flex;
-      justify-content: center;
       gap: 30px;
     }
     .nav-center a {
@@ -39,58 +38,55 @@
       font-size: 14px;
       white-space: nowrap;
     }
-    .nav-mobile {
-      display: none;
-    }
-    @media (max-width: 768px) {
-      .nav-desktop {
-        display: none;
-      }
-      .nav-mobile {
-        display: flex;
-        justify-content: space-between;
-        padding: 10px 20px;
-        background: #fff;
-      }
-      .nav-mobile a {
-        color: #444;
-        font-size: 14px;
-        text-decoration: none;
-      }
-    }
-    .slider {
+    .slider-wrapper {
       position: relative;
-      width: 100%;
       max-width: 800px;
-      margin: auto;
-      overflow: hidden;
+      margin: 20px auto;
+      text-align: center;
     }
-    .slides {
-      display: flex;
-      transition: transform 0.5s ease;
-    }
-    .slide {
-      min-width: 100%;
+    .main-image {
+      width: 100%;
+      height: auto;
+      max-height: 600px;
+      object-fit: contain;
+      border-radius: 8px;
     }
     .thumbnail-wrapper {
       display: flex;
       justify-content: center;
       gap: 8px;
-      overflow-x: auto;
+      margin-top: 15px;
+      flex-wrap: wrap;
     }
-    .thumbnail {
+    .thumbnail-wrapper img {
       width: 60px;
       height: 60px;
       object-fit: cover;
       border-radius: 6px;
       cursor: pointer;
     }
+    #moreThumbs {
+      display: none;
+      grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+      gap: 5px;
+      justify-content: center;
+      margin-top: 15px;
+    }
+    .more-button {
+      margin-top: 15px;
+      background-color: #4e7942;
+      color: white;
+      padding: 8px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
-  <nav class="nav-desktop">
+  <nav>
     <div class="nav-left">
-      <a href="index.html">준호<span class="green-heart">♥</span>예원</a>
+      <a href="index.html"><strong>준호<span class="green-heart">♥</span>예원</strong></a>
     </div>
     <div class="nav-center">
       <a href="gallery.html">갤러리</a>
@@ -99,64 +95,45 @@
       <a href="location.html">오시는 길</a>
     </div>
   </nav>
-  <nav class="nav-mobile">
-    <a href="index.html">홈</a>
-    <a href="gallery.html">갤러리</a>
-    <a href="info.html">정보</a>
-    <a href="guestbook.html">축하메시지</a>
-    <a href="location.html">오시는 길</a>
-  </nav>
-  <div class="slider" id="slider">
-    <div class="slides" id="slides">
-      <!-- Images will be loaded here -->
+  <section>
+    <h2 style="text-align: center; font-size: 24px;">웨딩 사진</h2>
+    <div class="slider-wrapper">
+      <img id="mainImage" class="main-image" src="images/gallery/RIMI4579.JPG" alt="main" />
+      <div class="thumbnail-wrapper" id="thumbnailContainer"></div>
+      <div id="moreThumbs"></div>
+      <button class="more-button" onclick="showMore()">더 보기</button>
     </div>
-  </div>
-  <div class="thumbnail-wrapper" id="thumbnailContainer"></div>
-  <button onclick="showMore()">더 보기</button>
+  </section>
   <script>
     const imageList = ["RIMI4579.JPG", "RIMI4678-1.jpg", "RIMI4717.JPG", "RIMI4823.JPG", "RIMI5018.JPG", "RIMI5064.JPG", "RIMI5085.JPG", "RIMI5103.JPG", "RIMI5104.JPG", "RIMI5125.JPG", "RIMI5181.JPG", "RIMI5187.JPG", "RIMI5241.JPG", "RIMI5294.JPG", "RIMI5303.JPG", "RIMI5312.JPG", "RIMI5357.JPG", "RIMI5384.JPG", "RIMI5393.JPG", "RIMI5414.JPG", "RIMI5430.JPG", "RIMI5441.JPG", "RIMI5459.JPG", "RIMI5486.JPG", "RIMI5518.JPG", "RIMI5547.JPG", "RIMI5550.JPG", "RIMI5586.JPG"];
-    const slides = document.getElementById("slides");
-    const thumbnailContainer = document.getElementById("thumbnailContainer");
-
-    imageList.forEach((img, index) => {
-      const slide = document.createElement("div");
-      slide.classList.add("slide");
-      slide.innerHTML = `<img src="images/gallery/${img}" alt="Image ${index + 1}" />`;
-      slides.appendChild(slide);
-
-      const thumbnail = document.createElement("img");
-      thumbnail.classList.add("thumbnail");
-      thumbnail.src = `images/gallery/${img}`;
-      thumbnail.onclick = () => changeImage(index);
-      if (index >= 5) thumbnail.style.display = 'none';
-      thumbnailContainer.appendChild(thumbnail);
-    });
-      slide.innerHTML = `<img src="images/gallery/${img}" alt="Image ${index + 1}" />`;
-      slides.appendChild(slide);
-
-      const thumbnail = document.createElement("img");
-      thumbnail.classList.add("thumbnail");
-      thumbnail.src = `images/gallery/${img}`;
-      thumbnail.onclick = () => changeImage(index);
-      thumbnailContainer.appendChild(thumbnail);
-    });
-
-    function changeImage(index) {
-      slides.style.transform = `translateX(-${index * 100}%)`;
+    let current = 0;
+    function changeImage(idx) {
+      current = idx;
+      document.getElementById("mainImage").src = `images/gallery/${imageList[current]}`;
     }
-
+    function autoSlide() {
+      current = (current + 1) % imageList.length;
+      changeImage(current);
+    }
+    setInterval(autoSlide, 3000);
+    function renderThumbnails() {
+      imageList.slice(0, 5).forEach((img, idx) => {
+        const el = document.createElement("img");
+        el.src = `images/gallery/${img}`;
+        el.onclick = () => changeImage(idx);
+        document.getElementById("thumbnailContainer").appendChild(el);
+      });
+    }
     function showMore() {
-      const allThumbnails = document.querySelectorAll('.thumbnail');
-      const hiddenThumbnails = Array.from(allThumbnails).slice(5);
-      const moreButton = document.querySelector('button');
-      if (hiddenThumbnails[0].style.display === 'none' || hiddenThumbnails[0].style.display === '') {
-        hiddenThumbnails.forEach((thumb) => thumb.style.display = 'inline-block');
-        moreButton.textContent = '줄이기';
-      } else {
-        hiddenThumbnails.forEach((thumb) => thumb.style.display = 'none');
-        moreButton.textContent = '더 보기';
-      }
+      imageList.slice(5).forEach((img, idx) => {
+        const el = document.createElement("img");
+        el.src = `images/gallery/${img}`;
+        el.onclick = () => changeImage(idx + 5);
+        document.getElementById("moreThumbs").appendChild(el);
+      });
+      document.getElementById("moreThumbs").style.display = 'grid';
     }
+    renderThumbnails();
   </script>
 </body>
 </html>
