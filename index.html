@@ -430,35 +430,20 @@ function copyText(text) {
         alert('복사에 실패했습니다.');
     });
 }
-  document.addEventListener('DOMContentLoaded', function () {
-      const calendarEl = document.getElementById('calendar');
-      const calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
-        initialDate: '2025-05-10',
-        locale: 'ko',
-        events: [
-          {
-            title: '💒 결혼식',
-            start: '2025-05-10',
-            display: 'background',
-            backgroundColor: '#f9dada'
-          }
-        ]
-      });
-      calendar.render();
+function updateCountdown() {
+    const weddingDate = new Date("2025-05-10T00:00:00+09:00"); // KST 기준
+    const now = new Date();
+    const today = new Date(now.setHours(0, 0, 0, 0)); // 오늘 날짜의 시간 부분 제거
+    const diffTime = weddingDate.getTime() - today.getTime();
+    const diffDays = Math.max(0, Math.ceil(diffTime / (1000 * 60 * 60 * 24))); // 음수 방지
+    document.getElementById("remain-days").innerText = diffDays + "일";
+}
 
-      function updateCountdown() {
-        const weddingDate = new Date("2025-05-10T00:00:00+09:00"); // KST 기준
-        const now = new Date();
-        const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-        const diffTime = weddingDate.getTime() - today.getTime();
-        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-        document.getElementById("remain-days").innerText = diffDays + "일";
-      }
+document.addEventListener('DOMContentLoaded', function () {
+    updateCountdown();
+    setInterval(updateCountdown, 3600000); // 1시간마다 갱신
+});
 
-      updateCountdown();
-      setInterval(updateCountdown, 3600000); // 1시간마다 갱신
-    });
     
   </script>
 </body>
