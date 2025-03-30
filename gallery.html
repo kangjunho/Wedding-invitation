@@ -15,14 +15,21 @@
     .nav-center { display: flex; gap: 30px; }
     .nav-center a { text-decoration: none; color: #444; font-size: 14px; white-space: nowrap; }
     .nav-right a { font-size: 32px; text-decoration: none; color: #000; }
-    .sidebar { position: fixed; top: 0; right: -250px; width: 250px; height: 100%; background-color: #4e7942; color: white; transition: right 0.3s ease; padding: 20px; z-index: 1000; }
-    .sidebar.active { right: 0; }
+
+    .nav-mobile { display: none; align-items: center; justify-content: flex-start; gap: 18px; padding: 10px 20px; }
+    .nav-mobile-left a { font-size: 32px; color: #000; text-decoration: none; }
+    .nav-mobile-center { display: flex; align-items: center; gap: 18px; }
+    .nav-mobile-center a { text-decoration: none; color: #444; font-size: 14px; }
+
+    .sidebar { position: fixed; top: 0; left: -250px; width: 250px; height: 100%; background-color: #4e7942; color: white; transition: left 0.3s ease; padding: 20px; z-index: 1000; }
+    .sidebar.active { left: 0; }
     .sidebar-header { display: flex; justify-content: space-between; align-items: center; }
     .sidebar-header h2 { color: white; }
     .sidebar a { color: white; text-decoration: none; display: block; padding: 15px 0; }
 
     @media (max-width: 768px) {
-      .nav-center { display: none; }
+      .nav-desktop { display: none; }
+      .nav-mobile { display: flex; }
     }
 
     .slider-wrapper { position: relative; max-width: 800px; margin: 80px auto 20px; text-align: center; }
@@ -45,6 +52,18 @@
       </div>
       <div class="nav-right">
         <a href="#" id="menu-toggle">≡</a>
+      </div>
+    </div>
+
+    <div class="nav-mobile">
+      <div class="nav-mobile-left">
+        <a href="#" id="menu-toggle-mobile">≡</a>
+      </div>
+      <div class="nav-mobile-center">
+        <a href="gallery.html">갤러리</a>
+        <a href="info.html">정보</a>
+        <a href="guestbook.html">축하메시지</a>
+        <a href="location.html">오시는 길</a>
       </div>
     </div>
   </nav>
@@ -75,38 +94,14 @@
 
     let current = 0;
 
-    function changeImage(idx) {
-      current = idx;
-      document.getElementById("mainImage").src = `images/gallery/${imageList[current]}`;
-    }
-
-    function renderThumbnails(limit = 5) {
-      const container = document.getElementById("thumbnailContainer");
-      container.innerHTML = '';
-      imageList.slice(0, limit).forEach((img, idx) => {
-        const el = document.createElement("img");
-        el.src = `images/gallery/${img}`;
-        el.onclick = () => changeImage(idx);
-        container.appendChild(el);
-      });
-    }
-
-    function showMore() {
-      renderThumbnails(imageList.length);
-      document.querySelector('.more-button').style.display = 'none';
-    }
-
+    function changeImage(idx) { current = idx; document.getElementById("mainImage").src = `images/gallery/${imageList[current]}`; }
+    function renderThumbnails(limit = 5) { const container = document.getElementById("thumbnailContainer"); container.innerHTML = ''; imageList.slice(0, limit).forEach((img, idx) => { const el = document.createElement("img"); el.src = `images/gallery/${img}`; el.onclick = () => changeImage(idx); container.appendChild(el); }); }
+    function showMore() { renderThumbnails(imageList.length); document.querySelector('.more-button').style.display = 'none'; }
     renderThumbnails();
 
-    $('#menu-toggle, #close-sidebar').click(function (e) {
-      e.preventDefault();
-      $('#sidebar').toggleClass('active');
-    });
+    $('#menu-toggle, #menu-toggle-mobile, #close-sidebar').click(function (e) { e.preventDefault(); $('#sidebar').toggleClass('active'); });
 
-    setInterval(() => {
-      current = (current + 1) % imageList.length;
-      changeImage(current);
-    }, 3000);
+    setInterval(() => { current = (current + 1) % imageList.length; changeImage(current); }, 3000);
   </script>
 </body>
 </html>
