@@ -224,6 +224,51 @@
       color: #e97474;
       font-weight: bold;
     }
+    <style>
+.accordion {
+    margin: 20px auto;
+    max-width: 400px;
+    text-align: center;
+}
+.accordion-button {
+    width: 100%;
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 5px;
+    border-radius: 8px;
+}
+.accordion-button:hover {
+    background-color: #ddd;
+}
+.accordion-content {
+    display: none;
+    background-color: #fafafa;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-top: 5px;
+}
+.copy-btn {
+    margin-left: 10px;
+    background-color: #e7e7e7;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.copy-btn:hover {
+    background-color: #ddd;
+}
+</style>
+
   </style>
 </head>
 <body>
@@ -333,8 +378,8 @@
     </div>
   </section>
 
-  <div class="divider">-------♥♥-------</div>
-<div style="font-family: 'Noto Sans KR', sans-serif; font-weight: 700; font-size: 16px; color: black; margin-bottom: 20px;">
+<div class="divider">-------♥♥-------</div>
+<div style="font-family: 'Noto Sans KR', sans-serif; font-weight: 700; font-size: 16px; color: black; margin-bottom: 20px; text-align: center;">
     <p><strong>마음 전하실 곳</strong></p>
     <p style="font-size: 14px; line-height: 1.5; color: #555;">
         참석이 어려우신 분들을 위해 계좌번호를 기재하였습니다.<br>
@@ -342,33 +387,48 @@
         전해주시는 정성은 소중하게 간직하여<br>
         좋은 부부의 모습으로 보답하겠습니다 :)
     </p>
-    <div style="display: flex; justify-content: center; gap: 50px; font-size: 15px;">
-        <div>
-            <h4>신랑 측</h4>
-            <p>강준호 - 부산은행: 112-2111-6267-00 <button onclick="copyText('112-2111-6267-00')">📋 복사</button></p>
-            <p>강재두 - 농협: 352-1859-7599-63 <button onclick="copyText('352-1859-7599-63')">📋 복사</button></p>
-            <p>민영미 - 농협: 889-12-206062 <button onclick="copyText('889-12-206062')">📋 복사</button></p>
-        </div>
-        <div>
-            <h4>신부 측</h4>
-            <p>박예원 - 국민은행: 992402-00-007047 <button onclick="copyText('992402-00-007047')">📋 복사</button></p>
-            <p>박수생 - 부산은행: 140-12-027163-0 <button onclick="copyText('140-12-027163-0')">📋 복사</button></p>
-            <p>고경선 - 국민은행: 126301-04-253578 <button onclick="copyText('126301-04-253578')">📋 복사</button></p>
-        </div>
+</div>
+
+<div class="accordion">
+    <button class="accordion-button" onclick="toggleAccordion('groom-account')">신랑측 계좌번호</button>
+    <div id="groom-account" class="accordion-content">
+        <p>강준호 - 부산은행: 112-2111-6267-00 <button class="copy-btn" onclick="copyText('112-2111-6267-00')">📋 복사</button></p>
+        <p>강재두 - 농협: 352-1859-7599-63 <button class="copy-btn" onclick="copyText('352-1859-7599-63')">📋 복사</button></p>
+        <p>민영미 - 농협: 889-12-206062 <button class="copy-btn" onclick="copyText('889-12-206062')">📋 복사</button></p>
+    </div>
+
+    <button class="accordion-button" onclick="toggleAccordion('bride-account')">신부측 계좌번호</button>
+    <div id="bride-account" class="accordion-content">
+        <p>박예원 - 국민은행: 992402-00-007047 <button class="copy-btn" onclick="copyText('992402-00-007047')">📋 복사</button></p>
+        <p>박수생 - 부산은행: 140-12-027163-0 <button class="copy-btn" onclick="copyText('140-12-027163-0')">📋 복사</button></p>
+        <p>고경선 - 국민은행: 126301-04-253578 <button class="copy-btn" onclick="copyText('126301-04-253578')">📋 복사</button></p>
     </div>
 </div>
 <div class="divider">-------♥♥-------</div>
 
 
-  <script>
 
-    function copyText(text) {
+  
+
+<script>
+function toggleAccordion(id) {
+    const content = document.getElementById(id);
+    if (content.style.display === "block") {
+        content.style.display = "none";
+    } else {
+        content.style.display = "block";
+    }
+}
+
+function copyText(text) {
     navigator.clipboard.writeText(text).then(function() {
         alert('계좌번호가 복사되었습니다.');
     }, function(err) {
         alert('복사에 실패했습니다.');
     });
 }
+</script>
+
     document.addEventListener('DOMContentLoaded', function () {
       const calendarEl = document.getElementById('calendar');
       const calendar = new FullCalendar.Calendar(calendarEl, {
