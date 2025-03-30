@@ -13,122 +13,17 @@
       margin: 0;
       padding: 0;
     }
-    nav {
-      padding: 10px 20px;
-      background: #fff;
-      position: relative;
-    }
-    .nav-left a {
-      text-decoration: none;
-      font-weight: bold;
-      color: black;
-      font-size: 18px;
-    }
-    .green-heart { color: green; }
-    .white-heart { font-size: 18px; color: white; }
-    .nav-center {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      flex-grow: 1;
-    }
-    .nav-center a {
-      text-decoration: none;
-      color: #444;
-      font-size: 14px;
-      white-space: nowrap;
-    }
-    .nav-right a {
-      font-size: 32px;
-      text-decoration: none;
-      color: #000;
-    }
-    .nav-desktop {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-      border-bottom: 1px solid #ddd;
-    }
-    .nav-mobile {
-      display: none;
-      width: 100%;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 18px;
-      padding: 10px 20px;
-    }
-    .nav-mobile-left a {
-      font-size: 40px;
-      color: #000;
-    }
-    .nav-mobile-center {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-    }
-    .nav-mobile-center a {
-      text-decoration: none;
-      color: #444;
-      font-size: 14px;
-    }
-    @media (max-width: 768px) {
-      .nav-desktop {
-        display: none;
-      }
-      .nav-mobile {
-        display: flex;
-        flex-wrap: wrap;
-        border-bottom: none;
-      }
-    }
-    #sidebar {
-      position: fixed;
-      top: 0;
-      right: -250px;
-      width: 250px;
-      height: 100%;
-      background-color: #4e7942;
-      color: white;
-      transition: right 0.3s ease;
-      padding: 20px;
-      z-index: 1000;
-      display: none;
-    }
-    #sidebar.active {
-      right: 0;
-      display: block;
-    }
-    .sidebar-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .sidebar-header h2 { color: white; }
-    #sidebar ul {
-      list-style: none;
-      padding: 0;
-      margin-top: 30px;
-    }
-    #sidebar ul li { margin-bottom: 20px; }
-    #sidebar ul li a {
-      color: white;
-      text-decoration: none;
-      font-size: 16px;
-    }
-    section {
-      padding: 30px;
-      text-align: center;
-    }
-    .slider-wrapper {
-      position: relative;
-      max-width: 1000px;
-      margin: 0 auto;
+    .gallery-frame {
+      border: 3px solid #ddd;
+      padding: 5px;
+      margin: 5px;
+      box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
     }
     .main-image {
       width: 100%;
-      height: 600px;
-      object-fit: cover;
+      max-height: 600px;
+      object-fit: contain;
       border-radius: 8px;
     }
     .thumbnail-wrapper {
@@ -138,25 +33,25 @@
       margin-top: 15px;
       flex-wrap: wrap;
     }
-    .thumbnail-wrapper img {
-      width: 60px;
-      height: 60px;
+    .thumbnail-wrapper img, .more-thumbs img {
+      width: 100px;
+      height: 100px;
       object-fit: cover;
       border-radius: 6px;
       cursor: pointer;
-      opacity: 0.6;
+      opacity: 0.8;
       transition: opacity 0.3s;
     }
     .thumbnail-wrapper img.active,
     .thumbnail-wrapper img:hover {
       opacity: 1;
     }
-    #moreThumbs {
+    .more-thumbs {
       display: none;
-      flex-wrap: wrap;
       justify-content: center;
       gap: 8px;
       margin-top: 15px;
+      flex-wrap: wrap;
     }
     .more-button {
       margin-top: 15px;
@@ -170,143 +65,48 @@
   </style>
 </head>
 <body>
-  <nav>
-    <div class="nav-desktop">
-      <div class="nav-left">
-        <a href="index.html"><strong>준호<span class="green-heart">♥</span>예원</strong></a>
-      </div>
-      <div class="nav-center">
-        <a href="gallery.html">갤러리</a>
-        <a href="info.html">정보</a>
-        <a href="guestbook.html">축하메시지</a>
-        <a href="location.html">오시는 길</a>
-      </div>
-      <div class="nav-right">
-        <a href="#" id="menu-toggle">≡</a>
-      </div>
-    </div>
-    <div class="nav-mobile">
-      <div class="nav-mobile-left">
-        <a href="#" id="menu-toggle">≡</a>
-      </div>
-      <div class="nav-mobile-center">
-        <a href="index.html" class="white-heart">♡</a>
-        <a href="gallery.html">갤러리</a>
-        <a href="info.html">정보</a>
-        <a href="guestbook.html">축하메시지</a>
-        <a href="location.html">오시는 길</a>
-      </div>
-    </div>
-  </nav>
-
-  <div id="sidebar">
-    <div class="sidebar-header">
-      <h2>준호<span class="white-heart">♥</span>예원</h2>
-      <a href="#" id="close-sidebar">✖</a>
-    </div>
-    <ul>
-      <li><a href="index.html">홈</a></li>
-      <li><a href="gallery.html">갤러리</a></li>
-      <li><a href="info.html">정보</a></li>
-      <li><a href="guestbook.html">축하메시지</a></li>
-      <li><a href="location.html">오시는 길</a></li>
-    </ul>
-  </div>
-
   <section>
-    <h2 style="font-family: 'Noto Sans KR', sans-serif; font-size: 24px; color: black; margin-bottom: 20px;">웨딩 사진</h2>
+    <h2>웨딩 사진</h2>
     <div class="slider-wrapper">
-      <img id="mainImage" class="main-image" src="images/gallery/RIMI4579.JPG" alt="main" />
+      <div class="gallery-frame">
+        <img id="mainImage" class="main-image" src="images/gallery/RIMI4579.JPG" alt="main" />
+      </div>
       <div class="thumbnail-wrapper" id="thumbnailContainer"></div>
-      <div id="moreThumbs"></div>
+      <div class="more-thumbs" id="moreThumbs"></div>
       <button class="more-button" onclick="showMore()">더 보기</button>
     </div>
   </section>
-
   <script>
-    $(document).ready(function () {
-      $('#menu-toggle, #close-sidebar').click(function (e) {
-        e.preventDefault();
-        $('#sidebar').toggleClass('active');
-      });
-
-      let touchstartX = 0;
-      let touchendX = 0;
-      const threshold = 50;
-
-      document.addEventListener('touchstart', function(e) {
-        touchstartX = e.changedTouches[0].screenX;
-      });
-
-      document.addEventListener('touchend', function(e) {
-        touchendX = e.changedTouches[0].screenX;
-        handleSwipe();
-      });
-
-      function handleSwipe() {
-        const distance = touchendX - touchstartX;
-        if (distance > threshold) {
-          window.location.href = 'index.html';
-        } else if (distance < -threshold) {
-          window.location.href = 'info.html';
-        }
-      }
-    });
-
     const imageList = [
       "RIMI4579.JPG", "RIMI4678-1.jpg", "RIMI4717.JPG", "RIMI4823.JPG",
-      "RIMI5018.JPG", "RIMI5064.JPG",
-      "RIMI5085.JPG", "RIMI5103.JPG", "RIMI5104.JPG", "RIMI5125.JPG",
-      "RIMI5181.JPG", "RIMI5187.JPG", "RIMI5241.JPG", "RIMI5294.JPG",
-      "RIMI5303.JPG", "RIMI5312.JPG", "RIMI5357.JPG", "RIMI5384.JPG",
-      "RIMI5393.JPG", "RIMI5414.JPG", "RIMI5430.JPG", "RIMI5441.JPG",
-      "RIMI5459.JPG", "RIMI5486.JPG", "RIMI5518.JPG", "RIMI5547.JPG",
-      "RIMI5550.JPG", "RIMI5586.JPG"
+      "RIMI5018.JPG", "RIMI5064.JPG", "RIMI5085.JPG", "RIMI5103.JPG",
+      "RIMI5104.JPG", "RIMI5125.JPG", "RIMI5181.JPG", "RIMI5187.JPG",
+      "RIMI5241.JPG", "RIMI5294.JPG", "RIMI5303.JPG", "RIMI5312.JPG",
+      "RIMI5357.JPG", "RIMI5384.JPG", "RIMI5393.JPG", "RIMI5414.JPG",
+      "RIMI5430.JPG", "RIMI5441.JPG", "RIMI5459.JPG", "RIMI5486.JPG",
+      "RIMI5518.JPG", "RIMI5547.JPG", "RIMI5550.JPG", "RIMI5586.JPG"
     ];
 
-    let current = 0;
-    const mainImage = document.getElementById("mainImage");
-    const thumbnailContainer = document.getElementById("thumbnailContainer");
-    const moreThumbs = document.getElementById("moreThumbs");
-
     function renderThumbnails() {
-      imageList.forEach((img, idx) => {
-        const el = document.createElement("img");
-        el.src = `images/gallery/${img}`;
-        el.onclick = () => {
-          current = idx;
-          changeImage();
-        };
-        if (idx === 0) el.classList.add("active");
-        if (idx < 5) {
-          thumbnailContainer.appendChild(el);
-        } else {
-          moreThumbs.appendChild(el);
-        }
+      const container = document.getElementById("thumbnailContainer");
+      imageList.forEach((img, index) => {
+        const thumbnail = document.createElement("img");
+        thumbnail.src = `images/gallery/${img}`;
+        thumbnail.onclick = () => changeImage(index);
+        container.appendChild(thumbnail);
       });
     }
 
-    function changeImage() {
-      mainImage.src = `images/gallery/${imageList[current]}`;
-      const thumbs = document.querySelectorAll(".thumbnail-wrapper img, #moreThumbs img");
-      thumbs.forEach(t => t.classList.remove("active"));
-      thumbs[current].classList.add("active");
-    }
-
-    function startSlider() {
-      setInterval(() => {
-        current = (current + 1) % imageList.length;
-        changeImage();
-      }, 3000);
+    function changeImage(index) {
+      const mainImage = document.getElementById("mainImage");
+      mainImage.src = `images/gallery/${imageList[index]}`;
     }
 
     function showMore() {
       document.getElementById("moreThumbs").style.display = 'flex';
-      document.querySelector(".more-button").style.display = 'none';
     }
 
     renderThumbnails();
-    startSlider();
   </script>
 </body>
 </html>
