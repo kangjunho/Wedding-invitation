@@ -1,168 +1,103 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>강준호 & 박예원 결혼 방명록</title>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
-    <style>
-        body {
-            font-family: 'Gowun Dodum', sans-serif;
-            margin: 0;
-            padding: 20px;
-            text-align: center;
-            background-color: #f9f9f9;
-        }
-        nav {
-            padding: 10px 20px;
-            background: #fff;
-            position: relative;
-        }
-        .nav-left a {
-            text-decoration: none;
-            font-weight: bold;
-            color: black;
-            font-size: 18px;
-        }
-        .nav-center {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-        .nav-center a {
-            text-decoration: none;
-            color: #444;
-            font-size: 14px;
-            white-space: nowrap;
-        }
-        @media (max-width: 768px) {
-            .nav-center {
-                flex-direction: column;
-                gap: 10px;
-            }
-        }
-        h2 {
-            color: #4e7942;
-        }
-        form {
-            margin-top: 20px;
-        }
-        input, textarea {
-            width: 80%;
-            padding: 10px;
-            margin: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        button {
-            padding: 10px 20px;
-            background-color: #4e7942;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .guestbook-list {
-            margin-top: 30px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .guest-message {
-            border: 1px solid #ccc;
-            padding: 15px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            text-align: left;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>축하메시지 - 강준호 & 박예원 결혼합니다.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Gowun+Dodum&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body { font-family: 'Noto Sans KR', sans-serif; margin: 0; padding: 0; background: #fff; }
+    nav { padding: 10px 20px; background: #fff; position: fixed; top: 0; width: 100%; z-index: 100; }
+    .nav-left a { text-decoration: none; font-weight: bold; color: black; font-size: 18px; }
+    .green-heart { color: green; }
+    .white-heart { font-size: 18px; color: white; }
+    .nav-center { display: flex; justify-content: center; gap: 30px; flex-grow: 1; }
+    .nav-center a { text-decoration: none; color: #444; font-size: 14px; white-space: nowrap; }
+    .nav-right a { font-size: 32px; text-decoration: none; color: #000; }
+    .nav-desktop { display: flex; justify-content: space-between; align-items: center; width: 100%; border-bottom: 1px solid #ddd; }
+    .nav-mobile { display: none; width: 100%; align-items: center; justify-content: flex-start; gap: 18px; padding: 10px 20px; }
+    .nav-mobile-left a { font-size: 40px; color: #000; }
+    .nav-mobile-center { display: flex; align-items: center; gap: 18px; }
+    .nav-mobile-center a { text-decoration: none; color: #444; font-size: 14px; }
+    @media (max-width: 768px) {
+      .nav-desktop { display: none; }
+      .nav-mobile { display: flex; flex-wrap: wrap; border-bottom: none; }
+    }
+    #sidebar { position: fixed; top: 0; right: -250px; width: 250px; height: 100%; background-color: #4e7942; color: white; transition: right 0.3s ease; padding: 20px; z-index: 1000; display: none; }
+    #sidebar.active { right: 0; display: block; }
+    .sidebar-header { display: flex; justify-content: space-between; align-items: center; }
+    .sidebar-header h2 { color: white; }
+    #sidebar ul { list-style: none; padding: 0; margin-top: 30px; }
+    #sidebar ul li { margin-bottom: 20px; }
+    #sidebar ul li a { color: white; text-decoration: none; font-size: 16px; }
+    section { padding: 60px 30px; text-align: center; }
+    .message-form { max-width: 600px; margin: auto; }
+    .message-form input, .message-form textarea, .message-form button {
+      width: 100%; margin: 5px 0; padding: 10px; border: 1px solid #ccc; border-radius: 4px;
+    }
+  </style>
 </head>
 <body>
-    <nav>
-        <div class="nav-left">
-            <a href="index.html">준호♥예원</a>
-        </div>
-        <div class="nav-center">
-            <a href="gallery.html">갤러리</a>
-            <a href="info.html">정보</a>
-            <a href="guestbook.html">축하메시지</a>
-            <a href="location.html">오시는 길</a>
-        </div>
-    </nav>
+  <nav>
+    <div class="nav-desktop">
+      <div class="nav-left">
+        <a href="index.html"><strong>준호<span class="green-heart">♥</span>예원</strong></a>
+      </div>
+      <div class="nav-center">
+        <a href="gallery.html">갤러리</a>
+        <a href="info.html">정보</a>
+        <a href="guestbook.html">축하메시지</a>
+        <a href="location.html">오시는 길</a>
+      </div>
+      <div class="nav-right">
+        <a href="#" id="menu-toggle">≡</a>
+      </div>
+    </div>
+    <div class="nav-mobile">
+      <div class="nav-mobile-left">
+        <a href="#" id="menu-toggle">≡</a>
+      </div>
+      <div class="nav-mobile-center">
+        <a href="index.html" class="white-heart">♡</a>
+        <a href="gallery.html">갤러리</a>
+        <a href="info.html">정보</a>
+        <a href="guestbook.html">축하메시지</a>
+        <a href="location.html">오시는 길</a>
+      </div>
+    </div>
+  </nav>
 
-    <h2>축하 메시지 방명록</h2>
-    <p>여러분의 따뜻한 축하 메시지를 남겨주세요!</p>
-    <form onsubmit="addMessage(event)">
-        <input type="text" id="name" placeholder="이름" required><br>
-        <input type="text" id="title" placeholder="제목" required><br>
-        <textarea id="message" rows="5" placeholder="내용" required></textarea><br>
-        <button type="submit">등록하기</button>
+  <div id="sidebar">
+    <div class="sidebar-header">
+      <h2>준호<span class="white-heart">♥</span>예원</h2>
+      <a href="#" id="close-sidebar">✖</a>
+    </div>
+    <ul>
+      <li><a href="index.html">홈</a></li>
+      <li><a href="gallery.html">갤러리</a></li>
+      <li><a href="info.html">정보</a></li>
+      <li><a href="guestbook.html">축하메시지</a></li>
+      <li><a href="location.html">오시는 길</a></li>
+    </ul>
+  </div>
+
+  <section>
+    <h2>축하 메시지 남기기</h2>
+    <form class="message-form">
+      <input type="text" placeholder="이름" required />
+      <textarea placeholder="축하 메시지를 남겨주세요" rows="5" required></textarea>
+      <button type="submit">메시지 남기기</button>
     </form>
-    <div class="guestbook-list" id="guestbook"></div>
+  </section>
 
-    <script>
-        // Firebase 설정
-        const firebaseConfig = {
-            apiKey: "AIzaSyBFHWEgTj7TIhMXeg1IiYCgYV6fgTFthKo",
-            authDomain: "junhokangwedding.firebaseapp.com",
-            projectId: "junhokangwedding",
-            storageBucket: "junhokangwedding.appspot.com",
-            messagingSenderId: "528189903658",
-            appId: "1:528189903658:web:fd239e06826c2e08ea8453",
-            measurementId: "G-524GZPSHW9"
-        };
-
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-
-        async function addMessage(event) {
-            event.preventDefault();
-            const name = document.getElementById('name').value;
-            const title = document.getElementById('title').value;
-            const message = document.getElementById('message').value;
-
-            if (!name || !title || !message) {
-                alert('모든 항목을 입력해주세요.');
-                return;
-            }
-
-            try {
-                await db.collection("guestbook").add({
-                    name,
-                    title,
-                    message,
-                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
-                });
-                alert('메시지가 등록되었습니다!');
-                document.getElementById('name').value = '';
-                document.getElementById('title').value = '';
-                document.getElementById('message').value = '';
-                loadMessages();
-            } catch (error) {
-                console.error("메시지 등록 오류:", error);
-                alert("메시지 등록 중 오류가 발생했습니다.");
-            }
-        }
-
-        async function loadMessages() {
-            const snapshot = await db.collection("guestbook").orderBy("timestamp", "desc").get();
-            const container = document.getElementById("guestbook");
-            container.innerHTML = "";
-            snapshot.forEach(doc => {
-                const data = doc.data();
-                const html = `
-                    <div class="guest-message">
-                        <h4>${data.title} - ${data.name}</h4>
-                        <p>${data.message}</p>
-                        <small>${data.timestamp ? new Date(data.timestamp.toDate()).toLocaleString() : ''}</small>
-                    </div>
-                `;
-                container.innerHTML += html;
-            });
-        }
-
-        document.addEventListener('DOMContentLoaded', loadMessages);
-    </script>
+  <script>
+    $(document).ready(function () {
+      $('#menu-toggle, #close-sidebar').click(function (e) {
+        e.preventDefault();
+        $('#sidebar').toggleClass('active');
+      });
+    });
+  </script>
 </body>
 </html>
