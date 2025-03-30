@@ -13,15 +13,39 @@
       margin: 0;
       padding: 0;
     }
-    .gallery-frame {
-      border: 3px solid #ddd;
-      padding: 5px;
-      margin: 5px;
-      box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-      border-radius: 8px;
+    nav {
+      padding: 10px 20px;
+      background: #fff;
+      position: relative;
+    }
+    .nav-left a {
+      text-decoration: none;
+      font-weight: bold;
+      color: black;
+      font-size: 18px;
+    }
+    .green-heart { color: green; }
+    .white-heart { font-size: 18px; color: white; }
+    .nav-center {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-grow: 1;
+    }
+    .nav-center a {
+      text-decoration: none;
+      color: #444;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+    .slider-wrapper {
+      position: relative;
+      max-width: 1000px;
+      margin: 0 auto;
     }
     .main-image {
       width: 100%;
+      height: auto;
       max-height: 600px;
       object-fit: contain;
       border-radius: 8px;
@@ -33,80 +57,48 @@
       margin-top: 15px;
       flex-wrap: wrap;
     }
-    .thumbnail-wrapper img, .more-thumbs img {
-      width: 100px;
-      height: 100px;
+    .thumbnail-wrapper img {
+      width: 80px;
+      height: 80px;
       object-fit: cover;
       border-radius: 6px;
       cursor: pointer;
-      opacity: 0.8;
-      transition: opacity 0.3s;
+      opacity: 0.7;
     }
-    .thumbnail-wrapper img.active,
-    .thumbnail-wrapper img:hover {
+    .thumbnail-wrapper img:hover, .thumbnail-wrapper img.active {
       opacity: 1;
-    }
-    .more-thumbs {
-      display: none;
-      justify-content: center;
-      gap: 8px;
-      margin-top: 15px;
-      flex-wrap: wrap;
-    }
-    .more-button {
-      margin-top: 15px;
-      background-color: #4e7942;
-      color: white;
-      padding: 8px 20px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
+      border: 2px solid #4e7942;
     }
   </style>
 </head>
 <body>
+  <nav>
+    <div class="nav-left">
+      <a href="index.html"><strong>준호<span class="green-heart">♥</span>예원</strong></a>
+    </div>
+    <div class="nav-center">
+      <a href="gallery.html">갤러리</a>
+      <a href="info.html">정보</a>
+      <a href="guestbook.html">축하메시지</a>
+      <a href="location.html">오시는 길</a>
+    </div>
+  </nav>
   <section>
-    <h2>웨딩 사진</h2>
+    <h2 style="text-align: center;">웨딩 사진</h2>
     <div class="slider-wrapper">
-      <div class="gallery-frame">
-        <img id="mainImage" class="main-image" src="images/gallery/RIMI4579.JPG" alt="main" />
-      </div>
+      <img id="mainImage" class="main-image" src="images/gallery/RIMI4579.JPG" alt="메인 이미지" />
       <div class="thumbnail-wrapper" id="thumbnailContainer"></div>
-      <div class="more-thumbs" id="moreThumbs"></div>
-      <button class="more-button" onclick="showMore()">더 보기</button>
     </div>
   </section>
   <script>
-    const imageList = [
-      "RIMI4579.JPG", "RIMI4678-1.jpg", "RIMI4717.JPG", "RIMI4823.JPG",
-      "RIMI5018.JPG", "RIMI5064.JPG", "RIMI5085.JPG", "RIMI5103.JPG",
-      "RIMI5104.JPG", "RIMI5125.JPG", "RIMI5181.JPG", "RIMI5187.JPG",
-      "RIMI5241.JPG", "RIMI5294.JPG", "RIMI5303.JPG", "RIMI5312.JPG",
-      "RIMI5357.JPG", "RIMI5384.JPG", "RIMI5393.JPG", "RIMI5414.JPG",
-      "RIMI5430.JPG", "RIMI5441.JPG", "RIMI5459.JPG", "RIMI5486.JPG",
-      "RIMI5518.JPG", "RIMI5547.JPG", "RIMI5550.JPG", "RIMI5586.JPG"
-    ];
-
-    function renderThumbnails() {
-      const container = document.getElementById("thumbnailContainer");
-      imageList.forEach((img, index) => {
-        const thumbnail = document.createElement("img");
-        thumbnail.src = `images/gallery/${img}`;
-        thumbnail.onclick = () => changeImage(index);
-        container.appendChild(thumbnail);
-      });
-    }
-
-    function changeImage(index) {
+    const imageList = ["RIMI4579.JPG", "RIMI4678-1.jpg", "RIMI4717.JPG", "RIMI4823.JPG", "RIMI5018.JPG", "RIMI5064.JPG", "RIMI5085.JPG", "RIMI5103.JPG", "RIMI5104.JPG", "RIMI5125.JPG", "RIMI5181.JPG", "RIMI5187.JPG", "RIMI5241.JPG", "RIMI5294.JPG", "RIMI5303.JPG", "RIMI5312.JPG", "RIMI5357.JPG", "RIMI5384.JPG", "RIMI5393.JPG", "RIMI5414.JPG", "RIMI5430.JPG", "RIMI5441.JPG", "RIMI5459.JPG", "RIMI5486.JPG", "RIMI5518.JPG", "RIMI5547.JPG", "RIMI5550.JPG", "RIMI5586.JPG"];
+    let current = 0;
+    function changeImage() {
       const mainImage = document.getElementById("mainImage");
-      mainImage.src = `images/gallery/${imageList[index]}`;
+      mainImage.src = `images/gallery/${imageList[current]}`;
+      current = (current + 1) % imageList.length;
     }
-
-    function showMore() {
-      document.getElementById("moreThumbs").style.display = 'flex';
-    }
-
-    renderThumbnails();
+    setInterval(changeImage, 3000);
   </script>
 </body>
 </html>
