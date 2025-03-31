@@ -6,8 +6,10 @@
   <title>축하메시지 - 강준호 & 박예원 결혼합니다.</title>
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Gowun+Dodum&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet" />
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js"></script>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+    import { getFirestore, collection, addDoc, doc, deleteDoc, onSnapshot, Timestamp, query, orderBy } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
+  </script>
   <style>
     body { font-family: 'Noto Sans KR', sans-serif; margin: 0; padding: 0; background: #fff; }
     nav { padding: 10px 20px; background: #fff; position: fixed; top: 0; width: 100%; z-index: 100; }
@@ -17,9 +19,6 @@
     .nav-center a { text-decoration: none; color: #444; font-size: 14px; }
     .nav-right a { font-size: 32px; text-decoration: none; color: #000; }
     .nav-desktop { display: flex; justify-content: space-between; align-items: center; width: 100%; border-bottom: 1px solid #ddd; }
-    #sidebar { position: fixed; top: 0; right: -250px; width: 250px; height: 100%; background-color: #4e7942; color: white; transition: right 0.3s ease; padding: 20px; z-index: 1000; }
-    #sidebar.active { right: 0; }
-    .sidebar-header { display: flex; justify-content: space-between; align-items: center; }
     section { padding: 60px 30px; text-align: center; }
     .message-form { max-width: 600px; margin: auto; }
     .message-form input, .message-form textarea, .message-form button { width: 100%; margin: 5px 0; padding: 10px; border: 1px solid #ccc; border-radius: 4px; }
@@ -48,7 +47,7 @@
     </form>
     <div id="message-list"></div>
   </section>
-  <script>
+  <script type="module">
     const firebaseConfig = {
       apiKey: "AIzaSyBFHWEgTj7TIhMXeg1TiYcYGV6fgTFthKo",
       authDomain: "junhokangwedding.firebaseapp.com",
@@ -57,11 +56,26 @@
       messagingSenderId: "528189903658",
       appId: "1:528189903658:web:fd239e06826c2e08ea8453"
     };
-    const app = firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    async function addMessage(name, message) {
+      try {
+        await addDoc(collection(db, "guestbook"), {
+          name: name,
+          message: message,
+          timestamp: Timestamp.now()
+        });
+        alert("메시지가 등록되었습니다!");
+      } catch (error) {
+        console.error("Error adding message: ", error);
+        alert("메시지 등록에 실패했습니다. 다시 시도해주세요.");
+      }
+    }
 
     function loadMessages() {
-      db.collection("guestbook").orderBy("timestamp", "asc").onSnapshot((snapshot) => {
+      const q = query(collection(db, "guestbook"), orderBy("timestamp", "asc"));
+      onSnapshot(q, (snapshot) => {
         let html = '';
         snapshot.forEach((doc) => {
           const messageData = doc.data();
@@ -71,32 +85,23 @@
       });
     }
 
-    function deleteMessage(id) {
-      db.collection("guestbook").doc(id).delete().then(() => {
+    async function deleteMessage(id) {
+      try {
+        await deleteDoc(doc(db, "guestbook", id));
         alert("메시지가 삭제되었습니다!");
-        loadMessages();
-      }).catch((error) => {
+      } catch (error) {
         console.error("Error deleting message: ", error);
-      });
+      }
     }
 
-    $('.message-form').submit(function (e) {
+    $('.message-form').submit(async function (e) {
       e.preventDefault();
       const name = $('#name').val().trim();
       const message = $('#message').val().trim();
       if (name && message) {
-        db.collection("guestbook").add({
-          name: name,
-          message: message,
-          timestamp: firebase.firestore.Timestamp.now()
-        }).then(() => {
-          $('#name').val('');
-          $('#message').val('');
-          alert('메시지가 등록되었습니다!');
-        }).catch((error) => {
-          console.error("Error adding message: ", error);
-          alert("메시지 등록에 실패했습니다. 다시 시도해주세요.");
-        });
+        await addMessage(name, message);
+        $('#name').val('');
+        $('#message').val('');
       } else {
         alert("이름과 메시지를 모두 입력해주세요.");
       }
