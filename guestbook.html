@@ -39,13 +39,6 @@
       </div>
     </div>
   </nav>
-  <div id="sidebar">
-    <div class="sidebar-header">
-      <h2>준호<span class="green-heart">♥</span>예원</h2>
-      <a href="#" id="close-sidebar">✖</a>
-    </div>
-  </div>
-
   <section>
     <h2>축하 메시지 남기기</h2>
     <form class="message-form">
@@ -55,7 +48,6 @@
     </form>
     <div id="message-list"></div>
   </section>
-
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyBFHWEgTj7TIhMXeg1TiYcYGV6fgTFthKo",
@@ -65,7 +57,6 @@
       messagingSenderId: "528189903658",
       appId: "1:528189903658:web:fd239e06826c2e08ea8453"
     };
-
     const app = firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
@@ -81,25 +72,33 @@
     }
 
     function deleteMessage(id) {
-      db.collection("guestbook").doc(id).delete();
+      db.collection("guestbook").doc(id).delete().then(() => {
+        alert("메시지가 삭제되었습니다!");
+        loadMessages();
+      }).catch((error) => {
+        console.error("Error deleting message: ", error);
+      });
     }
 
     $('.message-form').submit(function (e) {
       e.preventDefault();
-      const name = $('#name').val();
-      const message = $('#message').val();
+      const name = $('#name').val().trim();
+      const message = $('#message').val().trim();
       if (name && message) {
         db.collection("guestbook").add({
           name: name,
           message: message,
-          timestamp: firebase.firestore.FieldValue.serverTimestamp()
+          timestamp: firebase.firestore.Timestamp.now()
         }).then(() => {
           $('#name').val('');
           $('#message').val('');
           alert('메시지가 등록되었습니다!');
         }).catch((error) => {
           console.error("Error adding message: ", error);
+          alert("메시지 등록에 실패했습니다. 다시 시도해주세요.");
         });
+      } else {
+        alert("이름과 메시지를 모두 입력해주세요.");
       }
     });
 
