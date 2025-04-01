@@ -88,6 +88,11 @@ nav {
     font-size: 16px; 
 }
 
+/* PC 버전에서 모바일 네비게이션 숨김 */
+.nav-mobile {
+    display: none;
+}
+
 @media (max-width: 768px) {
     .nav-desktop { 
         display: none; 
@@ -100,7 +105,8 @@ nav {
         padding: 10px 20px; 
         border-bottom: 1px solid #ddd; 
     }
-    .nav-mobile-left a { 
+    .nav-mobile-left a, 
+    .nav-mobile-center a { 
         font-size: 18px; /* 폰트 크기 통일 */
         text-decoration: none; 
         color: black; 
@@ -122,6 +128,7 @@ nav {
         color: #000; 
     }
 }
+
 
 
 .slider-wrapper { 
