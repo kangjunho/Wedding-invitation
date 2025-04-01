@@ -417,14 +417,16 @@
   
 
 <script>
-    $(document).ready(function () {
-      $('#menu-toggle, #close-sidebar').click(function (e) {
-        e.preventDefault();
-        $('#sidebar').toggleClass('active');
-      });
-    });
-    $('#sidebar').removeClass('active');
+$(document).ready(function () {
+  $('#menu-toggle, #close-sidebar').click(function (e) {
+    e.preventDefault();
+    $('#sidebar').toggleClass('active');
+  });
+
+  // 페이지 로딩 시 사이드바 숨김
+  $('#sidebar').removeClass('active');
 });
+
 function toggleAccordion(id) {
     const content = document.getElementById(id);
     if (content.style.display === "block") {
