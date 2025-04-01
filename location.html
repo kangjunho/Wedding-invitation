@@ -16,10 +16,35 @@
     .nav-center a { text-decoration: none; color: #444; font-size: 14px; white-space: nowrap; }
     .nav-right a { font-size: 32px; text-decoration: none; color: #000; }
     .nav-desktop { display: flex; justify-content: space-between; align-items: center; width: 100%; border-bottom: 1px solid #ddd; }
-    .nav-mobile { display: none; width: 100%; align-items: center; justify-content: flex-start; gap: 18px; padding: 10px 20px; }
-    .nav-mobile-left a { font-size: 40px; color: #000; }
-    .nav-mobile-center { display: flex; align-items: center; gap: 18px; }
-    .nav-mobile-center a { text-decoration: none; color: #444; font-size: 14px; }
+.nav-mobile {
+    display: none;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between; /* 좌측과 중앙 간격 조정 */
+    gap: 15px; /* 좌측 아이콘과 중앙 간격 조정 */
+    padding: 10px 20px;
+}
+    .nav-mobile-left {
+    display: flex;
+    align-items: center;
+}
+
+.nav-mobile-left a {
+    font-size: 32px; /* 적절한 크기로 조정 */
+    color: #000;
+}
+.nav-mobile-center {
+    display: flex;
+    justify-content: center; /* 중앙 정렬 */
+    align-items: center;
+    gap: 20px; /* 메뉴 간 간격 조정 */
+}
+.nav-mobile-center a {
+    text-decoration: none;
+    color: #444;
+    font-size: 16px;
+    font-weight: bold; /* 모바일에서도 잘 보이도록 굵게 설정 */
+}
     @media (max-width: 768px) {
       .nav-desktop { display: none; }
       .nav-mobile { display: flex; flex-wrap: wrap; }
