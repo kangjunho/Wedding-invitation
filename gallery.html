@@ -98,9 +98,9 @@ nav {
     display: none;
     width: 100%;
     align-items: center;
-    justify-content: flex-start; /* 중앙 메뉴를 왼쪽으로 밀착 */
-    gap: 5px; /* 좌측 아이콘과 중앙 메뉴 간 간격 최소화 */
+    justify-content: space-between; /* 양쪽에 자연스럽게 간격 배분 */
     padding: 10px 20px;
+    position: relative; /* 중앙 메뉴를 중앙에 배치하기 위해 relative로 설정 */
 }
 
 .nav-mobile-left {
@@ -114,10 +114,12 @@ nav {
 }
 
 .nav-mobile-center {
+    position: absolute; /* 절대 위치로 중앙 배치 */
+    left: 50%; /* 화면의 중앙으로 이동 */
+    transform: translateX(-50%); /* 중앙으로부터 왼쪽으로 50% 이동하여 정확한 중앙 정렬 */
     display: flex;
     align-items: center;
     gap: 15px; /* 메뉴 간 간격 조정 */
-    margin-left: 10px; /* 좌측 아이콘과 가까워지도록 조정 */
 }
 
 .nav-mobile-center a {
@@ -126,6 +128,7 @@ nav {
     font-size: 16px;
     font-weight: bold;
 }
+
     @media (max-width: 768px) {
       .nav-desktop { display: none; }
       .nav-mobile { display: flex; flex-wrap: wrap; }
