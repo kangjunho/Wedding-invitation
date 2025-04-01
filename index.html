@@ -266,24 +266,26 @@
   background-color: #3c5d31;
 }
 
-.accordion-content {
-  display: none;
-  background-color: #fafafa;
-  padding: 15px;
-  border: 1px solid #ddd;
+.accordion-content p {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px; /* 버튼과 텍스트 간격 추가 */
+  padding: 8px 12px;
+  background-color: #f5f5f5;
   border-radius: 8px;
-  margin: 5px auto;
-  width: 90%;
-  text-align: left;
+  margin: 5px 0;
+  font-size: 16px;
 }
-   .copy-btn {
-      margin-left: 10px;
-      background-color: #e7e7e7;
-      border: none;
-      padding: 5px 10px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+.copy-btn {
+  margin-left: 10px;
+  background-color: #e7e7e7;
+  border: none;
+  padding: 5px 12px; /* 버튼 크기 조정 */
+  border-radius: 5px;
+  cursor: pointer;
+  white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+}
 
    .copy-btn:hover {
       background-color: #ddd;
