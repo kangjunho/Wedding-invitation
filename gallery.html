@@ -122,6 +122,16 @@ $(document).keydown(function(e) {
     }
 });
 
+$(document).ready(function () {
+  $('#menu-toggle, #close-sidebar').click(function (e) {
+    e.preventDefault();
+    $('#sidebar').toggleClass('active');
+  });
+
+  // 페이지 로딩 시 사이드바 숨김
+  $('#sidebar').removeClass('active');
+});
+
 // 이미지 캡쳐 방지용 투명 레이어 추가
 $('img').each(function(){
     $(this).wrap('<div style="position:relative; display:inline-block;"></div>');
