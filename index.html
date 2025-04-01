@@ -17,7 +17,7 @@
       margin: 0;
       padding: 0;
     }
-    nav {
+        nav {
       padding: 10px 20px;
       background: #fff;
       position: relative;
@@ -28,8 +28,6 @@
       color: black;
       font-size: 18px;
     }
-    .green-heart { color: green; }
-    .white-heart { font-size: 18px; color: white; }
     .nav-center {
       display: flex;
       justify-content: center;
@@ -40,7 +38,6 @@
       text-decoration: none;
       color: #444;
       font-size: 14px;
-      white-space: nowrap;
     }
     .nav-right a {
       font-size: 32px;
@@ -78,11 +75,7 @@
     }
     @media (max-width: 768px) {
       .nav-desktop { display: none; }
-      .nav-mobile {
-        display: flex;
-        flex-wrap: wrap;
-        border-bottom: none;
-      }
+      .nav-mobile { display: flex; }
     }
     #sidebar {
       position: fixed;
@@ -113,6 +106,16 @@
       text-decoration: none;
       font-size: 16px;
     }
+    }
+    .green-heart { color: green; }
+    .white-heart { font-size: 18px; color: white; }
+    .nav-center {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-grow: 1;
+    }
+    
     #calendar {
       max-width: 600px;
       margin: 0 auto 30px;
@@ -148,28 +151,7 @@
     margin: 20px auto;
     text-align: center;
    }
-    .nav-buttons {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      margin-top: 40px;
-    }
-    .nav-buttons a {
-      background-color: #4e7942;
-      color: white;
-      padding: 10px 30px;
-      text-decoration: none;
-      border-radius: 6px;
-      font-size: 16px;
-      min-width: 180px;
-      text-align: center;
-
-  /* 추가된 스타일 (너비 통일) */
-      width: 180px;
-      display: inline-block;
-    }
-    .contact-box button {
+   .contact-box button {
       font-size: 16px;
       padding: 10px 30px;
       border: 1px solid #ccc;
@@ -319,7 +301,6 @@
       </div>
     </div>
   </nav>
-
   <div id="sidebar">
     <div class="sidebar-header">
       <h2>준호<span class="white-heart">♥</span>예원</h2>
@@ -424,6 +405,13 @@
   
 
 <script>
+    $(document).ready(function () {
+      $('#menu-toggle, #close-sidebar').click(function (e) {
+        e.preventDefault();
+        $('#sidebar').toggleClass('active');
+      });
+    });
+  
 function toggleAccordion(id) {
     const content = document.getElementById(id);
     if (content.style.display === "block") {
