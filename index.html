@@ -73,10 +73,23 @@
       color: #444;
       font-size: 14px;
     }
+
+    .nav-buttons a {
+      background-color: #4e7942;
+      color: white;
+      padding: 10px 30px;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 16px;
+      min-width: 180px;
+      text-align: center;
+    }
+
     @media (max-width: 768px) {
       .nav-desktop { display: none; }
       .nav-mobile { display: flex; }
     }
+    
     #sidebar {
       position: fixed;
       top: 0;
@@ -88,7 +101,7 @@
       transition: right 0.3s ease;
       padding: 20px;
       z-index: 1000;
-      display: block;
+      display: none;
     }
     #sidebar.active {
       right: 0;
@@ -410,7 +423,8 @@
         $('#sidebar').toggleClass('active');
       });
     });
-  
+    $('#sidebar').removeClass('active');
+});
 function toggleAccordion(id) {
     const content = document.getElementById(id);
     if (content.style.display === "block") {
