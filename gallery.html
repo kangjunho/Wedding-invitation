@@ -49,40 +49,13 @@ nav {
     color: #000; 
 }
 
-#sidebar { 
-    position: fixed; 
-    top: 0; 
-    left: -260px; 
-    width: 250px; 
-    height: 100%; 
-    background-color: #4e7942; 
-    color: white; 
-    transition: left 0.3s ease; 
-    padding: 20px; 
-    z-index: 1000; 
-}
-#sidebar.active { 
-    left: 0; 
-}
-.sidebar-header { 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-}
-.sidebar-header h2 { 
-    color: white; 
-}
-.sidebar-header a { 
-    color: white; 
-    font-size: 24px; 
-    text-decoration: none; 
-}
-#sidebar a { 
-    color: white; 
-    text-decoration: none; 
-    display: block; 
-    padding: 15px 0; 
-}
+    #sidebar { position: fixed; top: 0; right: -250px; width: 250px; height: 100%; background-color: #4e7942; color: white; transition: right 0.3s ease; padding: 20px; z-index: 1000; display: none; }
+    #sidebar.active { right: 0; display: block; }
+    .sidebar-header { display: flex; justify-content: space-between; align-items: center; }
+    .sidebar-header h2 { color: white; }
+    #sidebar ul { list-style: none; padding: 0; margin-top: 30px; }
+    #sidebar ul li { margin-bottom: 20px; }
+    #sidebar ul li a { color: white; text-decoration: none; font-size: 16px; }
 
 .slider-wrapper { 
     position: relative; 
