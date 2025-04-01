@@ -51,29 +51,34 @@
       width: 100%;
       border-bottom: 1px solid #ddd;
     }
-    .nav-mobile {
-      display: none;
-      width: 100%;
-      align-items: center;
-      justify-content: space-between; /* 좌측과 중앙 간격 조정 */
-      gap: 15px; /* 좌측 아이콘과 중앙 간격 조정 */
-      padding: 10px 20px;
-    }
-    .nav-mobile-left a {
-      font-size: 32px; /* 적절한 크기로 조정 */
-      color: #000;
-    }
+.nav-mobile {
+    display: none;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start; /* 중앙 메뉴를 왼쪽으로 밀착 */
+    gap: 5px; /* 좌측 아이콘과 중앙 메뉴 간 간격 최소화 */
+    padding: 10px 20px;
+}
+.nav-mobile-left {
+    display: flex;
+    align-items: center;
+}
+.nav-mobile-left a {
+    font-size: 32px; /* 좌측 아이콘 크기 그대로 */
+    color: #000;
+}
 .nav-mobile-center {
     display: flex;
-    justify-content: center; /* 중앙 정렬 */
     align-items: center;
-    gap: 20px; /* 메뉴 간 간격 조정 */
+    gap: 15px; /* 메뉴 간 간격 조정 */
+    margin-left: 10px; /* 좌측 아이콘과 가까워지도록 조정 */
 }
+
 .nav-mobile-center a {
     text-decoration: none;
     color: #444;
     font-size: 16px;
-    font-weight: bold; /* 모바일에서도 잘 보이도록 굵게 설정 */
+    font-weight: bold;
 }
 
     .nav-buttons {
