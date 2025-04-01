@@ -7,35 +7,153 @@
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Gowun+Dodum&family=Noto+Sans+KR:wght@400;700&family=Noto+Serif+KR&display=swap" rel="stylesheet" />
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
-    body { background: #fff; font-family: 'Noto Sans KR', sans-serif; margin: 0; padding: 0; }
-    nav { padding: 10px 20px; background: #fff; position: relative; }
-    .nav-desktop { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ddd; }
-    .nav-left a { text-decoration: none; font-weight: bold; color: black; font-size: 18px; }
-    .green-heart { color: green; }
-    .nav-center { display: flex; gap: 30px; }
-    .nav-center a { text-decoration: none; color: #444; font-size: 14px; white-space: nowrap; }
-    .nav-right a { font-size: 32px; text-decoration: none; color: #000; }
+body { 
+    background: #fff; 
+    font-family: 'Noto Sans KR', sans-serif; 
+    margin: 0; 
+    padding: 0; 
+}
+nav { 
+    padding: 10px 20px; 
+    background: #fff; 
+    position: relative; 
+}
+.nav-desktop { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    border-bottom: 1px solid #ddd; 
+}
+.nav-left a { 
+    text-decoration: none; 
+    font-weight: bold; 
+    color: black; 
+    font-size: 18px; 
+}
+.green-heart, .white-heart { 
+    color: green; /* 하트 색상 통일 */
+}
+.nav-center { 
+    display: flex; 
+    gap: 30px; 
+}
+.nav-center a { 
+    text-decoration: none; 
+    color: #444; 
+    font-size: 14px; 
+    white-space: nowrap; 
+}
+.nav-right a { 
+    font-size: 32px; 
+    text-decoration: none; 
+    color: #000; 
+}
 
-    .sidebar { position: fixed; top: 0; left: -260px; width: 250px; height: 100%; background-color: #4e7942; color: white; transition: left 0.3s ease; padding: 20px; z-index: 1000; }
-    .sidebar.active { left: 0; }
-    .sidebar-header { display: flex; justify-content: space-between; align-items: center; }
-    .sidebar-header h2 { color: white; }
-    .sidebar a { color: white; text-decoration: none; display: block; padding: 15px 0; }
+#sidebar { 
+    position: fixed; 
+    top: 0; 
+    left: -260px; 
+    width: 250px; 
+    height: 100%; 
+    background-color: #4e7942; 
+    color: white; 
+    transition: left 0.3s ease; 
+    padding: 20px; 
+    z-index: 1000; 
+}
+#sidebar.active { 
+    left: 0; 
+}
+.sidebar-header { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+}
+.sidebar-header h2 { 
+    color: white; 
+}
+.sidebar-header a { 
+    color: white; 
+    font-size: 24px; 
+    text-decoration: none; 
+}
+#sidebar a { 
+    color: white; 
+    text-decoration: none; 
+    display: block; 
+    padding: 15px 0; 
+}
 
-    .slider-wrapper { position: relative; max-width: 900px; margin: 80px auto 20px; text-align: center; }
-    .main-image { width: 100%; height: auto; max-height: 600px; object-fit: contain; border-radius: 8px; }
-    .thumbnail-wrapper { display: flex; gap: 8px; justify-content: center; margin-top: 10px; }
-    .thumbnail-wrapper img { width: 60px; height: 60px; object-fit: cover; border-radius: 6px; cursor: pointer; }
-    .more-button { margin-top: 15px; background-color: #4e7942; color: white; padding: 8px 20px; border: none; border-radius: 6px; cursor: pointer; }
+.slider-wrapper { 
+    position: relative; 
+    max-width: 900px; 
+    margin: 80px auto 20px; 
+    text-align: center; 
+}
+.main-image { 
+    width: 100%; 
+    height: auto; 
+    max-height: 600px; 
+    object-fit: contain; 
+    border-radius: 8px; 
+}
+.thumbnail-wrapper { 
+    display: flex; 
+    gap: 8px; 
+    justify-content: center; 
+    margin-top: 10px; 
+}
+.thumbnail-wrapper img { 
+    width: 60px; 
+    height: 60px; 
+    object-fit: cover; 
+    border-radius: 6px; 
+    cursor: pointer; 
+}
+.more-button { 
+    margin-top: 15px; 
+    background-color: #4e7942; 
+    color: white; 
+    padding: 8px 20px; 
+    border: none; 
+    border-radius: 6px; 
+    cursor: pointer; 
+}
 
-    @media (max-width: 768px) {
-        .nav-desktop { display: none; }
-        .nav-mobile { display: flex; justify-content: space-between; align-items: center; background: #fff; padding: 10px 20px; border-bottom: 1px solid #ddd; }
-        .nav-left a { font-size: 20px; text-decoration: none; color: black; font-weight: bold; }
-        .nav-center { display: flex; justify-content: center; gap: 10px; }
-        .nav-center a { text-decoration: none; color: #444; font-size: 16px; }
-        .nav-right a { font-size: 28px; text-decoration: none; color: #000; }
+@media (max-width: 768px) {
+    .nav-desktop { 
+        display: none; 
     }
+    .nav-mobile { 
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center; 
+        background: #fff; 
+        padding: 10px 20px; 
+        border-bottom: 1px solid #ddd; 
+    }
+    .nav-left a { 
+        font-size: 18px; /* 데스크탑과 동일하게 수정 */
+        text-decoration: none; 
+        color: black; 
+        font-weight: bold; 
+    }
+    .nav-center { 
+        display: flex; 
+        justify-content: center; 
+        gap: 10px; 
+    }
+    .nav-center a { 
+        text-decoration: none; 
+        color: #444; 
+        font-size: 14px; /* 데스크탑과 동일하게 수정 */
+    }
+    .nav-right a { 
+        font-size: 28px; 
+        text-decoration: none; 
+        color: #000; 
+    }
+}
 
 
     .gallery-grid {
