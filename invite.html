@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>일정 등록하기</title>
+    <style>
+        .calendar-button {
+            background-color: #4e7942;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .calendar-button:hover {
+            background-color: #3c5d31;
+        }
+    </style>
+</head>
+<body>
+    <h2>강준호 ♥ 박예원 결혼식 일정 등록하기</h2>
+    <button class="calendar-button" onclick="addGoogleCalendar()">Google 캘린더</button>
+    <button class="calendar-button" onclick="addAppleCalendar()">Apple 캘린더</button>
+    <button class="calendar-button" onclick="addOutlookCalendar()">Outlook 캘린더</button>
+
+    <script>
+        const eventTitle = encodeURIComponent("강준호 ♥ 박예원 결혼식");
+        const eventLocation = encodeURIComponent("부산 해운대 팔레드시즈 웨딩홀");
+        const eventDetails = encodeURIComponent("2025년 5월 10일 토요일 오후 12시\n자세한 내용: https://kangjunho.github.io/Wedding-invitation/index.html");
+        const eventLink = "https://kangjunho.github.io/Wedding-invitation/index.html";
+        const startDate = "20250510T030000Z"; // UTC 시간 기준 (한국시간 -9시간)
+        const endDate = "20250510T050000Z";   // 2시간 행사
+
+        function addGoogleCalendar() {
+            const googleUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${eventTitle}&dates=${startDate}/${endDate}&details=${eventDetails}&location=${eventLocation}&sf=true&output=xml`;
+            window.open(googleUrl, "_blank");
+        }
+
+        function addAppleCalendar() {
+            const appleUrl = `data:text/calendar;charset=utf8,BEGIN:VCALENDAR%0D%0AVERSION:2.0%0D%0ABEGIN:VEVENT%0D%0ASUMMARY:${eventTitle}%0D%0ALOCATION:${eventLocation}%0D%0ADESCRIPTION:${eventDetails}%0D%0AURL:${eventLink}%0D%0ADTSTART:${startDate}%0D%0ADTEND:${endDate}%0D%0AEND:VEVENT%0D%0AEND:VCALENDAR`;
+            const link = document.createElement("a");
+            link.href = appleUrl;
+            link.download = "wedding.ics";
+            link.click();
+        }
+
+        function addOutlookCalendar() {
+            const outlookUrl = `https://outlook.live.com/calendar/0/deeplink/compose?subject=${eventTitle}&body=${eventDetails}&location=${eventLocation}&startdt=${startDate}&enddt=${endDate}`;
+            window.open(outlookUrl, "_blank");
+        }
+    </script>
+</body>
+</html>
