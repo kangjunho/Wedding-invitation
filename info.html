@@ -282,34 +282,34 @@
 </section>
 
 <script>
-  $(document).ready(function () {
+$(document).ready(function () {
     $('.faq-card').click(function () {
-      $(this).toggleClass('active');
+        $(this).toggleClass('active');
     });
-    });
-  $(document).ready(function () {
+
     $('#menu-toggle, #close-sidebar').click(function (e) {
-      e.preventDefault();
-      $('#sidebar').toggleClass('active');
+        e.preventDefault();
+        $('#sidebar').toggleClass('active');
     });
 
     $('.tab-link').click(function(e) {
-      e.preventDefault(); // URL의 기본동작 방지 (이부분이 중요!)
-      var tabID = $(this).data('tab');
-      $('.tab-content').removeClass('active');
-      $('#' + tabID).addClass('active');
+        e.preventDefault(); // URL의 기본동작 방지 (이부분이 중요!)
+        var tabID = $(this).data('tab');
+        $('.tab-content').removeClass('active');
+        $('#' + tabID).addClass('active');
 
-      // 클릭한 탭을 URL 해시로 추가 (선택적)
-      history.pushState(null, null, '#' + tabID);
+        // 클릭한 탭을 URL 해시로 추가 (선택적)
+        history.pushState(null, null, '#' + tabID);
     });
 
     // 페이지 로드 시 URL 해시가 있으면 탭 활성화 (선택적)
     var hash = window.location.hash.substring(1);
     if(hash) {
-      $('.tab-content').removeClass('active');
-      $('#' + hash).addClass('active');
+        $('.tab-content').removeClass('active');
+        $('#' + hash).addClass('active');
     }
-  });
+});
+
 </script>
 
 
