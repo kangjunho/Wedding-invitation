@@ -18,12 +18,14 @@
     .green-heart { color: green; }
     .white-heart { font-size: 18px; color: white; }
     .nav-center { display: flex; justify-content: center; gap: 30px; flex-grow: 1; }
-    .nav-center a {
+.nav-center a {
     text-decoration: none;
     color: #444;
     font-size: 14px;
     font-weight: bold; /* 추가 */
+    white-space: nowrap;
 }
+
     .nav-right a { font-size: 32px; text-decoration: none; color: #000; }
     .nav-desktop { display: flex; justify-content: space-between; align-items: center; width: 100%; border-bottom: 1px solid #ddd; }
 .nav-mobile {
@@ -58,7 +60,7 @@
 .nav-mobile-center a {
     text-decoration: none;
     color: #444;
-    font-size: 14px;
+    font-size: 14px; /* 통일 */
     font-weight: bold; /* 추가 */
     white-space: nowrap;
 }
@@ -74,7 +76,12 @@
     .sidebar-header h2 { color: white; }
     #sidebar ul { list-style: none; padding: 0; margin-top: 30px; }
     #sidebar ul li { margin-bottom: 20px; }
-    #sidebar ul li a { color: white; text-decoration: none; font-size: 16px; }
+    #sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold; /* 추가 */
+}
     section { padding: 30px; text-align: center; }
     .location-section { max-width: 600px; margin: auto; text-align: center; line-height: 1.6; }
     h2.title { text-align: center; margin: 40px 0 20px; font-size: 22px; color: #444; }
