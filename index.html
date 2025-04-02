@@ -60,9 +60,9 @@
     display: none;
     width: 100%;
     align-items: center;
-    justify-content: space-between; /* 양쪽에 자연스럽게 간격 배분 */
+    justify-content: space-between;
     padding: 10px 20px;
-    position: relative; /* 중앙 메뉴를 중앙에 배치하기 위해 relative로 설정 */
+    position: relative;
 }
 
 .nav-mobile-left {
@@ -71,24 +71,38 @@
 }
 
 .nav-mobile-left a {
-    font-size: 32px; /* 좌측 아이콘 크기 그대로 */
+    font-size: 28px; /* 좌측 아이콘 크기 줄임 */
     color: #000;
 }
 
 .nav-mobile-center {
-    position: absolute; /* 절대 위치로 중앙 배치 */
-    left: 50%; /* 화면의 중앙으로 이동 */
-    transform: translateX(-50%); /* 중앙으로부터 왼쪽으로 50% 이동하여 정확한 중앙 정렬 */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     align-items: center;
-    gap: 15px; /* 메뉴 간 간격 조정 */
+    gap: 8px; /* 간격 줄임 */
+    flex-wrap: nowrap; /* 줄바꿈 방지 */
 }
 
 .nav-mobile-center a {
     text-decoration: none;
     color: #444;
-    font-size: 16px;
+    font-size: 14px; /* 폰트 크기 줄임 */
     font-weight: bold;
+    white-space: nowrap; /* 한 줄로 유지 */
+}
+
+@media (max-width: 480px) {
+    .nav-mobile-center {
+        gap: 5px; /* 작은 화면에서는 간격 더 줄임 */
+    }
+    .nav-mobile-left a {
+        font-size: 24px; /* 아이콘 크기 더 줄임 */
+    }
+    .nav-mobile-center a {
+        font-size: 12px; /* 글자 크기 줄여서 한 줄 유지 */
+    }
 }
 
 
@@ -112,11 +126,7 @@
       margin: 5px;     /* 버튼 간격 추가 */
     }
     
-    @media (max-width: 768px) {
-      .nav-desktop { display: none; }
-      .nav-mobile { display: flex; }
-    }
-    
+   
     #sidebar {
       position: fixed;
       top: 0;
