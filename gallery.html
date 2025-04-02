@@ -41,11 +41,12 @@ nav {
     display: flex; 
     gap: 20px; /* 간격 줄임 */
 }
-.nav-center a { 
-    text-decoration: none; 
-    color: #444; 
-    font-size: 18px; /* 폰트 크기 통일 */
-    white-space: nowrap; 
+.nav-center a {
+    text-decoration: none;
+    color: #444;
+    font-size: 14px;
+    font-weight: bold; /* 추가 */
+    white-space: nowrap;
 }
 .nav-right a { 
     font-size: 32px; 
@@ -86,10 +87,11 @@ nav {
 #sidebar ul li { 
     margin-bottom: 20px; 
 }
-#sidebar ul li a { 
-    color: white; 
-    text-decoration: none; 
-    font-size: 16px; 
+#sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold; /* 추가 */
 }
 
 /* PC 버전에서 모바일 네비게이션 숨김 */
@@ -125,13 +127,13 @@ nav {
 .nav-mobile-center a {
     text-decoration: none;
     color: #444;
-    font-size: 14px;
+    font-size: 14px; /* 통일 */
     font-weight: bold; /* 추가 */
     white-space: nowrap;
 }
 @media (max-width: 480px) {
     .nav-mobile-center a {
-        font-size: 12px;
+        font-size: 12px; /* 모바일 크기 통일 */
         font-weight: bold; /* 추가 */
     }
 }
