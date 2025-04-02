@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>오시는 길 - 강준호 & 박예원 결혼합니다.</title>
-  <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Gowun+Dodum&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Gowun+Dodum&family=Noto+Sans+KR:wght@400;700&family=Noto+Serif+KR&family=Poor+Story&family=Gamja+Flower&display=swap" rel="stylesheet" />
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
         body {
@@ -18,7 +18,12 @@
     .green-heart { color: green; }
     .white-heart { font-size: 18px; color: white; }
     .nav-center { display: flex; justify-content: center; gap: 30px; flex-grow: 1; }
-    .nav-center a { text-decoration: none; color: #444; font-size: 14px; white-space: nowrap; }
+    .nav-center a {
+    text-decoration: none;
+    color: #444;
+    font-size: 14px;
+    font-weight: bold; /* 추가 */
+}
     .nav-right a { font-size: 32px; text-decoration: none; color: #000; }
     .nav-desktop { display: flex; justify-content: space-between; align-items: center; width: 100%; border-bottom: 1px solid #ddd; }
 .nav-mobile {
@@ -35,12 +40,12 @@
     align-items: center;
 }
 
-.nav-mobile-left a {
+-left a {
     font-size: 28px; /* 좌측 아이콘 크기 줄임 */
     color: #000;
 }
 
-.nav-mobile-center {
+-center {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -53,19 +58,14 @@
 .nav-mobile-center a {
     text-decoration: none;
     color: #444;
-    font-size: 14px; /* 폰트 크기 줄임 */
-    white-space: nowrap; /* 한 줄로 유지 */
+    font-size: 14px;
+    font-weight: bold; /* 추가 */
+    white-space: nowrap;
 }
-
 @media (max-width: 480px) {
-    .nav-mobile-center {
-        gap: 5px; /* 작은 화면에서는 간격 더 줄임 */
-    }
-    .nav-mobile-left a {
-        font-size: 24px; /* 아이콘 크기 더 줄임 */
-    }
     .nav-mobile-center a {
-        font-size: 12px; /* 글자 크기 줄여서 한 줄 유지 */
+        font-size: 12px;
+        font-weight: bold; /* 추가 */
     }
 }
     #sidebar { position: fixed; top: 0; right: -250px; width: 250px; height: 100%; background-color: #4e7942; color: white; transition: right 0.3s ease; padding: 20px; z-index: 1000; display: none; }
